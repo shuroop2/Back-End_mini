@@ -142,6 +142,6 @@
         </div>
     </section>
     <!-- 주소 복사 시 팝업 박스 -->
-    <div id="copy_box">주소가 클립보드에 복사되었습니다. </div>
-<c:import url="/WEB-INF/views/layout/bottom.jsp" /></body>
+    <div id="copy_box">주소가 클립보드에 복사되었습니다. </div><c:import url="/WEB-INF/views/layout/bottom.jsp" />
+</body>
 </html>
