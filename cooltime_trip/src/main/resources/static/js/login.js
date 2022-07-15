@@ -43,7 +43,7 @@ $(document).ready(function(){
         if(input_id==user_id){
             if(input_pw==user_pw){
                 alert("로그인 되었습니다.");
-                location.href='flight_main.html';// 메인페이지로 이동
+                location.href='/flight/flight_main';// 메인페이지로 이동
             } else{
                 // alert("비밀번호를 확인해주세요.");
                 $('.input_login_password').css('border', '1px solid #E65454');

@@ -57,7 +57,7 @@ $(document).ready(function(){
         }
         else{
             alert("휴대폰 번호가 변경되었습니다.");
-            location.href = 'flight_main.html';
+            location.href = '/flight/flight_main';
         }
     });
 });

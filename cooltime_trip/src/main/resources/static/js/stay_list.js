@@ -189,7 +189,7 @@ $(document).ready(function(){
 
   // 페이지 이동
   $('.wrap_result_hotel_info').click(function(){
-    location.href='stay_detail.html';
+    location.href='/stay/stay_detail';
   });
 
   // 탑 버튼 눌렀을 때 최상단으로
