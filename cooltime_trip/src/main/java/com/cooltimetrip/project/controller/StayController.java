@@ -10,4 +10,9 @@ public class StayController {
 	public String viewStayMain() {
 		return "stay/stay_main";
 	}
+	
+	@RequestMapping("/stay/stay_list")
+	public String viewStayList() {
+		return "stay/stay_list";
+	}
 }
