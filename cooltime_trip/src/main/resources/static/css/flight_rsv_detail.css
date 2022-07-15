@@ -554,6 +554,8 @@
 .section_right {
   width: 350px;
   height: 329px;
+  top: 100px;
+  position: sticky;
 }
 
 /* 요금표 */
