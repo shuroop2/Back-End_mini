@@ -15,7 +15,7 @@ local.properties
 .recommenders
 
 # ignore properties file
-config.properties
+application.properties
 
 # External tool builders
 .externalToolBuilders/
