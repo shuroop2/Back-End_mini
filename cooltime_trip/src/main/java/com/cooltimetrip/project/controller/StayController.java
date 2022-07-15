@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class StayController {
 	
-	@RequestMapping("/stay_main")
+	@RequestMapping("/stay/stay_main")
 	public String viewStayMain() {
 		return "stay/stay_main";
 	}

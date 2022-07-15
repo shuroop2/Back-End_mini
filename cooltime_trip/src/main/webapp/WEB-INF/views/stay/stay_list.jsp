@@ -106,7 +106,7 @@
       <section class="sec_filter">
         <div class="wrap_map_btn">
           <a href="https://map.naver.com/v5/search/hotel?c=14080163.7383975,3960182.5048724,14.31,0,0,0,dh">
-            <img src="../images/btn_map.png" alt="지도로 보기">
+            <img src="<c:url value='images/btn_map.png'/>" alt="지도로 보기">
             <span>지도로 보기</span>
           </a>
         </div>
@@ -140,7 +140,7 @@
         <!-- result data-->
         <div class="wrap_result_list">
           <div class="wrap_result_img">
-            <img src="../images/img_maison.jpg" alt="호텔 사진">
+            <img src="<c:url value='/images/img_maison.jpg'/>" alt="호텔 사진">
           </div>
           <div class="wrap_result_hotel_info">
             <span class="txt_result_name">메종 글래드 제주</span>
@@ -151,7 +151,7 @@
         </div>
         <div class="wrap_result_list">
           <div class="wrap_result_img">
-            <img src="../images/img_shillastay.jpg" alt="호텔 사진">
+            <img src="<c:url value='/images/img_shillastay.jpg'/>" alt="호텔 사진">
           </div>
           <div class="wrap_result_hotel_info">
             <span class="txt_result_name">신라스테이 제주</span>

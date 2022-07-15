@@ -12,7 +12,7 @@
   <section class="sec_search">
     <!-- 백그라운드 -->
     <div class="div_bg_stay">
-      <img class="bg_stay" src="../images/bg_stay.jpg" alt="숙박예약 배경">
+      <img class="bg_stay" src="<c:url value='../images/bg_stay.jpg'/>" alt="숙박예약 배경">
     </div>
     <!-- 숙박 타이틀 -->
     <h2 class="tlt_stay">숙박 예약</h2>
