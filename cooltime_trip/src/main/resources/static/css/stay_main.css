@@ -114,7 +114,7 @@
   border-radius: 30px;
   background-color: #ffffff;
   box-shadow: 3px 3px 18px #0003;
-  z-index: 1;
+  z-index: 2;
 }
 
 .sec_search .popup_lod .tlt_popup_lod{
