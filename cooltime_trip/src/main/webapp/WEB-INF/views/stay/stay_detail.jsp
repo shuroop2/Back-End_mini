@@ -55,7 +55,7 @@
 	                </div>
 	                <div class="hotel_sub" id="popUp">
 	                  <div class="expand_hidden_pic">+5</div>
-	                    <a href="<c:url value='/images/bathroom.png'/>" data-lightbox="example"><img src=".<c:url value='/images/bathroom.png'/>" class="img1"></a>
+	                    <a href="<c:url value='/images/bathroom.png'/>" data-lightbox="example"><img src="<c:url value='/images/bathroom.png'/>" class="img1"></a>
 	                    <a href="<c:url value='/images/restaurant.png'/>" data-lightbox="example"><img src="<c:url value='/images/restaurant.png'/>" class="img2"></a>
 	                    <a href="<c:url value='/images/room_standard2.png'/>" data-lightbox="example"><img src="<c:url value='/images/room_standard2.png'/>" class="img3"></a>
 	                    <a href="<c:url value='/images/meeting.png'/>" data-lightbox="example"><img src="<c:url value='/images/meeting.png'/>" class="img4"></a>
