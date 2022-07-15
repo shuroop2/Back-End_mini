@@ -11,6 +11,6 @@ $(document).ready(function(){
 
     // 예약하기 버튼 눌러서 이동
     $('.rsv_btn').on('click', function(){
-        location.href = 'flight_rsv_detail.html';
+        location.href = '/flight/flight_rsv_detail';
     });
 });

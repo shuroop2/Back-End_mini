@@ -471,9 +471,11 @@ article.terms p{
 
 /* 총 결제 금액, fixed */
 .rent_total_price_info{
-  position: fixed;
+  top: 100px;
+  position: sticky;
   right: 300px;
   width: 330px;
+  height: 156px;
 }
 
 .rent_total_price_info > div:nth-child(1){
@@ -546,7 +548,7 @@ article.terms p{
   width: 60px;
   height: 60px;
   right: 40px;
-  bottom: 50%;
+  bottom: 40px;
   cursor: pointer;
 }
 
