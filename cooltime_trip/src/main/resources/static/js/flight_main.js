@@ -327,7 +327,7 @@ function flightCheck(){
       alert("여행 날짜를 선택해 주세요");
 
     }else{
-        location.href = '/flight/flight_list';
+        location.href = '/flight_list';
     }
 
 }

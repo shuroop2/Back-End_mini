@@ -84,12 +84,12 @@ $(document).ready(function(){
 
   // 선택 눌렀을 때 페이지 이동
   $('.txt_choose').click(function(){
-    location.href='/rent/rent_detail';
+    location.href='/rent_detail';
   });
 
   // 박스 눌렀을 때 페이지 이동
   $('.wrap_final_price').click(function(){
-    location.href='/rent/rent_detail';
+    location.href='/rent_detail';
   });
 
   // dateRangePicker

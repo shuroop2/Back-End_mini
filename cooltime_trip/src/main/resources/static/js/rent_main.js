@@ -143,7 +143,7 @@ $(document).ready(function(){
   		return false; // 서버로 전송되지 않도록
   	}
     // 인원 선택은 디폴트 어른 1명이 있기 때문에 유효성 검사 필요 없음
-    location.href = '/rent/rent_list';
+    location.href = '/rent_list';
   });
 
   // 탑 버튼 눌렀을 때 최상단으로

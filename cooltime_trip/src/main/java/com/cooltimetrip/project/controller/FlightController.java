@@ -11,19 +11,18 @@ public class FlightController {
 		return "flight/flight_main";
 	}
 	
-	@RequestMapping("/flight/flight_rsv")
-	public String flightRsv() {
-		return "flight/flight_rsv";
-	}
-	
-	@RequestMapping("/flight/flight_rsv_detail")
-	public String flightRsvDetail() {
-		return "flight/flight_rsv_detail";
-	}
-	
-	@RequestMapping("/flight/flight_list")
+	@RequestMapping("/flight_list")
 	public String flightList() {
 		return "flight/flight_list";
-	}
+	}	
 	
+	@RequestMapping("/flight_detail")
+	public String flightDetail() {
+		return "flight/flight_detail";
+	}	
+	
+	@RequestMapping("/flight_reservation")
+	public String flightReservation() {
+		return "flight/flight_reservation";
+	}
 }

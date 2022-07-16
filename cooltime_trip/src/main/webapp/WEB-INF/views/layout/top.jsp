@@ -20,9 +20,9 @@
 	    	<nav>
 		    	<!-- 항공/숙박/렌터카 -->
 		    	<ul>
-		    		<li class="nav_active"><a href="<c:url value='/flight/flight_main' />"><img class="ic_nav" src="<c:url value='/images/ic_plane.png' />" alt="항공"><span>항공</span></a></li>
-		      		<li><a href="<c:url value='/stay/stay_main' />"><img class="ic_nav" src="<c:url value='/images/ic_lodgment.png' />" alt="숙박"><span>숙박</span></a></li>
-		      		<li><a href="<c:url value='/rent/rent_main' />"><img class="ic_nav" src="<c:url value='/images/ic_rent.png' />" alt="렌터카"><span>렌터카</span></a></li>
+		    		<li class="nav_active"><a href="<c:url value='/flight_main' />"><img class="ic_nav" src="<c:url value='/images/ic_plane.png' />" alt="항공"><span>항공</span></a></li>
+		      		<li><a href="<c:url value='/stay_main' />"><img class="ic_nav" src="<c:url value='/images/ic_lodgment.png' />" alt="숙박"><span>숙박</span></a></li>
+		      		<li><a href="<c:url value='/rent_main' />"><img class="ic_nav" src="<c:url value='/images/ic_rent.png' />" alt="렌터카"><span>렌터카</span></a></li>
 		    	</ul>
 			</nav>
 		</div>

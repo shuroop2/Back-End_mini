@@ -121,7 +121,7 @@
 	                    </div>
 	                </div>
 	                <!-- <button class="booked"><a href="../html/stay_reservation.html"></a>예약</button> -->
-	                <a class="booked" href="<c:url value='/stay_reservation.jsp'/>">예약</a>
+	                <a class="booked" href="<c:url value='/stay_reservation'/>">예약</a>
 	              </div>
 	              <div class="room_twin">
 	                <img src="<c:url value='/images/room_standard3.png'/>"/>
@@ -137,7 +137,7 @@
 	                        <span class="price_won">원</span>
 	                    </div>
 	                </div>
-	                <a class="booked" href="<c:url value='/stay_reservation.jsp'/>">예약</a>
+	                <a class="booked" href="<c:url value='/stay_reservation'/>">예약</a>
 	              </div>
 	              <!-- 약관 -->
 	              <div class="use_info_box">

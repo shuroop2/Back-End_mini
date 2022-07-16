@@ -21,7 +21,7 @@ $(document).ready(function(){
 
     // 취소하기 버튼 - index.html 로 이동
     $('.btn_update_cancel').click(function(){
-        location.href='/flight/flight_main';
+        location.href='/';
     });
 
     // 저장하기 버튼 - index.html 로 이동
@@ -31,7 +31,7 @@ $(document).ready(function(){
         
         //
         alert("회원정보가 저장되었습니다.");
-        location.href='/flight/flight_main';
+        location.href='/';
     });
     
 });

@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html lang="en"><c:import url="/WEB-INF/views/layout/head.jsp" />
 	<!-- custom -->
-    <script src="<c:url value='/js/flight_rsv_detail.js' />"></script>
-	<link rel="stylesheet" href="<c:url value='/css/flight_rsv_detail.css' />"/>
+    <script src="<c:url value='/js/flight_reservation.js' />"></script>
+	<link rel="stylesheet" href="<c:url value='/css/flight_reservation.css' />"/>
 </head>
 <body><c:import url="/WEB-INF/views/layout/top.jsp" />
     <!-- 섹션 -->

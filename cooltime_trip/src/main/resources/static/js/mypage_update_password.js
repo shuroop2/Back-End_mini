@@ -55,7 +55,7 @@ $(document).ready(function(){
                 $('.error_check_password').hide();// 비밀번호가 일치하지 않습니다 - 숨김
                 user_pw = $('.input_update_password').val();// 기존 비밀번호를 새 비밀번호로 대체
                 alert("비밀번호가 변경되었습니다.");
-                location.href = '/flight/flight_main';
+                location.href = '/';
             }
         }
     });

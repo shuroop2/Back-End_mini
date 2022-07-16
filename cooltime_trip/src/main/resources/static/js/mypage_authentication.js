@@ -22,7 +22,7 @@ $(document).ready(function(){
             $('.error_authentication_password').show();// 비밀번호가 일치하지 않습니다 - 표시
         } else {
             alert("비밀번호가 확인되었습니다.");
-            location.href = "/member/mypage_update_main";
+            location.href = "/mypage_update_main";
         }
     });
 });

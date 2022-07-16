@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html lang="en"><c:import url="/WEB-INF/views/layout/head.jsp" />
 	<!-- custom -->
-    <script src="<c:url value='/js/flight_rsv.js' />"></script>
-	<link rel="stylesheet" href="<c:url value='/css/flight_rsv.css' />"/>
+    <script src="<c:url value='/js/flight_detail.js' />"></script>
+	<link rel="stylesheet" href="<c:url value='/css/flight_detail.css' />"/>
 </head>
 <body>
     <!-- 헤더 -->

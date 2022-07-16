@@ -240,7 +240,7 @@ $(document).ready(function(){
            // 회원 가입 완료 - 로그인 페이지로 이동
            alert("회원가입이 완료되었습니다."); 
            check_signup=true;
-           location.href='/member/login';
+           location.href='/login';
         } else{
             if(!check_id){
                 alert("아이디 중복확인을 해주세요.");
