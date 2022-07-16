@@ -25,7 +25,7 @@
         </div>
         <div class="myinfo_title">내 정보</div>
         <div class="myinfo_nav">
-          <a href="<c:url value='/member/mypage_authentication'/>"><div class="myinfo_nav_hover1 nav_hover" id="myinfoNav"><p>내 정보 수정하기</p></div></a>
+          <a href="<c:url value='/mypage_authentication'/>"><div class="myinfo_nav_hover1 nav_hover" id="myinfoNav"><p>내 정보 수정하기</p></div></a>
         </div>
       </div>
       <div class="mypage_content_box">
