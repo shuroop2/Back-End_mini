@@ -314,7 +314,7 @@
 
   <!-- 비행기 배경 -->
   <section class="flight_background">
-    <img src="../images/bg_plane@2x.png" alt="비행기 배경">
+    <img src="<c:url value='../images/bg_plane@2x.png'/>" alt="비행기 배경">
     <div class="flight_reservation_title">
       항공 예약
     </div>
@@ -412,7 +412,7 @@
     <div class="jeju_title">제주 휴가 즐겨요</div>
     <div class="jeju_container">
       <div class="jeju_box">
-        <img src="/images/jeju1.jfif">
+        <img src="<c:url value='/images/jeju1.jfif'/>">
         <div class="jeju_content">
           <div class="jeju_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
@@ -426,7 +426,7 @@
         </div>
       </div>
       <div class="jeju_box">
-        <img src="../images/jeju2.jfif">
+        <img src="<c:url value='../images/jeju2.jfif'/>">
         <div class="jeju_content">
           <div class="jeju_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
@@ -440,7 +440,7 @@
         </div>
       </div>
       <div class="jeju_box">
-        <img src="../images/jeju3.jfif">
+        <img src="<c:url value='../images/jeju3.jfif'/>">
         <div class="jeju_content">
           <div class="jeju_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
@@ -454,7 +454,7 @@
         </div>
       </div>
       <div class="jeju_box">
-        <img src="../images/jeju4.jfif">
+        <img src="<c:url value='../images/jeju4.jfif'/>">
         <div class="jeju_content">
           <div class="jeju_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
@@ -475,7 +475,7 @@
     <div class="honeymoon_title">신혼여행</div>
     <div class="honeymoon_container">
       <div class="honeymoon_box">
-        <img src="/images/guam1.jfif">
+        <img src="<c:url value='/images/guam1.jfif'/>">
         <div class="honeymoon_content">
           <div class="honeymoon_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
@@ -489,7 +489,7 @@
         </div>
       </div>
       <div class="honeymoon_box">
-        <img src="/images/guam2.jfif">
+        <img src="<c:url value='/images/guam2.jfif'/>">
         <div class="honeymoon_content">
           <div class="honeymoon_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
@@ -503,7 +503,7 @@
         </div>
       </div>
       <div class="honeymoon_box">
-        <img src="/images/guam3.jfif">
+        <img src="<c:url value='/images/guam3.jfif'/>">
         <div class="honeymoon_content">
           <div class="honeymoon_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
@@ -517,7 +517,7 @@
         </div>
       </div>
       <div class="honeymoon_box">
-        <img src="/images/guam4.jfif">
+        <img src="<c:url value='/images/guam4.jfif'/>">
         <div class="honeymoon_content">
           <div class="honeymoon_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>

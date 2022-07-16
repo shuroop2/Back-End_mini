@@ -34,7 +34,7 @@
             <div>여행갈 때 필요한 물건은 다 챙기셨나요?</div>
             <div>꼭 필요한 물건들을 자동으로 입력해 드릴게요! 여기에 나의 잇템을 추가하면 나만의 체크리스트 완성 :)</div>
           </div>
-          <a href="#"><img src="../images/btn_right.png"></a>
+          <a href="<c:url value='#'/>"><img src="<c:url value='../images/btn_right.png'/>"></a>
         </div>
 
         <!-- 마이페이지 항공리스트 -->
@@ -44,12 +44,12 @@
               <div>
                 <div class="reservation_air_content1">
                   <div class="reservation_airline">
-                    <img src="../images/lg_jin_air.png" alt="진에어 로고">
+                    <img src="<c:url value='../images/lg_jin_air.png'/>" alt="진에어 로고">
                     <div>진에어</div>
                   </div>
                   <div class="air_fly">
                     <div class="air_fly_time1">
-                      <span>09:40</span><img src="../images/ic_arrow_right_plane.png" alt="화살표"><span>15:05</span>
+                      <span>09:40</span><img src="<c:url value='../images/ic_arrow_right_plane.png'/>" alt="화살표"><span>15:05</span>
                     </div>
                     <div class="air_fly_time2">
                       <span>ICN</span><span>04시간 25분</span><span>GUM</span>
@@ -58,12 +58,12 @@
                 </div>
                 <div class="reservation_air_content2">
                   <div class="reservation_airline">
-                    <img src="../images/lg_jin_air.png" alt="진에어 로고">
+                    <img src="<c:url value='../images/lg_jin_air.png'/>" alt="진에어 로고">
                     <div>진에어</div>
                   </div>
                   <div class="air_fly">
                     <div class="air_fly_time1">
-                      <span>09:40</span><img src="../images/ic_arrow_right_plane.png" alt="화살표"><span>15:20</span>
+                      <span>09:40</span><img src="<c:url value='../images/ic_arrow_right_plane.png'/>" alt="화살표"><span>15:20</span>
                     </div>
                     <div class="air_fly_time2">
                       <span>ICN</span><span>04시간 40분</span><span>GUM</span>
@@ -75,7 +75,7 @@
                 <div>총 결제 금액</div>
                 <div>455,700<span>원</span></div>
                 <div>
-                  <a href="#"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
+                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
                 </div>
               </div>
             </div>
@@ -85,12 +85,12 @@
               <div>
                 <div class="reservation_air_content1">
                   <div class="reservation_airline">
-                    <img src="../images/lg_jin_air.png" alt="진에어 로고">
+                    <img src="<c:url value='../images/lg_jin_air.png'/>" alt="진에어 로고">
                     <div>진에어</div>
                   </div>
                   <div class="air_fly">
                     <div class="air_fly_time1">
-                      <span>09:40</span><img src="../images/ic_arrow_right_plane.png" alt="화살표"><span>15:05</span>
+                      <span>09:40</span><img src="<c:url value='../images/ic_arrow_right_plane.png'/>" alt="화살표"><span>15:05</span>
                     </div>
                     <div class="air_fly_time2">
                       <span>ICN</span><span>04시간 25분</span><span>GUM</span>
@@ -99,12 +99,12 @@
                 </div>
                 <div class="reservation_air_content2">
                   <div class="reservation_airline">
-                    <img src="../images/lg_jin_air.png" alt="진에어 로고">
+                    <img src="<c:url value='../images/lg_jin_air.png'/>" alt="진에어 로고">
                     <div>진에어</div>
                   </div>
                   <div class="air_fly">
                     <div class="air_fly_time1">
-                      <span>09:40</span><img src="../images/ic_arrow_right_plane.png" alt="화살표"><span>15:20</span>
+                      <span>09:40</span><img src="<c:url value='../images/ic_arrow_right_plane.png'/>" alt="화살표"><span>15:20</span>
                     </div>
                     <div class="air_fly_time2">
                       <span>ICN</span><span>04시간 40분</span><span>GUM</span>
@@ -116,7 +116,7 @@
                 <div>총 결제 금액</div>
                 <div>455,700<span>원</span></div>
                 <div>
-                  <a href="#"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
+                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
                 </div>
               </div>
             </div>
@@ -126,12 +126,12 @@
               <div>
                 <div class="reservation_air_content1">
                   <div class="reservation_airline">
-                    <img src="../images/lg_jin_air.png" alt="진에어 로고">
+                    <img src="<c:url value='../images/lg_jin_air.png'/>" alt="진에어 로고">
                     <div>진에어</div>
                   </div>
                   <div class="air_fly">
                     <div class="air_fly_time1">
-                      <span>09:40</span><img src="../images/ic_arrow_right_plane.png" alt="화살표"><span>15:05</span>
+                      <span>09:40</span><img src="<c:url value='../images/ic_arrow_right_plane.png'/>" alt="화살표"><span>15:05</span>
                     </div>
                     <div class="air_fly_time2">
                       <span>ICN</span><span>04시간 25분</span><span>GUM</span>
@@ -140,12 +140,12 @@
                 </div>
                 <div class="reservation_air_content2">
                   <div class="reservation_airline">
-                    <img src="../images/lg_jin_air.png" alt="진에어 로고">
+                    <img src="<c:url value='../images/lg_jin_air.png'/>" alt="진에어 로고">
                     <div>진에어</div>
                   </div>
                   <div class="air_fly">
                     <div class="air_fly_time1">
-                      <span>09:40</span><img src="../images/ic_arrow_right_plane.png" alt="화살표"><span>15:20</span>
+                      <span>09:40</span><img src="<c:url value='../images/ic_arrow_right_plane.png'/>" alt="화살표"><span>15:20</span>
                     </div>
                     <div class="air_fly_time2">
                       <span>ICN</span><span>04시간 40분</span><span>GUM</span>
@@ -157,7 +157,7 @@
                 <div>총 결제 금액</div>
                 <div>455,700<span>원</span></div>
                 <div>
-                  <a href="#"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
+                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
                 </div>
               </div>
             </div>
@@ -167,7 +167,7 @@
         <!-- 마이페이지 예약한 숙박 -->
         <section class="reservation_hotel_container" id="booked_hotel_page">
           <div class="reservation_hotel_box">
-            <img src="../images/mjeju.jpg" alt="메종글래드 제주">
+            <img src="<c:url value='../images/mjeju.jpg'/>" alt="메종글래드 제주">
             <div class="reservation_hotel_contents">
               <div class="reservation_hotel_content1">
                 <div>메종 글래드 제주</div>
@@ -177,13 +177,13 @@
               <div class="reservation_hotel_content2">
                 <div>178,700원</div>
                 <div>
-                  <a href="#"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
+                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
                 </div>
               </div>
             </div>
           </div>
           <div class="reservation_hotel_box">
-            <img src="../images/mjeju.jpg" alt="메종글래드 제주">
+            <img src="<c:url value='../images/mjeju.jpg'/>" alt="메종글래드 제주">
             <div class="reservation_hotel_contents">
               <div class="reservation_hotel_content1">
                 <div>메종 글래드 제주</div>
@@ -193,13 +193,13 @@
               <div class="reservation_hotel_content2">
                 <div>178,700원</div>
                 <div>
-                  <a href="#"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
+                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
                 </div>
               </div>
             </div>
           </div>
           <div class="reservation_hotel_box">
-            <img src="../images/mjeju.jpg" alt="메종글래드 제주">
+            <img src="<c:url value='../images/mjeju.jpg'/>" alt="메종글래드 제주">
             <div class="reservation_hotel_contents">
               <div class="reservation_hotel_content1">
                 <div>메종 글래드 제주</div>
@@ -209,7 +209,7 @@
               <div class="reservation_hotel_content2">
                 <div>178,700원</div>
                 <div>
-                  <a href="#"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
+                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
                 </div>
               </div>
             </div>
