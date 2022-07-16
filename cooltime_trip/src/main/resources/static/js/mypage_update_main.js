@@ -26,12 +26,16 @@ $(document).ready(function(){
 
     // 저장하기 버튼 - index.html 로 이동
     $('.btn_update_confirm').click(function(){
-        // 데이터 값 넘겨주기
-        // 회원 이름
-        
-        //
-        alert("회원정보가 저장되었습니다.");
-        location.href='/';
+        if(('.input_update_name').val == ""){
+    		alert("이름을 확인해주세요.");
+    	}else {
+    		// 데이터 값 넘겨주기
+	        // 회원 이름
+	        
+	        //
+	        alert("회원정보가 저장되었습니다.");
+	        location.href='/';
+    	}
     });
     
 });

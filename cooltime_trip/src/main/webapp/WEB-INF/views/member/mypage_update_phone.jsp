@@ -4,15 +4,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- head -->
 		<c:import url="/WEB-INF/views/layout/head.jsp" />
 		<!-- css -->
 		<link rel="stylesheet" href="<c:url value='/css/mypage_update_phone.css' />"/>
 		<!-- js -->
 		<script src="<c:url value='/js/mypage_update_phone.js' />"></script>
-		
-		<meta charset="UTF-8">
-		<title>쿨탐찼다! 여행가자! - 쿨타임트립</title>
 	</head>
 	<body> 
 		<!-- top.jsp -->

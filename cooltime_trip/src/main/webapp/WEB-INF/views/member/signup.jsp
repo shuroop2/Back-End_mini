@@ -4,15 +4,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- head -->
 		<c:import url="/WEB-INF/views/layout/head.jsp" />
 		<!-- css -->
 		<link rel="stylesheet" href="<c:url value='/css/signup.css' />"/>
 		<!-- js -->
 		<script src="<c:url value='/js/signup.js' />"></script>
-	
-		<meta charset="UTF-8">
-		<title>쿨탐찼다! 여행가자! - 쿨타임트립</title>
 	</head>
 	<body> 
 		<!-- top.jsp -->
@@ -29,11 +25,11 @@
 		        	</div>
 		        	<div class="div_signup_password"><p>비밀번호 *</p>
 		          		<input class="input_signup_password" type="password" placeholder="영문 숫자 특수문자 조합 8~16자리">
-		         		<div class="eyes"><img class="eyes_signup_password" src="../images/ic_eye-solid.png"></div>
+		         		<div class="eyes"><img class="eyes_signup_password" src="<c:url value='/images/ic_eye-solid.png' />"></div>
 		        	</div>
 		        	<div class="div_check_password"><p>비밀번호 확인 *</p>
 		          		<input class="input_check_password" type="password" placeholder="비밀번호 확인">
-		          		<div class="eyes"><img class="eyes_check_password" src="../images/ic_eye-solid.png"></div>
+		          		<div class="eyes"><img class="eyes_check_password" src="<c:url value='/images/ic_eye-solid.png' />"></div>
 		        	</div>
 		        	<div class="div_signup_name"><p>이름 *</p>
 		          		<input class="input_signup_name" type="text" placeholder="실명 입력">

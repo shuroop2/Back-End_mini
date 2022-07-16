@@ -3,16 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
-	<head>
-		<!-- head -->
 		<c:import url="/WEB-INF/views/layout/head.jsp" />
 		<!-- css -->
 		<link rel="stylesheet" href="<c:url value='/css/mypage_authentication.css' />"/>
 		<!-- js -->
 		<script src="<c:url value='/js/mypage_authentication.js' />"></script>
-		
-		<meta charset="UTF-8">
-		<title>쿨탐찼다! 여행가자! - 쿨타임트립</title>
 	</head>
 	<body> 
 		<!-- top.jsp -->
@@ -42,10 +37,10 @@
 		            </div>
 		        </div>
 		    </div>
-		    </section>
-		    <!-- 탑 버튼 -->
-		    <!-- <img class="btn_top" src="../images/btn_top.png"> -->
-		    <!-- footer -->
+	    </section>
+	    <!-- 탑 버튼 -->
+	    <!-- <img class="btn_top" src="<c:url value='/images/btn_top.png' />"> -->
+	    <!-- footer -->
 		
 		<!-- bottom.jsp -->
 		<c:import url="/WEB-INF/views/layout/bottom.jsp" />
