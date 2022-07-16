@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html>
 	<c:import url="/WEB-INF/views/layout/head.jsp"></c:import>
-	 <link rel="stylesheet" href="<c:url value='/css/stay_detail.css'/>"/>
+	<!-- custom -->
+	<link rel="stylesheet" href="<c:url value='/css/stay_detail.css'/>"/>
     <script src="<c:url value='/js/stay_detail.js'/>"></script>
-		
 	</head>
 	<body>
 		<!-- TOP -->

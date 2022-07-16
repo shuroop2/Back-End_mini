@@ -79,7 +79,7 @@ $(document).ready(function(){
 
 	// 지도보기 클릭 시 새탭에서 큰 지도 보기
 	$('.btn_kakaomap').click(function() {
-		window.open('rent_map.html');
+		location.href='/rent_map';
 	});
 
 	$('.btn_kakaomap').hover(
