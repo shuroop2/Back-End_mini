@@ -24,3 +24,4 @@
     <script src="<c:url value='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js' />"></script>
 	<!-- common -->
 	<link rel="stylesheet" href="<c:url value='/css/common.css' />"/>
+	<script src="<c:url value='/js/common.js' />"></script>
