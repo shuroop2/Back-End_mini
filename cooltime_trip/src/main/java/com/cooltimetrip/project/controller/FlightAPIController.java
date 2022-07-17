@@ -25,9 +25,16 @@ public class FlightAPIController {
 	public ModelAndView callapihttp(ModelAndView mv, KeyValue key, @RequestParam String depart_location, 
 			@RequestParam String arrive_location, @RequestParam String shuttle, @RequestParam String daterange,
 			@RequestParam String personCount, @RequestParam String classType) throws Exception {
-
-		// 김포/제주
-		String[] airports = {"NAARKSS", "NAARKPC"};
+		
+		// 출발/도착 항공 지정
+		// 제주 : NAARKPC / 김포 : NAARKSS
+		String airportDep = "NAARKPC";
+		String airportArv = "NAARKSS";
+		
+		if(depart_location.equals("김포") && arrive_location.equals("제주")) {
+			airportDep = "NAARKSS";
+			airportArv = "NAARKPC";
+		}
 		
 		// 가는편, 오는편의 String을 담을 result 선언
 		StringBuffer resultDep = new StringBuffer();
@@ -42,8 +49,8 @@ public class FlightAPIController {
 			// 가는편 요청 url 작성
 			String urlDep = "http://apis.data.go.kr/1613000/DmstcFlightNvgInfoService/getFlightOpratInfoList"
 					+ "?serviceKey=" + key.getKey()		// 서비스 키
-					+ "&depAirportId=" + airports[0]	// 출발 공항 입력 (김포로 지정)
-					+ "&arrAirportId=" + airports[1]	// 도착 공항 입력 (제주로 지정)
+					+ "&depAirportId=" + airportDep		// 출발 공항 입력 (김포로 지정)
+					+ "&arrAirportId=" + airportArv		// 도착 공항 입력 (제주로 지정)
 					+ "&depPlandTime=" + depDate		// 출발 날짜 지정
 					+ "&numOfRows=200"					// 한 번에 가져올 자료의 개수
 					+ "&pageNo=1"						// 페이지 넘버
@@ -62,8 +69,8 @@ public class FlightAPIController {
 			
 			String urlArv = "http://apis.data.go.kr/1613000/DmstcFlightNvgInfoService/getFlightOpratInfoList?"
 					+ "serviceKey=" + key.getKey()		// 서비스 키
-					+ "&depAirportId=" + airports[1]	// 출발 공항 입력 (제주로 지정)
-					+ "&arrAirportId=" + airports[0]	// 도착 공항 입력 (김포로 지정)
+					+ "&depAirportId=" + airportArv		// 출발 공항 입력 (제주로 지정)
+					+ "&arrAirportId=" + airportDep		// 도착 공항 입력 (김포로 지정)
 					+ "&depPlandTime=" + arrDate		// 도착 날짜 지정
 					+ "&numOfRows=200"					// 한 번에 가져올 자료의 개수
 					+ "&pageNo=1"						// 페이지 넘버
