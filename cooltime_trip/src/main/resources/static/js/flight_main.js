@@ -4,26 +4,21 @@ var now = new Date();
 var today = (now.getMonth()+1) + "/" + now.getDate() + "/" + now.getFullYear();
 
 $(function(){
-
-  $("#rangepicker").daterangepicker({
-    locale: {
-      daysOfweek: ['일','월','화','수','목','금','토'],
-      monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-    },
-    
-    autoUpdateInput: false,
-    autoApply: true,
-    minDate: today
-  });
-
+	$("#rangepicker").daterangepicker({
+		locale: {
+	  	daysOfweek: ['일','월','화','수','목','금','토'],
+	  	monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+		},
+	
+		autoUpdateInput: false,
+		autoApply: true,
+		minDate: today
+	});
 });
-
 
 $('input[name="daterange"]').on('apply.daterangepicker', function(ev,picker){
-  $(this).val(picker.startDate.format('MM.DD(dd)') + ' ~ ' + picker.endDate.format('MM.DD(dd)'));
+$(this).val(picker.startDate.format('MM.DD(dd)') + ' ~ ' + picker.endDate.format('MM.DD(dd)'));
 });
-
-
 
 // 출발지 선택하는 버튼 block/none
 let departLocation = document.getElementById("depart_loacation");
@@ -64,12 +59,21 @@ var city;
 $('#depart_location_table td').click(function(){
   city = $(this).text();
   $('#depart_loacation').attr('value', city);
+  $('.depart_popup').css('display','none');
 });
 
 // 도착지
 $('#arrive_location_table td').click(function(){
   city = $(this).text();
   $('#arriveLocation').attr('value', city);
+  $('.arrive_popup').css('display','none');
+});
+
+// 출발지 도착지 서로 바꾸는 아이콘 클릭 시 내용 변경
+$('#change').click(function(){
+	var temp = $('#depart_loacation').val();
+	$('#depart_loacation').attr('value', $('#arriveLocation').val());
+	$('#arriveLocation').attr('value', temp);
 });
 
 //인원수 및 좌석 선택 버튼 block/none

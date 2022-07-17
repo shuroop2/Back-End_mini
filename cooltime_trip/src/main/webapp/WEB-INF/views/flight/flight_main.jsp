@@ -14,9 +14,9 @@
   <section class="flight_reservation">
     <div class="flight_reservation_content">
       <div class="flight_shuttle_button">
-        <button class="flight_shuttle_select">왕복</button>
-        <button class="flight_shuttle_select">편도</button>
-        <button class="flight_shuttle_select">다구간</button>
+        <button id="roundTrip" class="flight_shuttle_select selectBtn">왕복</button>
+        <button id="oneWay" class="flight_shuttle_select">편도</button>
+        <button id="multi" class="flight_shuttle_select">다구간</button>
       </div>
       <div class="departure_arrival_container">
         <div class="location_box">
@@ -128,7 +128,7 @@
               </table>
             </div>
           </div>
-          <i class="fa fa-exchange roundArrow" aria-hidden="true"></i>
+          <i id="change" class="fa fa-exchange roundArrow" aria-hidden="true"></i>
           <div class="arrive_location">
             <span class="flight_reservation_subtitle">도착</span>
             <input type="text" class="arrival_location" id="arriveLocation" placeholder="도착지를 선택하세요" autocomplete="off">

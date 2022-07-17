@@ -1057,3 +1057,7 @@ section.flight_reservation{
   bottom: 40px;
   cursor: pointer;
 }
+
+#change {
+	cursor: pointer;
+}
