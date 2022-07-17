@@ -195,11 +195,10 @@ $(document).ready(function(){
   });
 
   $('.toggle_flight_info').click(function() {
-    $('.wrap_result_flight_detail').slideToggle(500, function(){
-      $('.toggle_flight_info>i').toggleClass('fa-chevron-down');
-      $('.toggle_flight_info>i').toggleClass('fa-chevron-up');
-      $('.wrap_result_flight_list').toggleClass('b_rb_lb_none');
-    });
+    $(this).closest('.wrap_result_flight_list').next('.wrap_result_flight_detail').slideToggle(500);
+    $(this).children('.toggle_flight_info>i').toggleClass('fa-chevron-down');
+    $(this).children('.toggle_flight_info>i').toggleClass('fa-chevron-up');
+    $(this).closest('.wrap_result_flight_list').toggleClass('b_rb_lb_none');
   });
 
   //항공 체크박스

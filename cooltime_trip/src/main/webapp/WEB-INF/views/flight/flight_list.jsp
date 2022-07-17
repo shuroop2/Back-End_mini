@@ -334,10 +334,6 @@
 			}
 			
 			// 걸리는 시간 계산
-			var dep_during_hour;
-			var dep_during_min;
-			var arr_during_hour;
-			var arr_during_min;
 			
 			<fmt:parseNumber value="${fn:substring(obj.depPlandTime,8,10)}" var="dep_start_hour" />
 			<fmt:parseNumber value="${fn:substring(obj.depPlandTime,10,12)}" var="dep_start_min" />
