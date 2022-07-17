@@ -204,7 +204,7 @@
                 </tr>
                 <tr>
                   <td><span class="start_airport">${obj.depAirportNm}</span></td>
-                  <td><span class="taken_time">04시간 25분</span></td>
+                  <td><span id="dep_taken_time${status.index }" class="taken_time">04시간 25분</span></td>
                   <td><span class="end_airport">${obj.arrAirportNm}</span></td>
                 </tr>
               </table>
@@ -220,7 +220,7 @@
                 </tr>
                 <tr>
                   <td><span class="start_airport">${objArv[status.index].depAirportNm}</span></td>
-                  <td><span class="taken_time">04시간 40분</span></td>
+                  <td><span id="arr_taken_time${status.index }" class="taken_time">04시간 40분</span></td>
                   <td><span class="end_airport">${objArv[status.index].arrAirportNm}</span></td>
                 </tr>
               </table>
@@ -322,6 +322,7 @@
           </div>
         </div>
         <script>
+        	// 허수 제거
 	        if($('#txt_flight_price${status.index}').text() == "0") {
 				$('#txt_flight_price${status.index}').closest('.wrap_result_flight_list').remove();
 				cnt++;
@@ -331,13 +332,53 @@
 				$('#txt_flight_price${status.index}').closest('.wrap_result_flight_list').remove();
 				cnt++
 			}
+			
+			// 걸리는 시간 계산
+			var dep_during_hour;
+			var dep_during_min;
+			var arr_during_hour;
+			var arr_during_min;
+			
+			<fmt:parseNumber value="${fn:substring(obj.depPlandTime,8,10)}" var="dep_start_hour" />
+			<fmt:parseNumber value="${fn:substring(obj.depPlandTime,10,12)}" var="dep_start_min" />
+			<fmt:parseNumber value="${fn:substring(obj.arrPlandTime,8,10)}" var="dep_end_hour" />
+			<fmt:parseNumber value="${fn:substring(obj.arrPlandTime,10,12)}" var="dep_end_min" />
+			
+			
+			<fmt:parseNumber value="${fn:substring(objArv[status.index].depPlandTime,8,10)}" var="arr_start_hour" />
+			<fmt:parseNumber value="${fn:substring(objArv[status.index].depPlandTime,10,12)}" var="arr_start_min" />
+			<fmt:parseNumber value="${fn:substring(objArv[status.index].arrPlandTime,8,10)}" var="arr_end_hour" />
+			<fmt:parseNumber value="${fn:substring(objArv[status.index].arrPlandTime,10,12)}" var="arr_end_min" />
+			
+			if(${dep_end_min - dep_start_min} < 0){
+				dep_during_hour = ${dep_end_hour - dep_start_hour} - 1;
+				dep_during_min = ${dep_end_min - dep_start_min} + 60;
+			} else {
+				dep_during_hour = ${dep_end_hour - dep_start_hour};
+				dep_during_min = ${dep_end_min - dep_start_min};
+			}
+			
+			if(${arr_end_min - arr_start_min} < 0){
+				arr_during_hour = ${arr_end_hour - arr_start_hour} - 1;
+				arr_during_min = ${arr_end_min - arr_start_min} + 60;
+			} else {
+				arr_during_hour = ${arr_end_hour - arr_start_hour};
+				arr_during_min = ${arr_end_min - arr_start_min};
+			}
+			
+			dep_during_time = dep_during_hour + "시간 " + dep_during_min +  "분";
+			arr_during_time = arr_during_hour + "시간 " + arr_during_min +  "분";
+			
+			$('#dep_taken_time${status.index}').html(dep_during_time);
+			$('#arr_taken_time${status.index}').html(arr_during_time);
 		</script>
         </c:forEach>
       </section>
     </div>
 	<script type="text/javascript">
+		// 검색결과 계산
 		cnt = ${fn:length(objDep)} - cnt;
-		document.getElementById("result_count").innerHTML= "검색결과 총 " + cnt +  "개";
+		document.getElementById("result_count").innerHTML = "검색결과 총 " + cnt +  "개";
 	</script>
   </div><c:import url="/WEB-INF/views/layout/bottom.jsp" />
 </body>
