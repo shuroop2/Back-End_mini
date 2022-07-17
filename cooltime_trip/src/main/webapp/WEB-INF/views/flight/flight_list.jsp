@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html><c:import url="/WEB-INF/views/layout/head.jsp" />
 	<!-- custom -->
+	<script src="<c:url value='https://cdn.jsdelivr.net/jquery/latest/jquery.min.js' />"></script>
     <script src="<c:url value='/js/flight_list.js' />"></script>
 	<link rel="stylesheet" href="<c:url value='/css/list.css' />"/>
+	<script type="text/javascript">
+		var cnt = 0;
+	</script>
 </head>
 <body><c:import url="/WEB-INF/views/layout/top.jsp" />
 	<!-- 검색 영역 -->
@@ -169,11 +175,11 @@
       <!-- 검색 결과 -->
       <section class="sec_result">
         <div class="wrap_result_title">
-          <span class="result_count">검색결과 총 6개</span>
+          <span id="result_count" class="result_count">검색결과 총 ${fn:length(objDep)}개</span>
           <span class="result_sub_text">성인 기준 1인 왕복 요금입니다 (세금 및 수수료 모두 포함)</span>
           <!-- 커스텀 셀렉트 -->
           <div class="result_filter">
-            <button class="result_filter_open"><span>가격 낮은 순</span><i id="arrowDown" class="fa-solid fa-angle-down"></i></button>
+            <button class="result_filter_open"><span>가는날 출발 시간 빠른 순</span><i id="arrowDown" class="fa-solid fa-angle-down"></i></button>
               <ul class="result_filter_select">
                 <li class="result_filter_option">가격 낮은 순</li>
                 <li class="result_filter_option">비행 시간 짧은 순</li>
@@ -185,37 +191,38 @@
           </div>
         </div>
         <!-- result data-->
+        <c:forEach var="obj" items="${objDep}" varStatus="status">
         <div class="wrap_result_flight_list">
           <div class="wrap_flight_info">
             <div class="wrap_result_flight_info">
-              <img src="../images/lg_jin_air.png" alt="항공사로고">
-              <span class="airline_name">진에어</span>
+              <img src="<c:url value='/images/${obj.airlineNm}.png'/>" alt="항공사로고">
+              <span class="airline_name">${obj.airlineNm}</span>
               <table class="div_flight_time">
                 <tr>
-                  <td><span class="start_time">09:40</span></td>
+                  <td><span class="start_time">${fn:substring(obj.depPlandTime,8,10)}:${fn:substring(obj.depPlandTime,10,12)}</span></td>
                   <td><img src="../images/ic_arrow_right_plane.png"></td>
-                  <td><span class="end_time">15:05</span></td>
+                  <td><span class="end_time">${fn:substring(obj.arrPlandTime,8,10)}:${fn:substring(obj.arrPlandTime,10,12)}</span></td>
                 </tr>
                 <tr>
-                  <td><span class="start_airport">ICN</span></td>
+                  <td><span class="start_airport">${obj.depAirportNm}</span></td>
                   <td><span class="taken_time">04시간 25분</span></td>
-                  <td><span class="end_airport">GUM</span></td>
+                  <td><span class="end_airport">${obj.arrAirportNm}</span></td>
                 </tr>
               </table>
             </div>
             <div class="wrap_result_flight_info">
-              <img src="../images/lg_jin_air.png" alt="항공사로고">
-              <span class="airline_name">진에어</span>
+              <img src="<c:url value='/images/${objArv[status.index].airlineNm}.png'/>" alt="항공사로고">
+              <span class="airline_name">${objArv[status.index].airlineNm}</span>
               <table class="div_flight_time">
                 <tr>
-                  <td><span class="start_time">09:40</span></td>
+                  <td><span class="start_time">${fn:substring(objArv[status.index].depPlandTime,8,10)}:${fn:substring(objArv[status.index].depPlandTime,10,12)}</span></td>
                   <td><img src="../images/ic_arrow_right_plane.png"></td>
-                  <td><span class="end_time">15:20</span></td>
+                  <td><span class="end_time">${fn:substring(objArv[status.index].arrPlandTime,8,10)}:${fn:substring(objArv[status.index].arrPlandTime,10,12)}</span></td>
                 </tr>
                 <tr>
-                  <td><span class="start_airport">GUM</span></td>
+                  <td><span class="start_airport">${objArv[status.index].depAirportNm}</span></td>
                   <td><span class="taken_time">04시간 40분</span></td>
-                  <td><span class="end_airport">ICN</span></td>
+                  <td><span class="end_airport">${objArv[status.index].arrAirportNm}</span></td>
                 </tr>
               </table>
             </div>
@@ -223,7 +230,8 @@
           <div class="wrap_flight_info_right">
             <div class="wrap_flight_price_btn">
               <span class="txt_flight_count">9석 남음</span>
-              <span class="txt_flight_price">455,700<span>원</span></span>
+              <c:set var="charge" value="${obj.economyCharge+objArv[status.index].economyCharge}"/>
+              <span id="txt_flight_price${status.index }" class="txt_flight_price"><fmt:formatNumber value='${charge}' pattern='#,###'/></span><span>원</span>
               <span class="txt_flight_select">선택 <i class="fa-solid fa-chevron-right"></i></span>
             </div>
             <button class="toggle_flight_info">상세 정보 보기 <i class="fa-solid fa-chevron-down"></i></button>
@@ -314,8 +322,24 @@
             </div>
           </div>
         </div>
+        <script>
+	        if($('#txt_flight_price${status.index}').text() == "0") {
+				$('#txt_flight_price${status.index}').closest('.wrap_result_flight_list').remove();
+				cnt++;
+			}
+			
+			if($('#txt_flight_price${status.index}').text().length == 6) {
+				$('#txt_flight_price${status.index}').closest('.wrap_result_flight_list').remove();
+				cnt++
+			}
+		</script>
+        </c:forEach>
       </section>
     </div>
+	<script type="text/javascript">
+		cnt = ${fn:length(objDep)} - cnt;
+		document.getElementById("result_count").innerHTML= "검색결과 총 " + cnt +  "개";
+	</script>
   </div><c:import url="/WEB-INF/views/layout/bottom.jsp" />
 </body>
 </html>
