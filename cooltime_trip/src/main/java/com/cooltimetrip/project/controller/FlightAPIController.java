@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,10 +20,11 @@ import com.cooltimetrip.project.model.KeyValue;
 
 @RestController
 public class FlightAPIController {
-	
 	@ResponseBody
 	@RequestMapping(value="/flight_list", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView callapihttp(ModelAndView mv, KeyValue key) throws Exception {
+	public ModelAndView callapihttp(ModelAndView mv, KeyValue key, @RequestParam String depart_location, 
+			@RequestParam String arrive_location, @RequestParam String shuttle, @RequestParam String daterange,
+			@RequestParam String personCount, @RequestParam String classType) throws Exception {
 
 		// 김포/제주
 		String[] airports = {"NAARKSS", "NAARKPC"};
@@ -30,14 +32,19 @@ public class FlightAPIController {
 		// 가는편, 오는편의 String을 담을 result 선언
 		StringBuffer resultDep = new StringBuffer();
 		StringBuffer resultArv = new StringBuffer();
-	
+		
+		// 출발 날짜
+		String depDate = "2022" + daterange.substring(0, 2) + daterange.subSequence(3, 5);
+		
+		// 도착 날짜
+		String arrDate = "2022" + daterange.substring(11, 13) + daterange.subSequence(14, 16);
 		try {
 			// 가는편 요청 url 작성
 			String urlDep = "http://apis.data.go.kr/1613000/DmstcFlightNvgInfoService/getFlightOpratInfoList"
 					+ "?serviceKey=" + key.getKey()		// 서비스 키
 					+ "&depAirportId=" + airports[0]	// 출발 공항 입력 (김포로 지정)
 					+ "&arrAirportId=" + airports[1]	// 도착 공항 입력 (제주로 지정)
-					+ "&depPlandTime=20220701"			// 출발 날짜 지정
+					+ "&depPlandTime=" + depDate		// 출발 날짜 지정
 					+ "&numOfRows=200"					// 한 번에 가져올 자료의 개수
 					+ "&pageNo=1"						// 페이지 넘버
 					+ "&_type=json";					// json 타입
@@ -57,7 +64,7 @@ public class FlightAPIController {
 					+ "serviceKey=" + key.getKey()		// 서비스 키
 					+ "&depAirportId=" + airports[1]	// 출발 공항 입력 (제주로 지정)
 					+ "&arrAirportId=" + airports[0]	// 도착 공항 입력 (김포로 지정)
-					+ "&depPlandTime=20220703"			// 도착 날짜 지정
+					+ "&depPlandTime=" + arrDate		// 도착 날짜 지정
 					+ "&numOfRows=200"					// 한 번에 가져올 자료의 개수
 					+ "&pageNo=1"						// 페이지 넘버
 					+ "&_type=json";					// json 타입	
@@ -103,12 +110,19 @@ public class FlightAPIController {
         for(int i = 0; i<parse_item2.size(); i++) {
         	objArv.add((JSONObject) parse_item2.get(i));
         }
-        
+		
         mv.addObject("objDep", objDep);
         mv.addObject("objArv", objArv);
-        
+        mv.addObject("depart_location", depart_location);
+        mv.addObject("arrive_location", arrive_location);
+		mv.addObject("shuttle", shuttle);
+		mv.addObject("daterange", daterange);
+		mv.addObject("personCount", personCount);
+		mv.addObject("classType",classType);
+		 
         mv.setViewName("flight/flight_list");
 		
 		return mv;
 	}
 }
+

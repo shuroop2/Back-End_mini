@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html><c:import url="/WEB-INF/views/layout/head.jsp" />
 	<!-- custom -->
-	<script src="<c:url value='https://cdn.jsdelivr.net/jquery/latest/jquery.min.js' />"></script>
     <script src="<c:url value='/js/flight_list.js' />"></script>
 	<link rel="stylesheet" href="<c:url value='/css/list.css' />"/>
 	<script type="text/javascript">
@@ -16,17 +15,17 @@
 <body><c:import url="/WEB-INF/views/layout/top.jsp" />
 	<!-- 검색 영역 -->
   <section class="sec_search_list">
-    <span class="div_list_tlt">왕복</span>
+    <span class="div_list_tlt">${shuttle }</span>
     <!-- 검색 설정 영역 / 유효성 검사 필요 -->
     <div class="div_flight_list_search wrap">
       <div class="wrap_flight_div">
         <form id="flightSearchList">
             <div class="wrap_search_input">
-              <input type="text" id="flightStartSearchBtn" class="txt_lodgment" value="인천 (ICN)">
+              <input type="text" id="flightStartSearchBtn" class="txt_lodgment" value="${depart_location }">
               <button><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
-              <input type="text" id="flightEndSearchBtn" class="txt_lodgment" value="괌 (GUM)">
-              <input type="text" id="flightDatepicker" name="daterange" class="txt_lodgment" value="06.27(월) - 07.01(금)">
-              <input type="text" id="flightPersonCount" class="txt_lodgment" value="1명, 일반석">
+              <input type="text" id="flightEndSearchBtn" class="txt_lodgment" value="${arrive_location }">
+              <input type="text" id="flightDatepicker" name="daterange" class="txt_lodgment" value="${daterange }">
+              <input type="text" id="flightPersonCount" class="txt_lodgment" value="${personCount}, ${classType}">
               <input type="submit" class="btn_search_flight" value="검색하기">
             </div>
         </form>

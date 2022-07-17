@@ -129,6 +129,13 @@ function shuttleClick(event){
     }
     event.target.classList.add("selectBtn");
   }
+	if($('#roundTrip').hasClass('selectBtn')){
+		$('#shuttle').attr('value', '왕복');
+	} else if($('#oneWay').hasClass('selectBtn')) {
+		$('#shuttle').attr('value', '편도');
+	} else if($('#multi').hasClass('selectBtn')) {
+		$('#shuttle').attr('value', '다구간');
+	}
 }
 
 function shuttleInit(){
@@ -310,7 +317,7 @@ function plusMinusBtn(pm){
 
 // 좌석 선택
 $('input[name="sits"]').on('click', function(){
-  classType.value = $('input:radio[name="sits"]:checked').val();
+  $('#classType').attr('value', $('input:radio[name="sits"]:checked').val());
 });
 
 //유효성검사, 링크
@@ -331,7 +338,7 @@ function flightCheck(){
       alert("여행 날짜를 선택해 주세요");
 
     }else{
-        location.href = '/flight_list';
+      location.href="/flight_list";
     }
 
 }
@@ -406,7 +413,7 @@ $('.recently_colse_btn').click(function(){
 });
 
 // 탑 버튼 눌렀을 때 최상단으로
-$(".btn_top").click(function () {
+$(".btn_top").click(function() {
   $('html, body').animate({
       scrollTop: 0
   }, 400);
