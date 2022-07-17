@@ -190,6 +190,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # key Value
-keyValue.java
+KeyValue.java
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,windows,macos,maven,git,java
