@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
-	<script defer src="<c:url value='../js/flight_main.js' />"></script>
-    <link rel="stylesheet" href="<c:url value='../css/flight_main.css'/>">
+	<script defer src="<c:url value='/js/flight_main.js' />"></script>
+    <link rel="stylesheet" href="<c:url value='/css/flight_main.css'/>">
 </head>
 
 <body>
@@ -314,7 +314,7 @@
 
   <!-- 비행기 배경 -->
   <section class="flight_background">
-    <img src="<c:url value='../images/bg_plane@2x.png'/>" alt="비행기 배경">
+    <img src="<c:url value='/images/bg_plane@2x.png'/>" alt="비행기 배경">
     <div class="flight_reservation_title">
       항공 예약
     </div>
@@ -426,7 +426,7 @@
         </div>
       </div>
       <div class="jeju_box">
-        <img src="<c:url value='../images/jeju2.jfif'/>">
+        <img src="<c:url value='/images/jeju2.jfif'/>">
         <div class="jeju_content">
           <div class="jeju_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
@@ -440,7 +440,7 @@
         </div>
       </div>
       <div class="jeju_box">
-        <img src="<c:url value='../images/jeju3.jfif'/>">
+        <img src="<c:url value='/images/jeju3.jfif'/>">
         <div class="jeju_content">
           <div class="jeju_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
@@ -454,7 +454,7 @@
         </div>
       </div>
       <div class="jeju_box">
-        <img src="<c:url value='../images/jeju4.jfif'/>">
+        <img src="<c:url value='/images/jeju4.jfif'/>">
         <div class="jeju_content">
           <div class="jeju_location_direction">
             <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>

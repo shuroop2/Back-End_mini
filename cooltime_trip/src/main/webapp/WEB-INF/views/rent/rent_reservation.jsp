@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
-	<script defer src="<c:url value='../js/rent_reservation.js' />"></script>
-    <link rel="stylesheet" href="<c:url value='../css/rent_reservation.css'/>">
+	<script defer src="<c:url value='/js/rent_reservation.js' />"></script>
+    <link rel="stylesheet" href="<c:url value='/css/rent_reservation.css'/>">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
           <article class="rent_info">
             <div class="rent_info_box">
               <div class="rent_img_box">
-                <img src="<c:url value='../images/k5.png'/>">
+                <img src="<c:url value='/images/k5.png'/>">
               </div>
               <div class="name_date_box">
                 <div class="car_name">THE NEW K5</div>
@@ -162,6 +162,6 @@
       </button>
     </div>
   </section>
-  <img class="btn_top" src="<c:url value='../images/btn_top.png'/>">
+  <img class="btn_top" src="<c:url value='/images/btn_top.png'/>">
 </body>
 </html>
