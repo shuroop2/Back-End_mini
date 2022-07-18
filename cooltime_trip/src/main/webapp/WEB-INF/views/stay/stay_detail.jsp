@@ -50,8 +50,7 @@
 	              </div>
 	              <!-- 호텔 사진들 -->
 	                <div class="hotel_main">
-	                  <a href="<c:url value='/images/main_pic.png'/>" data-lightbox="example"><img src="<c:url value='/images/main_pic.png'/>"></a>
-	                  <a href="<c:url value='/images/main_pic.png'/>" data-lightbox="example"><button class="expand_box"><i class="fa-solid expand_icon fa-expand"></i></button></a>
+	                  <a href="<c:url value='/images/main_pic.png'/>" data-lightbox="example"><img src="<c:url value='/images/main_pic.png'/>"><button class="expand_box"><i class="fa-solid expand_icon fa-expand"></i></button></a>
 	                </div>
 	                <div class="hotel_sub" id="popUp">
 	                  <div class="expand_hidden_pic">+5</div>
