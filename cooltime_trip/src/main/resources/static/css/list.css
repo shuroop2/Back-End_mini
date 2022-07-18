@@ -833,7 +833,8 @@
 }
 
 .wrap_flight_time .flight_no{
-  margin-right: 166px;
+  width: 200px;
+  margin-right: 120px;
   font-size: 16px;
   font-weight: 300;
 }
