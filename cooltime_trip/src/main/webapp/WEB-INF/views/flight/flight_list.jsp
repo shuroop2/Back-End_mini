@@ -85,8 +85,9 @@
               <span class="txt_person_sub">만 12세 이상</span>
             </div>
             <div class="box_plus_minus">
+              <fmt:parseNumber var="person_count" value="${fn:substring(personCount,0,2)}" />
               <a id="adultFlightMinusBtn" class="btn_popup_count">-</a>
-              <span id="adultFlightCount" class="popup_count_person">1</span>
+              <span id="adultFlightCount" class="popup_count_person">${person_count }</span>
               <a href="#" id="adultFlightPlusBtn" class="btn_popup_count btn_adult_plus btn_count_active">+</a>
             </div>
           </div>
@@ -138,16 +139,16 @@
             <span class="txt_time_label">가는날</span>
             <ul class="wrap_time_picker">
               <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>새벽 00:00 ~ 06:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>오전 06:00 ~ 12:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>오후 12:00 ~ 18:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>야간 18:00 ~ 24:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>오전 06:00 ~ 12:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>오후 12:00 ~ 18:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>야간 18:00 ~ 24:00</span></li>
             </ul>
             <span class="txt_time_label">오는날</span>
             <ul class="wrap_time_picker">
               <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>새벽 00:00 ~ 06:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>오전 06:00 ~ 12:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>오후 12:00 ~ 18:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>야간 18:00 ~ 24:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>오전 06:00 ~ 12:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>오후 12:00 ~ 18:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>야간 18:00 ~ 24:00</span></li>
             </ul>
           </div>
         </div>
@@ -157,16 +158,16 @@
             <span class="txt_time_label">가는날</span>
             <ul class="wrap_time_picker">
               <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>새벽 00:00 ~ 06:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>오전 06:00 ~ 12:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>오후 12:00 ~ 18:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>야간 18:00 ~ 24:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>오전 06:00 ~ 12:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>오후 12:00 ~ 18:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>야간 18:00 ~ 24:00</span></li>
             </ul>
             <span class="txt_time_label">오는날</span>
             <ul class="wrap_time_picker">
               <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>새벽 00:00 ~ 06:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>오전 06:00 ~ 12:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>오후 12:00 ~ 18:00</span></li>
-              <li class="txt_time_picker"><i class="fa-solid fa-check"></i><span>야간 18:00 ~ 24:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>오전 06:00 ~ 12:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>오후 12:00 ~ 18:00</span></li>
+              <li class="txt_time_picker"><i class="fa-solid fa-check fa-active"></i><span>야간 18:00 ~ 24:00</span></li>
             </ul>
           </div>
         </div>
@@ -304,7 +305,6 @@
                 <th width="25%">총 요금</th>
               </tr>
               <tr>
-              	<fmt:parseNumber var="person_count" value="${fn:substring(personCount,0,2)}" />
                 <td>성인</td>
                 <td><fmt:formatNumber value='${(charge - 39600 - 8000 - 1000 ) * person_count}' pattern='#,###'/>원</td>
                 <td><fmt:formatNumber value='${39600 * person_count}' pattern='#,###'/>원</td>
@@ -381,6 +381,24 @@
 		// 검색결과 계산
 		cnt = ${fn:length(objDep)} - cnt;
 		document.getElementById("result_count").innerHTML = "검색결과 총 " + cnt +  "개";
+		
+		// 좌석 입력
+		if("${classType}" == "프리미엄 일반석") {
+			$('#sitsGen').removeAttr('checked');
+			$('#sitsPreGen').attr('checked', 'checked');
+			$('#sitsGenLabel i').attr('class', 'fa-regular fa-circle')
+			$('#sitsPreGenLabel i').attr('class', 'fa-solid fa-circle-dot')
+		} else if("${classType}" == "비즈니스석") {
+			$('#sitsGen').removeAttr('checked');
+			$('#sitsBusi').attr('checked', 'checked');
+			$('#sitsGenLabel i').attr('class', 'fa-regular fa-circle')
+			$('#sitsBusiLabel i').attr('class', 'fa-solid fa-circle-dot')
+		} else if("${classType}" == "일등석") {
+			$('#sitsGen').removeAttr('checked');
+			$('#sitsFir').attr('checked', 'checked');
+			$('#sitsGenLabel i').attr('class', 'fa-regular fa-circle')
+			$('#sitsFirLabel i').attr('class', 'fa-solid fa-circle-dot')
+		} 
 	</script>
   </div><c:import url="/WEB-INF/views/layout/bottom.jsp" />
 </body>
