@@ -5,7 +5,7 @@
 	  	<!-- 헤더 wrap -->
 	  	<div class="wrap">
 		    <div>
-		    	<img class="lg_title" src="<c:url value='/images/lg_title.png' />" alt="로고">
+		    	<a href="<c:url value='/' />"><img class="lg_title" src="<c:url value='/images/lg_title.png' />" alt="로고"></a>
 		    	<!-- 로그인/회원가입 > 마이페이지 -->
 		    	<div class="div_account">
 		    		<c:if test="${empty sessionScope.sid }">

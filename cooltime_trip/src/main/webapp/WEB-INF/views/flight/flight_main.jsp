@@ -18,7 +18,7 @@
 	        <button type="button" id="roundTrip" class="flight_shuttle_select selectBtn">왕복</button>
 	        <button type="button" id="oneWay" class="flight_shuttle_select">편도</button>
 	        <button type="button" id="multi" class="flight_shuttle_select">다구간</button>
-	        <input type="hidden" name="shuttle" id="shuttle" name="shuttle" value="">
+	        <input type="hidden" name="shuttle" id="shuttle" name="shuttle" value="왕복">
 	      </div>
 	      <div class="departure_arrival_container">
 	        <div class="location_box">
