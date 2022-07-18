@@ -11,7 +11,7 @@
   <!-- header -->
  	<c:import url="/WEB-INF/views/layout/top.jsp"/>
   <!-- 항공 예약 -->
-  <form id="form_flight_main" method="post" action="/flight_list">
+  <form id="form_flight_main" method="post" action="/flight_list" onsubmit="return flightCheck()">
 	  <section class="flight_reservation">
 	    <div class="flight_reservation_content">
 	      <div class="flight_shuttle_button">
@@ -309,7 +309,7 @@
 	            </div>
 	          </div>
 	        </div>
-	        <input type="submit" class="flight_search" value="검색하기" onclick="flightCheck()">
+	        <input type="submit" class="flight_search" value="검색하기">
 	      </div>
 	    </div>
 	  </section>

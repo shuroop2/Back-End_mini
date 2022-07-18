@@ -322,23 +322,21 @@ $('input[name="sits"]').on('click', function(){
 
 //유효성검사, 링크
 let flightDateBox = document.getElementById('rangepicker');
-// flightDateBox.value = "";
+
 function flightCheck(){
 
-    if(!flightShuttleBtn[0].classList.contains('selectBtn') && !flightShuttleBtn[1].classList.contains('selectBtn') && !flightShuttleBtn[2].classList.contains('selectBtn')){
-      alert("왕복, 편도, 다구간 중 선택해주세요");
-      
-    }else if(departLocation.value == ""){
+	if(departLocation.value == ""){
       alert("출발지를 선택해주세요");
-      
+      return false;
     }else if(arriveLocation.value == ""){
       alert("도착지를 선택해주세요");
-      
+      return false;
     }else if(flightDateBox.value == ""){
       alert("여행 날짜를 선택해 주세요");
-
+	  return false;
     }else{
       location.href="/flight_list";
+      return true;
     }
 
 }
