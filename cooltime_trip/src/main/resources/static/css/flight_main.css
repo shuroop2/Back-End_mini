@@ -296,6 +296,8 @@ section.flight_reservation{
 }
 
 .recently_destination{
+  display: flex;
+  align-item: center;
   margin: 14px 0 6px 0;
 }
 
@@ -309,6 +311,9 @@ section.flight_reservation{
   margin: 0 10px;
   color: #666666;
   font-size: 13px;
+  height: 26px;
+  line-height: 26px;
+  padding-top: 3px;
 }
 
 .recently_desc span{

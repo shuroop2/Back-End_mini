@@ -334,7 +334,7 @@
 	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
 	          </div>
 	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa fa-exchange" aria-hidden="true"></i><span>제주 (CJU)</span>
+	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>제주 (CJU)</span>
 	          </div>
 	          <div class="recently_desc">
 	            <span>6월 20일 ~ 6월 25일 · </span><span>성인1 · </span><span>전체</span>
@@ -346,7 +346,7 @@
 	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
 	          </div>
 	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa fa-exchange" aria-hidden="true"></i><span>괌 (GUM)</span>
+	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>괌 (GUM)</span>
 	          </div>
 	          <div class="recently_desc">
 	            <span>6월 20일 ~ 6월 23일 · </span><span>성인1 · </span><span>전체</span>
@@ -358,7 +358,7 @@
 	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
 	          </div>
 	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa fa-exchange" aria-hidden="true"></i><span>세부 (CBU)</span>
+	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>세부 (CBU)</span>
 	          </div>
 	          <div class="recently_desc">
 	            <span>6월 21일 ~ 6월 27일 · </span><span>성인1 · </span><span>전체</span>
@@ -370,7 +370,7 @@
 	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
 	          </div>
 	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa fa-exchange" aria-hidden="true"></i><span>괌 (GUM)</span>
+	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>괌 (GUM)</span>
 	          </div>
 	          <div class="recently_desc">
 	            <span>6월 22일 ~ 6월 26일 · </span><span>성인1 · </span><span>전체</span>
@@ -382,7 +382,7 @@
 	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
 	          </div>
 	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa fa-exchange" aria-hidden="true"></i><span>제주 (CJU)</span>
+	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>제주 (CJU)</span>
 	          </div>
 	          <div class="recently_desc">
 	            <span>6월 20일 ~ 6월 24일 · </span><span>성인1 · </span><span>전체</span>
@@ -394,7 +394,7 @@
 	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
 	          </div>
 	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa fa-exchange" aria-hidden="true"></i><span>세부 (CBU)</span>
+	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>세부 (CBU)</span>
 	          </div>
 	          <div class="recently_desc">
 	            <span>6월 24일 ~ 6월 30일 · </span><span>성인1 · </span><span>전체</span>
