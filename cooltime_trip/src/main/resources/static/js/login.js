@@ -33,7 +33,9 @@ $(document).ready(function(){
     $('.error_login_password').hide();
     
     // 로그인 버튼 클릭 시
-    $('.btn_login').click(function(){
+    /*$('.btn_login').click(function(){
+    
+    
         //alert("로그인 버튼 클릭");
         user_id="admin";
         user_pw="12345678";
@@ -56,7 +58,50 @@ $(document).ready(function(){
             $('.error_login_id').show();
             $('.error_login_password').hide();
         }
-    });
+        */
+        
+        /*
+        var userId=$('.input_login_id').val();
+        var userPassword = $('.input_login_password').val();
+        $.ajax({
+        	type:"POST",
+        	url:"login",
+        	data:{uesrId:userId, userPassword:userPassword},
+        	success: function(data){
+        		if(data=="false")
+        			alert("잘못된 아이디이거나, 비밀번호가 틀렸습니다.");
+        		else
+        			location.href="/flight_main";
+        	}
+        });
+        	*/
+       /* 
+    $('#form_login').on('submit', function(){	
+    	alert("asd");
+    });    
+      */
+      
+	$('#form_login').on('submit', function(){	
+		event.preventDefault();	
+    	$.ajax({
+    		type: "post",
+    		url: "loginCheck",
+    		data:{"id":$('#id').val(),
+    			  "pwd":$('#pwd').val()},
+    		dataType: "text",
+    		success: function(result){// 성공 시 수행
+    			if(result=="success"){// 로그인 성공
+    				location.href="/";
+    			}else{// 로그인 실패
+    				$('.input_login_id').css('border', '1px solid #E65454');
+            		$('.error_login_id').show();
+    			}
+    		},
+    		error: function(){
+    			alert("DB_Connection : error");
+    		}		  
+    	});//ajax
+    });//submit
 
     // 탑 버튼 눌렀을 때 최상단으로
     $(".btn_top").click(function () {

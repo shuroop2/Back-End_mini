@@ -1,10 +1,22 @@
 package com.cooltimetrip.project.controller;
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cooltimetrip.project.service.MemberService;
 
 @Controller
 public class MemberController {
+	@Autowired
+	MemberService memService;
+	
 	@RequestMapping("/login")
 	public String login() {
 		return "member/login";
@@ -24,7 +36,7 @@ public class MemberController {
 	public String mypageAuthentication() {
 		return "member/mypage_authentication";
 	}
-	
+	 
 	@RequestMapping("/mypage_update_main")
 	public String mypageUpdateMain() {
 		return "member/mypage_update_main";
@@ -38,5 +50,24 @@ public class MemberController {
 	@RequestMapping("/mypage_update_phone")
 	public String mypageUpdatePhone() {
 		return "member/mypage_update_phone";
-	}
+	} 
+	
+	// 로그인 처리     
+	@ResponseBody
+	@RequestMapping("/loginCheck")
+	public String loginCheck(@RequestParam HashMap<String, Object> param, HttpSession session) {
+		String memId = memService.loginCheck(param);
+		String result = "fail";
+		
+		// 아이디/비밀번호 일치하면
+		if(memId!=null) {
+			// 로그인 성공 시 세션 변수 지정
+			session.setAttribute("sid", memId);
+			result = "success";
+		}
+		 
+		return result;  
+	}  
+	
+	
 }
