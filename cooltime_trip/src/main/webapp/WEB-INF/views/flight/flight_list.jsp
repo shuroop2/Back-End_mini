@@ -267,14 +267,14 @@
           <div class="wrap_flight_title">
             <span class="flight_label">오는편</span>
             <span class="flight_location">${objArv[status.index].depAirportNm}</span>
-            <img src="<c url value='/images/ic_arrow_right_short.png' />">
+            <img src="<c:url value='/images/ic_arrow_right_short.png' />">
             <span class="flight_location">${objArv[status.index].arrAirportNm}</span>
             <span id="arr_flight_time${status.index }" class="flight_time">04시간 40분</span>
           </div>
           <div class="wrap_flight_time">
             <span class="flight_no">${objArv[status.index].airlineNm } ${objArv[status.index].vihicleId }</span>
             <div class="flight_time_info">
-              <img src="<c url value='/images/line_plane.png' />">
+              <img src="<c:url value='/images/line_plane.png' />">
               <div class="wrap_flight_detail">
                 <div class="wrap_flight_detail_top">
                   <span class="flight_detail_time">${fn:substring(objArv[status.index].depPlandTime,8,10)}:${fn:substring(objArv[status.index].depPlandTime,10,12)}</span>
@@ -306,10 +306,10 @@
               <tr>
               	<fmt:parseNumber var="person_count" value="${fn:substring(personCount,0,2)}" />
                 <td>성인</td>
-                <td><fmt:formatNumber value='${(charge - 39600 - 8000 ) * person_count}' pattern='#,###'/>원</td>
+                <td><fmt:formatNumber value='${(charge - 39600 - 8000 - 1000 ) * person_count}' pattern='#,###'/>원</td>
                 <td><fmt:formatNumber value='${39600 * person_count}' pattern='#,###'/>원</td>
                 <td><fmt:formatNumber value='${8000 * person_count}' pattern='#,###'/>원</td>
-                <td>0원</td>
+                <td><fmt:formatNumber value='${1000 * person_count}' pattern='#,###'/>원</td>
                 <td>${personCount }</td>
                 <td><fmt:formatNumber value='${charge * person_count}' pattern='#,###'/>원</td>
               </tr>
