@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cooltimetrip.project.dao.IRentDAO">
+	<!-- resultmap -->
+	<resultMap id="carResult" type="com.cooltimetrip.project.model.CarVO" >
+		<result property="carNo" column="carNo"/>
+		<result property="carName" column="carName"/>
+		<result property="carType" column="carType"/>
+		<result property="carPrice" column="carPrice"/>
+		<result property="carCount" column="carCount"/>
+		<result property="carYear" column="carYear"/>
+		<result property="carFuel" column="carFuel"/>
+		<result property="carSeater" column="carSeater"/>
+		<result property="carGear" column="carGear"/>
+		<result property="carNav" column="carNav"/>
+		<result property="carBluetooth" column="carBluetooth"/>
+		<result property="carBlackbox" column="carBlackbox"/>
+		<result property="carStroller" column="carStroller"/>
+		<result property="carBabySeat" column="carBabySeat"/>
+		<result property="carImgNo" column="carImgNo"/>
+		<result property="rentNo" column="rentNo"/>
+	</resultMap>
+	
+	<!-- 전체 car 조회  -->
+	<select id="listAllCar" resultMap="carResult">
+		SELECT * FROM car C INNER JOIN rent R ON R.rentNo = C.rentNo ORDER BY carYear DESC
+	</select>
+
+</mapper>
