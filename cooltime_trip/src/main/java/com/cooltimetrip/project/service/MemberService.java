@@ -29,5 +29,12 @@ public class MemberService implements IMemberService {
 	public MemberVO getMemberInfo(String memId) {
 		return dao.getMemberInfo(memId);
 	}
+
+	@Override
+	public String updatePassword(HashMap<String, Object> map) {
+		return dao.updatePassword(map);
+	}
+	
+	
 }
  

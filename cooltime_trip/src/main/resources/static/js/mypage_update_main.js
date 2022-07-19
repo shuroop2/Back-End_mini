@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 
     // 회원 아이디 텍스트 상자 설정
-    $('.input_update_id').val("admin");// 회원 아이디 값
+    //$('.input_update_id').val("admin");// 회원 아이디 값
     $('.input_update_id').attr("disabled", true);// 텍스트 상자 비활성화
 
     // 회원 이름 텍스트 상자 설정

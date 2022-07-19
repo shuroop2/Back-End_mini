@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,10 +37,16 @@ public class MemberController {
 	@RequestMapping("/mypage_authentication")
 	public String mypageAuthentication() {
 		return "member/mypage_authentication";
-	}
+	}  
 	 
+	// 내 정보 수정 메인
 	@RequestMapping("/mypage_update_main")
-	public String mypageUpdateMain() {
+	public String mypageUpdateMain(@RequestParam HashMap<String, Object> map, Model model, HttpSession session) {
+		
+		String memId = (String) session.getAttribute("sid");
+		MemberVO mem = memService.getMemberInfo(memId);
+		
+		model.addAttribute("mem", mem); 
 		return "member/mypage_update_main";
 	}
 	
@@ -48,11 +55,25 @@ public class MemberController {
 		return "member/mypage_update_password";
 	}
 	
+	@ResponseBody
+	@RequestMapping("/updatePassword")
+	public String updatePassword(@RequestParam HashMap<String, Object> param, HttpSession session) {
+		String memPwd = memService.updatePassword(param);
+		String result = "fail";
+		
+		if(memPwd!=null) {
+			result = "success";
+		}
+		return result;
+	}
+	
 	@RequestMapping("/mypage_update_phone")
 	public String mypageUpdatePhone() {
+		
+		
 		return "member/mypage_update_phone";
 	} 
-	
+	 
 	// 로그인 처리     
 	@ResponseBody
 	@RequestMapping("/loginCheck") 
@@ -87,10 +108,9 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
-	}
+	} 
 	
 	// 회원가입 요청
-
 	@RequestMapping("/signupMember") 
 	public String signupMember(MemberVO vo) {
 		memService.insertMember(vo); 
