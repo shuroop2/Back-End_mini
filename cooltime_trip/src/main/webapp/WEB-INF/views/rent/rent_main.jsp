@@ -20,23 +20,23 @@
     <div class="div_rent_search">
       <div class="wrap_rent_table">
         <!-- 유효성 검사 위한 폼태그 설정 -->
-        <form>
+        <form method="post" action="<c:url value='/rent_list'/>">
           <table>
             <tr>
               <th width="22%">여행지</th>
               <th width="45%">날짜</th>
               <th width="18%">운전자 생년월일</th>
               <!-- 검색하기 버튼 -->
-              <td width="15%" rowspan="2"><input type="button" class="btn_search_rent" value="검색하기"></td>
+              <td width="15%" rowspan="2"><input type="submit" class="btn_search_rent" value="검색하기"></td>
             </tr>
             <tr>
               <!-- 해당영역에 js에서 val()로 값 지정 -->
               <!-- 여행지 검색 인풋 -->
-              <td><input type="text" id="rentSearchBtn" class="txt_rent txt_rent_placeholder" value="여행지를 검색해주세요"></td>
+              <td><input type="text" id="rentSearchBtn" name="rentLocation" class="txt_rent txt_rent_placeholder" value="여행지를 검색해주세요"></td>
               <!-- 날짜 선택 인풋 -->
-              <td><input type="text" id="rentDatepicker" name="daterange" class="txt_rent txt_rent_placeholder" value="날짜를 선택해주세요"></td>
+              <td><input type="text" id="rentDatepicker" name="datetimes" class="txt_rent txt_rent_placeholder" value="날짜를 선택해주세요"></td>
               <!-- 운전자 생년월일 입력 인풋 -->
-              <td><input type="text" id="rentBirth" class="txt_rent" placeholder="YYMMDD"></td>
+              <td><input type="text" id="rentBirth" name="rentBirth" class="txt_rent" placeholder="YYMMDD"></td>
             </tr>
           </table>
         </form>

@@ -56,7 +56,7 @@
   text-align: center;
 }
 .wrap_search_input_box .search_drive_age::placeholder{
-  color: #222222;
+  color: #AAAAAA;
 }
 /* 검색하기 버튼 설정 */
 .wrap_search_input_box .rent_search_btn{

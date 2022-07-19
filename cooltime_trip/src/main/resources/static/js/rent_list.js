@@ -96,11 +96,23 @@ $(document).ready(function(){
   $(function() {
     $('input[name="datetimes"]').daterangepicker({
       timePicker: true,
-      startDate: moment().startOf('hour'),
-      endDate: moment().startOf('hour').add(32, 'hour'),
-      locale: {
-        format: 'MM.DD(dd) A hh:mm'
-      }
+      autoUpdateInput: false,
+      minDate: today,
+      locale: {
+          "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
+          "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
+        }
+    });
+
+    // 날짜 선택했을 때 포맷
+    $('#rentDatepicker').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('MM.DD(dd) A hh:mm') + ' - ' + picker.endDate.format('MM.DD(dd) A hh:mm'));
+      $(this).removeClass('txt_rent_placeholder');
+    });
+
+    // 날짜 없을 때
+    $('#rentDatepicker').on('cancel.daterangepicker', function(ev, picker) {
+        $(this).val('');
     });
   });
 
