@@ -4,8 +4,9 @@ public class MemberVO {
 	private String memId;
 	private String memPwd;
 	private String memName;
-	private String memEmail;
 	private String memPhone;
+	private String memEmail;
+	
 	
 	public String getMemId() {
 		return memId;

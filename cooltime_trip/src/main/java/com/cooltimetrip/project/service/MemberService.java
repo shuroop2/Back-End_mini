@@ -21,6 +21,11 @@ public class MemberService implements IMemberService {
 	}
 	
 	@Override
+	public void insertMember(MemberVO vo) {
+		dao.insertMember(vo);
+	}
+	
+	@Override
 	public MemberVO getMemberInfo(String memId) {
 		return dao.getMemberInfo(memId);
 	}

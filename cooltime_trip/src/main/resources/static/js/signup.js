@@ -1,8 +1,9 @@
 // signup.js
 
 $(document).ready(function(){
+
     // 입력 상자 테두리 색상 설정
-    {
+	{
         // 아이디 
         $('.input_signup_id').focus(function(){
             $(this).css('border', '1px solid #48A0FF');
@@ -70,6 +71,7 @@ $(document).ready(function(){
     // 아이디 중복 확인 버튼 클릭 시
     // 아이디 중복 체크
     // DB 사용 부분
+    /*
     var check_id=false;
     $('.btn_check_id').click(function(){
         var userId=$('.input_signup_id').val();
@@ -83,7 +85,7 @@ $(document).ready(function(){
             check_id=true;// 회원가입 버튼 실행 시 확인 1
         }
     });
-
+	*/
     // 인증 번호 입력란 숨기기(초기설정)
     $('.input_check_phone').hide();
     $('.btn_check_phone').hide();
@@ -270,4 +272,6 @@ $(document).ready(function(){
         }, 400);
         return false;
     });
+
+
 });

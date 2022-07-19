@@ -75,12 +75,7 @@ $(document).ready(function(){
         	}
         });
         	*/
-       /* 
-    $('#form_login').on('submit', function(){	
-    	alert("asd");
-    });    
-      */
-      
+ 
 	$('#form_login').on('submit', function(){	
 		event.preventDefault();	
     	$.ajax({
