@@ -10,5 +10,9 @@
 	<select id="loginCheck" parameterType="hashmap" resultType="string">
 		SELECT memId FROM member WHERE memId=#{id} AND memPwd=#{pwd}
 	</select>
-
+	
+	<!-- 멤버리스트 출력 -->
+	<select id="getMemberInfo" parameterType="String" resultType="com.cooltimetrip.project.model.MemberVO">
+		SELECT * FROM member WHERE memId = #{memId}
+	</select>
 </mapper>

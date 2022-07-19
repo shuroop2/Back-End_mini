@@ -189,7 +189,7 @@
         </div>
     </div>
     <div class="reserve">
-        <button type="submit" title="예약하기" class="rsv_btn">예약하기</button>
+        <button type="button" title="예약하기" class="rsv_btn">예약하기</button>
     </div>
     <input type="hidden" name="depart_location" value="${depart_location }">
     <input type="hidden" name="arrive_location" value="${arrive_location }">
@@ -221,6 +221,16 @@
     		$('#arr_detail_from').text("김포 GMP");
     		$('#arr_detail_to').text("제주 CJU");
     	}
+    	
+    	// 예약하기 버튼 눌렀을 때 로그인 안했으면 로그인 페이지로, 로그인 상태라면 이동
+    	$('.rsv_btn').on('click', function(){
+        	if(${sessionScope.sid == null }) {
+        		alert("로그인이 필요한 페이지입니다.\n로그인을 해주세요.");
+        		location.href="/login";
+        	} else {
+    	    	$('#form_flight_detail').submit();
+        	}
+        });
     </script>
     </form>
 </body>

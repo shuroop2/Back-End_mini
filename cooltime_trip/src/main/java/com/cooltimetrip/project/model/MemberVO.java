@@ -6,6 +6,7 @@ public class MemberVO {
 	private String memName;
 	private String memEmail;
 	private String memPhone;
+	
 	public String getMemId() {
 		return memId;
 	}
@@ -36,6 +37,4 @@ public class MemberVO {
 	public void setMemPhone(String memPhone) {
 		this.memPhone = memPhone;
 	}
-	
-	
 }

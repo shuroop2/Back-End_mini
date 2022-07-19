@@ -128,11 +128,11 @@
                 <div class="user_info_border">
                     <div class="user_info_wrap">
                         <div>예약자 이름</div>
-                        <div><input type="text" class="user_name bdblue"></div>
+                        <div><input type="text" class="user_name bdblue" value="${mem.memName }"></div>
                         <div>이메일 주소</div>
                         <div>
                             <span>
-                                <input type="text" class="user_email1">@<input type="text" class="user_email2" placeholder="직접 입력">
+                                <input type="text" class="user_email1" value="${email1 }">@<input type="text" class="user_email2" placeholder="직접 입력" value="${email2 }">
                                 <select class="user_email3">
                                     <option value="" selected>직접입력</option>
                                     <option value="naver.com">naver.com</option>
@@ -153,7 +153,7 @@
                                     <option value="018">018</option>
                                     <option value="019">019</option>
                                 </select>
-                                <input type="text" class="user_phone2" maxlength="4"><input type="text" class="user_phone3" maxlength="4">
+                                <input type="text" class="user_phone2" maxlength="4" value="${phone2 }"><input type="text" class="user_phone3" maxlength="4" value="${phone3 }">
                             </span>
                         </div>
                         <!-- 휴대폰 번호 규정 -->

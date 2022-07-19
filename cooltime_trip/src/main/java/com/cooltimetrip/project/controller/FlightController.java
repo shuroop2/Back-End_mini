@@ -4,13 +4,19 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cooltimetrip.project.model.MemberVO;
+import com.cooltimetrip.project.service.MemberService;
+
 @Controller
 public class FlightController {
+	@Autowired
+	MemberService memService;
 	
 	@RequestMapping("/")
 	public String flightMain() {
@@ -51,9 +57,31 @@ public class FlightController {
 	
 	@RequestMapping("/flight_reservation")
 	public String flightReservation(@RequestParam HashMap<String, Object> map, Model model, HttpSession session) {
-		// 로그인 작업 처리 추가 필요
-		// String memId = (String) session.getAttribute("sid");
+		String memId = (String) session.getAttribute("sid");
+		MemberVO mem = memService.getMemberInfo(memId);
 		
+		String email = mem.getMemEmail();
+		String phone = mem.getMemPhone();
+		int index = email.indexOf("@");
+		String email1 = email.substring(0, index);
+		String email2 = email.substring(index + 1);
+		
+		String phone1 = phone.substring(0, 3);
+		String phone2 = phone.substring(3, 6);
+		String phone3 = phone.substring(6, 10);
+		
+		if(phone.length() == 11) {
+			phone1 = phone.substring(0, 3);
+			phone2 = phone.substring(3, 7);
+			phone3 = phone.substring(7, 11);
+		}
+	
+		model.addAttribute("mem", mem);
+		model.addAttribute("email1", email1);
+		model.addAttribute("email2", email2);
+		model.addAttribute("phone1", phone1);
+		model.addAttribute("phone2", phone2);
+		model.addAttribute("phone3", phone3);
 		model.addAttribute("depart_location", (String) map.get("depart_location"));
 		model.addAttribute("arrive_location", (String) map.get("arrive_location"));
 		model.addAttribute("daterange", (String) map.get("daterange"));
