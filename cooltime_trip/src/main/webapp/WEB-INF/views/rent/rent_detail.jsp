@@ -95,6 +95,7 @@
                 <div>
                     <div class="agency_address">
                         <span id="agency_address_text">${car.rentAddress}</span>
+                        <input type="hidden" id="address" value="'${car.rentAddress}'">
                         <span><i class="fa-regular fa-copy"></i></span>
                     </div>
                     <button class="btn_kakaomap">

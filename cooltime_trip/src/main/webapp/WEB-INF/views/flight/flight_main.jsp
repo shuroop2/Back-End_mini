@@ -417,13 +417,13 @@
 	        <img src="<c:url value='/images/jeju1.jfif'/>">
 	        <div class="jeju_content">
 	          <div class="jeju_location_direction">
-	            <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
+	            <span>김포</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
 	          </div>
 	          <div class="jeju_date">
-	            <span>6월 20일 - 6월 25일</span>
+	            <span>7월 22일 - 7월 24일</span>
 	          </div>
 	          <div class="jeju_price">
-	            <span>37,500 ~</span>
+	            <span>126,700 ~</span>
 	          </div>
 	        </div>
 	      </div>
@@ -431,13 +431,13 @@
 	        <img src="<c:url value='/images/jeju2.jfif'/>">
 	        <div class="jeju_content">
 	          <div class="jeju_location_direction">
-	            <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
+	            <span>김포</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
 	          </div>
 	          <div class="jeju_date">
-	            <span>6월 20일 - 6월 25일</span>
+	            <span>7월 27일 - 7월 31일</span>
 	          </div>
 	          <div class="jeju_price">
-	            <span>37,500 ~</span>
+	            <span>163,500 ~</span>
 	          </div>
 	        </div>
 	      </div>
@@ -448,10 +448,10 @@
 	            <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
 	          </div>
 	          <div class="jeju_date">
-	            <span>6월 20일 - 6월 25일</span>
+	            <span>8월 5일 - 8월 7일</span>
 	          </div>
 	          <div class="jeju_price">
-	            <span>37,500 ~</span>
+	            <span>137,200 ~</span>
 	          </div>
 	        </div>
 	      </div>
@@ -459,13 +459,13 @@
 	        <img src="<c:url value='/images/jeju4.jfif'/>">
 	        <div class="jeju_content">
 	          <div class="jeju_location_direction">
-	            <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
+	            <span>김포</span><i class="fas fa-long-arrow-alt-right"></i><span>제주</span>
 	          </div>
 	          <div class="jeju_date">
-	            <span>6월 20일 - 6월 25일</span>
+	            <span>8월 12일 - 8월 14일</span>
 	          </div>
 	          <div class="jeju_price">
-	            <span>37,500 ~</span>
+	            <span>91,800 ~</span>
 	          </div>
 	        </div>
 	      </div>
@@ -480,13 +480,13 @@
 	        <img src="<c:url value='/images/guam1.jfif'/>">
 	        <div class="honeymoon_content">
 	          <div class="honeymoon_location_direction">
-	            <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
+	            <span>인천</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
 	          </div>
 	          <div class="honeymoon_date">
-	            <span>6월 20일 - 6월 25일</span>
+	            <span>7월 23일 - 7월 29일</span>
 	          </div>
 	          <div class="honeymoon_price">
-	            <span>437,500 ~</span>
+	            <span>975,500 ~</span>
 	          </div>
 	        </div>
 	      </div>
@@ -494,13 +494,13 @@
 	        <img src="<c:url value='/images/guam2.jfif'/>">
 	        <div class="honeymoon_content">
 	          <div class="honeymoon_location_direction">
-	            <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
+	            <span>인천</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
 	          </div>
 	          <div class="honeymoon_date">
-	            <span>6월 20일 - 6월 25일</span>
+	            <span>7월 30일 - 8월 5일</span>
 	          </div>
 	          <div class="honeymoon_price">
-	            <span>437,500 ~</span>
+	            <span>1,177,000 ~</span>
 	          </div>
 	        </div>
 	      </div>
@@ -508,13 +508,13 @@
 	        <img src="<c:url value='/images/guam3.jfif'/>">
 	        <div class="honeymoon_content">
 	          <div class="honeymoon_location_direction">
-	            <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
+	            <span>인천</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
 	          </div>
 	          <div class="honeymoon_date">
-	            <span>6월 20일 - 6월 25일</span>
+	            <span>8월 6일 - 8월 12일</span>
 	          </div>
 	          <div class="honeymoon_price">
-	            <span>437,500 ~</span>
+	            <span>849,400 ~</span>
 	          </div>
 	        </div>
 	      </div>
@@ -522,13 +522,13 @@
 	        <img src="<c:url value='/images/guam4.jfif'/>">
 	        <div class="honeymoon_content">
 	          <div class="honeymoon_location_direction">
-	            <span>서울</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
+	            <span>인천</span><i class="fas fa-long-arrow-alt-right"></i><span>괌</span>
 	          </div>
 	          <div class="honeymoon_date">
-	            <span>6월 20일 - 6월 25일</span>
+	            <span>8월 13일 - 8월 19일</span>
 	          </div>
 	          <div class="honeymoon_price">
-	            <span>437,500 ~</span>
+	            <span>966,600 ~</span>
 	          </div>
 	        </div>
 	      </div>

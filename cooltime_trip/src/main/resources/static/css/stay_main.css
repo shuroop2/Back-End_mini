@@ -66,6 +66,18 @@
   font-weight: 300;
 }
 
+.wrap_lod_table table tr:nth-child(2) td:nth-child(1) {
+	padding-right: 120px;
+}
+
+.wrap_lod_table table tr:nth-child(2) td:nth-child(2) {
+	padding-right: 120px;
+}
+
+.wrap_lod_table table tr:nth-child(2) td:nth-child(3) {
+	padding-right: 70px;
+}
+
 /* td태그 내부 텍스트 */
 .sec_search .div_lod_search .wrap_lod_table table tr td .txt_stay{
   width: 100%;

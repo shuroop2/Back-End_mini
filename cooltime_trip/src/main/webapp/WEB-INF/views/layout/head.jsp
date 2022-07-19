@@ -18,6 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css' />"/>
 	<link rel="stylesheet" href="<c:url value='/css/daterangepicker.css' />"/>
 	<!-- kakaomap -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e87e7d3c24777e4ac95590aa13c0f06&libraries=services"></script>
 	<script src="<c:url value='//dapi.kakao.com/v2/maps/sdk.js?appkey=4e87e7d3c24777e4ac95590aa13c0f06' />"></script>
 	<!-- lightBox -->
     <link rel="stylesheet" href="<c:url value='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css' />"/>
