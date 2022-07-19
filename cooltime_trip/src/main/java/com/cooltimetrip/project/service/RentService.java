@@ -21,4 +21,9 @@ public class RentService implements IRentService {
 		return dao.listAllCar();
 	}
 
+	@Override
+	public CarVO detailViewCar(int carNo) {
+		return dao.detailViewCar(carNo);
+	}
+
 }

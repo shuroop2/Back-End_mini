@@ -21,7 +21,7 @@
 		        <form id="rentSearchList">
 		          <div class="wrap_search_input_box">
 		            <input type="text" class="search_destination" value="${rentLocation}">
-		            <input type="text" name="datetimes" id="renttDatepicker" class="search_daterange" value="${daterange}">
+		            <input type="text" id="rentDatepicker" name="datetimes" class="search_daterange txt_stay txt_stay_placeholder" value="${daterange}">
 		            <input type="text" class="search_drive_age"  placeholder="YYMMDD" value="${rentBirth}">
 		            <input type="submit" class="rent_search_btn" value="검색하기">
 		          </div>
@@ -124,34 +124,38 @@
 		        </div>
 		      </div>
 		      <!-- result data-->
-		      <c:forEach var="carList" items="${carList}">
-			      <div class="wrap_result_car_list">
-			        <div class="result_car_img">
-			          <img src="<c:url value='/carImg/${carList.carImgNo}.png'/>">
-			        </div>
-			        <div class="wrap_whole">
-			          <div class="txt_box_rent_result">
-			            <div class="wrap_result_car_txt">
-			              <div class="txt_k5">${carList.carName}</div>
-			              <div class="txt_free_cancel">무료취소(~7.9)</div>
-			            </div>
-			            <div class="txt_choose">
-			              선택<i class="fa-solid small_angle fa-angle-right"></i>
-			            </div>
-			          </div>
-			          <div class="wrap_final_price">
-			            <div class="wrap_txt_rent_company">
-			              <div class="txt_rent_company">${carList.rentName}</div>
-			              <div class="txt_rent_year">${carList.carYear} · ${carList.carFuel}</div>
-			            </div>
-			            <div class="wrap_txt_money">
-			              <span class="txt_ttl">총</span>
-			              <span class="txt_num_won"><fmt:formatNumber value='${carList.carPrice}' pattern='#,###'/></span><span class="txt_ttl">원</span>
-			            </div>
-			          </div>
-			        </div>
-			      </div>
-		      </c:forEach>
+		      <form>
+			      <c:forEach var="carList" items="${carList}">
+				      <div class="wrap_result_car_list">
+				        <div class="result_car_img">
+				          <img src="<c:url value='/carImg/${carList.carImgNo}.png'/>">
+				        </div>
+				        <div class="wrap_whole">
+				          <div class="txt_box_rent_result">
+				            <div class="wrap_result_car_txt">
+				              <div class="txt_k5">${carList.carName}</div>
+				              <div id="freeCancel_${index}" class="txt_free_cancel">${dateCancel}</div>
+				            </div>
+				            <div class="txt_choose">
+				              <a href="<c:url value='/rent_detail/${carList.carNo}'/>">선택 <i class="fa-solid small_angle fa-angle-right"></i></a>
+				            </div>
+				          </div>
+				          <div class="wrap_final_price">
+				            <div class="wrap_txt_rent_company">
+				              <div class="txt_rent_company">${carList.rentName}</div>
+				              <div class="txt_rent_year">${carList.carYear} · ${carList.carFuel}</div>
+				            </div>
+				            <div class="wrap_txt_money">
+				           		<a href="<c:url value='/rent_detail/${carList.carNo}'/>">
+				           		  <span class="txt_ttl">총</span>
+					              <span class="txt_num_won"><fmt:formatNumber value='${carList.carPrice}' pattern='#,###'/></span><span class="txt_ttl">원</span>
+					            </a>
+				            </div>
+				          </div>
+				        </div>
+				      </div>
+			      </c:forEach>
+		      </form>
            	 </section>
 		    </div>
 		   </div>

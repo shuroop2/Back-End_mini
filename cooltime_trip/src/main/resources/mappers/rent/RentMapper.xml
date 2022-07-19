@@ -28,5 +28,10 @@
 	<select id="listAllCar" resultMap="carResult">
 		SELECT * FROM car C INNER JOIN rent R ON R.rentNo = C.rentNo ORDER BY carYear DESC
 	</select>
+	
+	<!--  상품 상세 정보 조회 -->
+	<select id="detailViewCar" parameterType="int" resultType="com.cooltimetrip.project.model.CarVO">
+		SELECT * FROM car C INNER JOIN rent R ON R.rentNo = C.rentNo WHERE carNo = #{carNo}
+	</select>
 
 </mapper>

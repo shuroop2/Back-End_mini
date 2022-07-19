@@ -11,6 +11,14 @@ public class RentVO {
 	private String rentAddress;
 	private String rentExpl;
 	
+	private int carNo;
+	
+	public int getCarNo() {
+		return carNo;
+	}
+	public void setCarNo(int carNo) {
+		this.carNo = carNo;
+	}
 	public String getRentNo() {
 		return rentNo;
 	}

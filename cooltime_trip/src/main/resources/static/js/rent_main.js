@@ -111,18 +111,23 @@ $(document).ready(function(){
     if(!onlyNum.test($(this).val())){
       alert("숫자만 입력 가능 합니다");
       $(this).val('');
+      return false; // 서버로 전송되지 않도록
     }else if(birthM > 12 || birthM < 1){          // 1월~12월 사이의 값을 작성하지 않았을 경우
-      alert("생년월일을 올바르게 입력했는지 확인해주세요");   
-      $(this).focus();
+      alert("생년월일을 올바르게 입력해주세요");   
+      $(this).val('');
+      return false; // 서버로 전송되지 않도록
     }else if(birthD > 31 || birthD < 1){          // 1~31일 사이의 값을 작성하지 않았을 경우
-      alert("생년월일을 올바르게 입력했는지 확인해주세요");   
-      $(this).focus();
+      alert("생년월일을 올바르게 입력해주세요");   
+      $(this).val('');
+      return false; // 서버로 전송되지 않도록
     }else if(age < 19 || age >= 99){
       alert("만 19세 미만은 이용하실 수 없습니다");
       $(this).val('');
+      return false; // 서버로 전송되지 않도록
     }else{
       $(this).val(rentBirth + " (만 " + age + "세)");
     }
+    
   });
   
   // 클릭할 때 초기화
@@ -142,6 +147,13 @@ $(document).ready(function(){
   		alert("여행 기간을 선택해주세요");
   		return false; // 서버로 전송되지 않도록
   	}
+  	
+  	// 만약 날짜가 선택되지 않았을 경우 = 기본 value값인 "날짜를 선택해주세요"가 적혀 있는 경우
+    if($('#rentBirth').val() == "") {
+  		alert("운전자 생년월일을 적어주세요");
+  		return false; // 서버로 전송되지 않도록
+  	}
+  	
     // 인원 선택은 디폴트 어른 1명이 있기 때문에 유효성 검사 필요 없음
     location.href = '/rent_list';
   });

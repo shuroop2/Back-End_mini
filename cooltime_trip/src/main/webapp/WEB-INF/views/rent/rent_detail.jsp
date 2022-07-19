@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en"><c:import url="/WEB-INF/views/layout/head.jsp" />
 	<!-- custom -->
@@ -16,59 +17,84 @@
             <div class="car_info">
                 <div class="car_detail">
                     <div class="car_detail_text">
-                        <div>THE NEW K5</div>
+                        <div>${car.carName}</div>
                         <div class="car_agency">
-                            아리랑렌트카<i class="fa-solid fa-circle-info gray"></i>
+                            ${car.rentName}<i class="fa-solid fa-circle-info gray"></i>
                         </div>
                         <div class="model_image gray">현장에서 받는 차의 색상과 디테일은 다를 수 있어요</div>
                     </div>
                     <div class="car_detail_img">
-                        <img src="<c:url value='/images/k5.png' />">
+                        <img src="<c:url value='/carImg/${car.carImgNo}.png'/>">
                     </div>
                 </div>
                 <div id="quantity_left" class="quantity_left">
                     <span><i class="fa-regular fa-clock gray"></i></span>
-                    <span id="quantity_left_txt">10대 남았어요</span>
+                    <span id="quantity_left_txt">${car.carCount}대 남았어요</span>
                 </div>
                 <div class="cancel_time">
                     <i class="fa-regular fa-circle-check gray"></i>7월 9일 오전 10시까지 무료 취소
                 </div>
                 <div class="car_option">
-                    <div class="car_year"><i class="fa-regular fa-calendar-check gray"></i>19년식</div>
-                    <div class="car_fuel"><i class="fa-solid fa-gas-pump gray"></i>경유</div>
-                    <div class="car_capacity"><i class="fa-solid fa-user gray"></i>5인</div>
-                    <div class="car_gear"><i class="fa-solid fa-map-pin gray"></i>AUTO</div>
+                    <div class="car_year"><i class="fa-regular fa-calendar-check gray"></i>${car.carYear}</div>
+                    <div class="car_fuel"><i class="fa-solid fa-gas-pump gray"></i>${car.carFuel}</div>
+                    <div class="car_capacity"><i class="fa-solid fa-user gray"></i>${car.carSeater}인</div>
+                    <c:set var="carGear" value="${car.carGear}"/>
+                    <div class="car_gear"><i class="fa-solid fa-map-pin gray"></i>${fn:toUpperCase(carGear)}</div>
                     <div class="car_navi"><i class="fa-solid fa-location-arrow gray"></i>네비게이션</div>
-                    <div class="car_bluetooth disable"><i class="fa-brands fa-bluetooth disable"></i>블루투스</div>
+                    <div class="car_bluetooth"><i class="fa-brands fa-bluetooth gray"></i>블루투스</div>
                     <div class="car_blackbox"><i class="fa-solid fa-camera gray"></i>블랙박스</div>
                 </div>
+                <script>
+	                if('${car.carNav}' == 'n'){
+	            		$('.car_navi').addClass('disable');
+	            		$('.fa-location-arrow').addClass('disable');
+	            	}
+	                
+	                if('${car.carBluetooth}' == 'n'){
+	            		$('.car_blackbox').addClass('disable');
+	            		$('.fa-bluetooth').addClass('disable');
+	            	}
+                
+                	if('${car.carBlackbox}' == 'n'){
+                		$('.car_blackbox').addClass('disable');
+                		$('.fa-camera').addClass('disable');
+                	}
+                </script>
             </div>
             <!-- 업체 정보 -->
             <div class="agency_info">
                 <div>
-                    <div class="agency_info_name">아리랑렌트카</div>
+                    <div class="agency_info_name">${car.rentName}</div>
                     <div class="agency_info_option">
-                        <div>유모차 (업체문의)</div>
-                        <div>카시트 (업체문의)</div>
+                        <div class="car_stroller"></div>
+                        <div class="car_babyseat"></div>
                     </div>
+                    <script>
+		                if('${car.carStroller}' == 'n'){
+		            		$('.car_stroller').text('유모차 (업체문의)');
+		            	}
+		                
+		                if('${car.carBabySeat}' == 'n'){
+		            		$('.car_babyseat').text('카시트 (업체문의)');
+		            	}
+	                </script>
                 </div>
                 <div class="agency_info_detail">
-                    <div>1994년 장사 이래 아리랑렌트카는 차별화 된 서비스와 오랜 경험을 바탕으로 지속적인 성장과 발전을 거듭하고 있습니다.<br>2016년 주식회사 아리랑으로 다시 출범하여 제2의 도약을 준비하고 있습니다. 아리랑렌트카가 열어가는 관광 역사의 새로운 페이지를 기대해 주십시오. 더 행복하고 풍요로운 세상을 만들어가기 위해 최선을 다하겠습니다.<br>감사합니다.</div>
+                    <div>${car.rentExpl}</div>
                     <div class="agency_info_extra">
-                        <div><div><i class="fa-solid fa-bus-simple gray"></i></div><div>셔틀버스 15분 ~ 20분 간격 운행<br>셔틀 전용 주차장 1구역 - 3번</div></div>
-                        <div><i class="fa-solid fa-clock gray"></i>08:00 ~ 20:00</div>
-                        <div><i class="fa-solid fa-hourglass gray"></i>약 7 ~ 10분 소요</div>
-                        <div><i class="fa-solid fa-headphones-simple gray"></i>064-749-2139</div>
+                        <div><div><i class="fa-solid fa-bus-simple gray"></i></div><div>${car.rentItvTime}<br>${car.rentBusStop}</div></div>
+                        <div><i class="fa-solid fa-clock gray"></i>${car.rentOpTime}</div>
+                        <div><i class="fa-solid fa-hourglass gray"></i>${car.rentTakenTime}</div>
+                        <div><i class="fa-solid fa-headphones-simple gray"></i>${car.rentPhoneNum}</div>
                     </div>
                 </div>
             </div>
-            <!-- 업체 지도 -->
             <div class="agency_map">
                 <div id="map">
                 </div>
                 <div>
                     <div class="agency_address">
-                        <span id="agency_address_text">제주특별자치도 제주시 용마서길 34</span>
+                        <span id="agency_address_text">${car.rentAddress}</span>
                         <span><i class="fa-regular fa-copy"></i></span>
                     </div>
                     <button class="btn_kakaomap">
@@ -110,7 +136,7 @@
                         
                         ▶렌터카 자격요건 : 보험 안내 및 약관에 따름<br>
                         ▶운전면허 : 국내 도로교통법상 유효한 운전면허증 소지자, 운전면허증 필히 지참 바랍니다.<br>
-                        ▶국제면허 : 외국인 및 교포는 국제운전면허증&여권 소지자에 한해 가능합니다.(주립 면허증 대여불가)<br>
+                        ▶국제면허 : 외국인 및 교포는 국제운전면허증과 여권 소지자에 한해 가능합니다.(주립 면허증 대여불가)<br>
                         ▶보험은 현장에서 작성하는 계약서를 기준으로 적용됩니다. 반드시 계약서를 확인해주시기 바랍니다.<br>
                         ▶차량 반납(조기 반납 포함)후 임차 계약은 자동으로 종료됩니다.
                     </div>
@@ -135,8 +161,8 @@
         <!-- 스토커박스 -->
         <div class="detail_stalker">
             <div class="stalker_text">
-                <div>THE NEW K5</div>
-                <div>아리랑렌트카</div>
+                <div>${car.carName}</div>
+                <div>${car.rentName}</div>
             </div>
             <button class="btn_choice">렌터카 선택하기</button>
         </div>

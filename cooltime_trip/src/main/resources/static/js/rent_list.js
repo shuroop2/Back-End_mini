@@ -83,18 +83,23 @@ $(document).ready(function(){
   });
 
   // 선택 눌렀을 때 페이지 이동
-  $('.txt_choose').click(function(){
-    location.href='/rent_detail';
-  });
+//  $('.txt_choose').click(function(){
+//    location.href='/rent_detail';
+//  });
 
   // 박스 눌렀을 때 페이지 이동
-  $('.wrap_final_price').click(function(){
-    location.href='/rent_detail';
-  });
+//  $('.wrap_final_price').click(function(){
+//    location.href='/rent_detail';
+//  });
+  
+  // daterangepicker
+  // 오늘 날짜 가져오기
+  var now = new Date();
+  var today = (now.getMonth()+1) + "/" + now.getDate() + "/" + now.getFullYear();
 
   // dateRangePicker
   $(function() {
-    $('input[name="datetimes"]').daterangepicker({
+    $('#rentDatepicker').daterangepicker({
       timePicker: true,
       autoUpdateInput: false,
       minDate: today,
@@ -172,4 +177,5 @@ $(document).ready(function(){
     }, 400);
     return false;
   });
+  
 });
