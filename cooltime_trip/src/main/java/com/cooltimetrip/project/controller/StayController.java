@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cooltimetrip.project.model.HotelVO;
+import com.cooltimetrip.project.model.RoomVO;
 import com.cooltimetrip.project.service.HotelService;
+import com.cooltimetrip.project.service.RoomService;
 
 @Controller
 public class StayController {
@@ -17,6 +19,9 @@ public class StayController {
 	// DI설정
 	@Autowired
 	HotelService hotelService;
+	
+	@Autowired
+	RoomService roomService;
 	
 	@RequestMapping("/stay_main")
 	public String viewStayMain() {

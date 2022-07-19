@@ -11,6 +11,14 @@ public class HotelVO {
 	private String hotelRule;
 	private String hotelTime;
 	
+	private int roomPrice;
+	
+	public int getRoomPrice() {
+		return roomPrice;
+	}
+	public void setRoomPrice(int roomPrice) {
+		this.roomPrice = roomPrice;
+	}
 	public String getHotelNo() {
 		return hotelNo;
 	}

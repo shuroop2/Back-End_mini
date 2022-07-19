@@ -8,14 +8,17 @@
   		<result property="hotelNo" column="hotelNo"/>
   		<result property="hotelName" column="hotelName"/>
   		<result property="hotelGrade" column="hotelGrade"/>
+  		<result property="hotelAddress" column="hotelAddress"/>
+  		<result property="hotelAssesment" column="hotelAssesment"/>
   		<result property="hotelLocation" column="hotelLocation"/>
-  		<result property="hotelInfo" column="hotelInfo"/>
   		<result property="hotelContact" column="hotelContact"/>
   		<result property="hotelRule" column="hotelRule"/>
   		<result property="hotelTime" column="hotelTime"/>
+  		<result property="roomPrice" column="roomPrice"/>
   	</resultMap>
   	
   	<select	id="listAllHotel" resultMap="hotelResult">
-  		SELECT * FROM hotel ORDER BY hotelNo
+  		SELECT * FROM hotel H INNER JOIN room R ON R.hotelNo = H.hotelNo GROUP BY R.hotelNo
   	</select>
   </mapper>
+  

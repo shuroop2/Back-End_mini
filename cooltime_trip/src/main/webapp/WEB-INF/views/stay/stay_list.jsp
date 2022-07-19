@@ -149,7 +149,7 @@
 	            <span class="txt_result_name">${hotelList.hotelName}</span>
 	            <span class="txt_result_adrs">${hotelList.hotelGrade } ・ ${hotelList.hotelAddress }</span>
 	            <span class="txt_result_review"><i class="fa-solid fa-star txt_blue"></i>${hotelList.hotelAssesment}<span class="txt_result_review_count">(131)</span></span>
-	            <span class="txt_result_price">178,700원</span>
+	            <span class="txt_result_price"><fmt:formatNumber value='${hotelList.roomPrice}'/>원</span>
 	          </div>
 	        </div>
         </c:forEach>
