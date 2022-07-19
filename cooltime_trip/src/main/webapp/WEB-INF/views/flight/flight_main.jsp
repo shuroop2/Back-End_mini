@@ -411,7 +411,7 @@
 	
 	  <!-- 제주여행 -->
 	  <section class="jeju_trip">
-	    <div class="jeju_title">제주 휴가 즐겨요</div>
+	    <div class="jeju_title">제주 휴가 즐겨요 🏝️</div>
 	    <div class="jeju_container">
 	      <div class="jeju_box">
 	        <img src="<c:url value='/images/jeju1.jfif'/>">
@@ -474,7 +474,7 @@
 	
 	  <!-- 신혼여행 -->
 	  <section class="honeymoon_trip">
-	    <div class="honeymoon_title">신혼여행</div>
+	    <div class="honeymoon_title">허니문 떠나요 💍</div>
 	    <div class="honeymoon_container">
 	      <div class="honeymoon_box">
 	        <img src="<c:url value='/images/guam1.jfif'/>">
