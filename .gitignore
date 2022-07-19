@@ -192,4 +192,8 @@ $RECYCLE.BIN/
 # key Value
 KeyValue.java
 
+# WebConfig File
+WebConfig.java
+
+
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,windows,macos,maven,git,java
