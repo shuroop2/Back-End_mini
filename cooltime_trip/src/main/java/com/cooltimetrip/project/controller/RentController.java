@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +61,7 @@ public class RentController {
 		
 		// 만약 오늘 날짜 +3 > 선택한 출발 날짜라면
 		if(tdyDate.after(calDate)) {
-			dateCancel = "&nbsp";	// 빈 값
+			dateCancel = "";	// 빈 값
 		}else {
 			dateCancel = "무료취소 (~" + dateCancel.substring(3, 8) + ")";
 		}
@@ -76,8 +77,18 @@ public class RentController {
 	
 	// 상세 정보 조회 : 1개
 	@RequestMapping("/rent_detail/{carNo}")
-	public String rentDetail(@PathVariable int carNo, Model model) {
+	public String rentDetail(@PathVariable int carNo, @RequestParam HashMap<String, Object> map, Model model) {
+		
 		CarVO car = rentService.detailViewCar(carNo);
+		String strCancel = (String)map.get("dateCancel");
+		String strCancel2 = null;
+		if(strCancel != "") {
+			strCancel2 = strCancel.substring(7, 9) + "월 " + strCancel.substring(10, 12) + "일 오전 10시까지 무료 취소";
+		}else {
+			strCancel2 = "지금 예약하면 1시간 내 무료로 취소할 수 있습니다. (1시간 이후부터 총 결제금액의 70% 환불)";
+		}
+	
+		model.addAttribute("strCancel2", strCancel2);
 		model.addAttribute("car", car);
 		
 		return "rent/rent_detail";
@@ -90,7 +101,9 @@ public class RentController {
 	}
 	
 	@RequestMapping("/rent_reservation")
-	public String rentReservation() {
+	public String rentReservation(Model model) {
+		
+		
 		return "rent/rent_reservation";
 	}
 }

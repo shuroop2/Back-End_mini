@@ -10,6 +10,7 @@
 </head>
 <body><c:import url="/WEB-INF/views/layout/top.jsp" />
     <!-- 섹션 -->
+    <form method="post" action="<c:url value='/rent_reservation'/>">
     <section>
         <!-- 디테일 컨텐츠 -->
         <div class="detail_contents">
@@ -18,6 +19,7 @@
                 <div class="car_detail">
                     <div class="car_detail_text">
                         <div>${car.carName}</div>
+                        <input type="hidden" name="carNo" value="${car.carNo}">
                         <div class="car_agency">
                             ${car.rentName}<i class="fa-solid fa-circle-info gray"></i>
                         </div>
@@ -32,7 +34,7 @@
                     <span id="quantity_left_txt">${car.carCount}대 남았어요</span>
                 </div>
                 <div class="cancel_time">
-                    <i class="fa-regular fa-circle-check gray"></i>7월 9일 오전 10시까지 무료 취소
+                    <i class="fa-regular fa-circle-check gray"></i>${strCancel2}
                 </div>
                 <div class="car_option">
                     <div class="car_year"><i class="fa-regular fa-calendar-check gray"></i>${car.carYear}</div>
@@ -170,6 +172,7 @@
             <button class="btn_choice">렌터카 선택하기</button>
         </div>
     </section>
+    </form>
     <!-- 주소 복사 시 팝업 박스 -->
     <div id="copy_box">주소가 클립보드에 복사되었습니다. </div><c:import url="/WEB-INF/views/layout/bottom.jsp" />
 </body>

@@ -18,11 +18,11 @@
 		    <!--검색 설정-->
 		    <div class="rent_list_search wrap">
 		      <div class="wrap_rent_box">
-		        <form id="rentSearchList">
+		        <form id="rentSearchList" method="post" action="<c:url value='/rent_list'/>">
 		          <div class="wrap_search_input_box">
-		            <input type="text" class="search_destination" value="${rentLocation}">
+		            <input type="text" class="search_destination" name="rentLocation" value="${rentLocation}">
 		            <input type="text" id="rentDatepicker" name="datetimes" class="search_daterange txt_stay txt_stay_placeholder" value="${daterange}">
-		            <input type="text" class="search_drive_age"  placeholder="YYMMDD" value="${rentBirth}">
+		            <input type="text" class="search_drive_age" name="rentBirth" placeholder="YYMMDD" value="${rentBirth}">
 		            <input type="submit" class="rent_search_btn" value="검색하기">
 		          </div>
 		        </form>
@@ -124,9 +124,9 @@
 		        </div>
 		      </div>
 		      <!-- result data-->
-		      <form>
-			      <c:forEach var="carList" items="${carList}">
-				      <div class="wrap_result_car_list">
+			  <c:forEach var="carList" items="${carList}">
+			     <form id="carListForm" name="carListForm" method="post" action="<c:url value='/rent_detail/${carList.carNo}'/>">
+				     <div class="wrap_result_car_list">
 				        <div class="result_car_img">
 				          <img src="<c:url value='/carImg/${carList.carImgNo}.png'/>">
 				        </div>
@@ -134,10 +134,12 @@
 				          <div class="txt_box_rent_result">
 				            <div class="wrap_result_car_txt">
 				              <div class="txt_k5">${carList.carName}</div>
-				              <div id="freeCancel_${index}" class="txt_free_cancel">${dateCancel}</div>
+				              <div id="txtDateCancel" class="txt_free_cancel">${dateCancel}</div>
+				              
+				              <input type="hidden" id="dateCancel" name="dateCancel" value="dateCancel">
 				            </div>
 				            <div class="txt_choose">
-				              <a href="<c:url value='/rent_detail/${carList.carNo}'/>">선택 <i class="fa-solid small_angle fa-angle-right"></i></a>
+				              선택 <i class="fa-solid small_angle fa-angle-right"></i>
 				            </div>
 				          </div>
 				          <div class="wrap_final_price">
@@ -146,17 +148,23 @@
 				              <div class="txt_rent_year">${carList.carYear} · ${carList.carFuel}</div>
 				            </div>
 				            <div class="wrap_txt_money">
-				           		<a href="<c:url value='/rent_detail/${carList.carNo}'/>">
-				           		  <span class="txt_ttl">총</span>
-					              <span class="txt_num_won"><fmt:formatNumber value='${carList.carPrice}' pattern='#,###'/></span><span class="txt_ttl">원</span>
-					            </a>
+			           		  <span class="txt_ttl">총</span>
+				              <span class="txt_num_won"><fmt:formatNumber value='${carList.carPrice}' pattern='#,###'/></span><span class="txt_ttl">원</span>
 				            </div>
 				          </div>
 				        </div>
 				      </div>
-			      </c:forEach>
-		      </form>
+				    </form>
+			    </c:forEach>
            	 </section>
+           	 <script>
+            	$('.txt_choose').click(function(){
+	              	var rr = document.getElementById("txtDateCancel").innerHTML;
+	              	console.log(rr);
+	              	$('#dateCancel').val(rr);
+	              	$('#carListForm').submit();
+	             });
+            </script>
 		    </div>
 		   </div>
 		   <!-- BOTTOM -->

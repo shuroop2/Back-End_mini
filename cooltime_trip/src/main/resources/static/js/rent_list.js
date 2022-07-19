@@ -178,4 +178,10 @@ $(document).ready(function(){
     return false;
   });
   
+  $('.txt_choose').click(function(){
+  	var rr = document.getElementById("txtDateCancel").innerHTML;
+  	$('#dateCancel').val(rr);
+  	$('#carListForm').submit();
+  });
+  
 });
