@@ -72,7 +72,7 @@
 .rsv_summary table {
   width: 880px;
   height: 64px;
-  padding: 40px 0 40px 47px;
+  padding: 40px 0;
 }
 
 .rsv_summary td:first-child {
@@ -124,17 +124,14 @@
 
 .rsv_summary td:nth-child(4) {
   border-left: 1px solid #DDDDDD;
-  text-align: center;
+  padding-left: 20px;
 }
 
-.rsv_summary td:nth-child(4) img {
-  width: 30px;
-  height: 30px;
-}
-
-.rsv_summary td:nth-child(4) p:last-child {
+.rsv_summary td:nth-child(4) p:nth-child(1) {
+  padding-bottom: 14px;
   font-size: 14px;
   font-weight: 400;
+  color: #999999;
 }
 
 .rsv_summary td:nth-child(5) {
@@ -161,18 +158,6 @@
   color: #999999;
 }
 
-.rsv_summary td:nth-child(7) {
-  border-left: 1px solid #DDDDDD;
-  padding-left: 20px;
-}
-
-.rsv_summary td:nth-child(7) p:nth-child(1) {
-  padding-bottom: 14px;
-  font-size: 14px;
-  font-weight: 400;
-  color: #999999;
-}
-
 /* 예약한 항공권 세부 정보 */
 .rsv_flight {
   height: 177px;
@@ -190,6 +175,7 @@
 .rsv_flight th {
   font-size: 14px;
   font-weight: 400;
+  height: 50px;
 }
 
 .rsv_flight td {
@@ -205,6 +191,12 @@
 .rsv_flight tr:nth-child(2) td {
   border-top: 1px solid #DDDDDD;
   border-bottom: 1px solid #DDDDDD;
+}
+
+.rsv_flight img {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
 }
 
 .rsv_flight th:nth-child(5) {

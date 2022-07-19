@@ -233,9 +233,10 @@ button {
 }
 
 .flight_airline {
-    width: 42px;
+	width: 100px;
     height: 19px;
     margin-top: 51px;
+    text-align: left;
 }
 
 .flight_time {

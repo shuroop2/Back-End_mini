@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en"><c:import url="/WEB-INF/views/layout/head.jsp" />
 	<!-- custom -->
@@ -18,31 +20,26 @@
                 <div class="rsv_summary">
                     <table>
                         <colgroup>
-                            <col style>
+                            <col style="width: 183.5px;">
                             <col style="width: 112px;">
-                            <col style>
-                            <col style="width: 110px;">
+                            <col style="width: 183.5px;">
                             <col style="width: 110px;">
                             <col style="width: 130px;">
                             <col style="width: 110px;">
                         </colgroup>
                         <tr>
                             <td>
-                                <p>서울</p>
-                                <p>ICN</p>
+                                <p>${depart_location }</p>
+                                <p>GMP</p>
                             </td>
                             <td>
                                 <p><img src="<c:url value='/images/ic_arrow_right_plane.png' />"></p>
                                 <p><img src="<c:url value='/images/ic_arrow_left_plane.png' />"></p>
-                                <p>06월 27일 - 07월 01일</p>
+                                <p>${fn:substring(daterange,0,2) }월 ${fn:substring(daterange,3,5) }일 - ${fn:substring(daterange,11,13) }월 ${fn:substring(daterange,14,16) }일</p>
                             </td>
                             <td>
-                                <p>괌</p>
-                                <p>GUM</p>
-                            </td>
-                            <td>
-                                <p><img src="<c:url value='/images/lg_jin_air.png' />"></p>
-                                <p>진에어</p>
+                                <p>${arrive_location }</p>
+                                <p>CJU</p>
                             </td>
                             <td>
                                 <p>운항종류</p>
@@ -50,11 +47,11 @@
                             </td>
                             <td>
                                 <p>좌석등급</p>
-                                <p>일반석</p>
+                                <p>${classType }</p>
                             </td>
                             <td>
                                 <p>승객</p>
-                                <p>1명</p>
+                                <p>${personCount }</p>
                             </td>
                         </tr>
                     </table>
@@ -63,7 +60,7 @@
                 <div class="rsv_flight">
                     <table>
                         <colgroup>
-                            <col style="width: 90px">
+                            <col style="width: 50px">
                             <col style="width: 150px;">
                             <col style="width: 180px;">
                             <col style="width: 130px;">
@@ -80,40 +77,40 @@
                             <th>수하물</th>
                         </tr>
                         <tr>
-                            <td>가는날</td>
-                            <td>LJ 641편</td>
-                            <td>인천 - 괌</td>
+                            <td><img src="<c:url value='/images/${dep_airline }.png'/>"></td>
+                            <td>${dep_flight_no }</td>
+                            <td>${depart_location } - ${arrive_location }</td>
                             <td>
-                                <p>06월 27일(월)</p>
-                                <p>09:40</p>
+                                <p>${fn:substring(daterange,0,2) }월 ${fn:substring(daterange,3,5) }일 ${fn:substring(daterange,5,8) }</p>
+                                <p>${dep_start_time }</p>
                             </td>
                             <td>
-                                <p>06월 27일(월)</p>
-                                <p>15:05</p>
+                                <p>${fn:substring(daterange,0,2) }월 ${fn:substring(daterange,3,5) }일 ${fn:substring(daterange,5,8) }</p>
+                                <p>${dep_end_time }</p>
                             </td>
                             <td>
-                                <p>일반석</p>
-                                <p>1석</p>
+                                <p>${classType }</p>
+                                <p>${fn:substring(personCount,0,1) }석</p>
                             </td>
-                            <td>1PC</td>
+                            <td>${fn:substring(personCount,0,1) }PC</td>
                         </tr>
                         <tr>
-                            <td>오는날</td>
-                            <td>LJ 642편</td>
-                            <td>괌 - 인천</td>
+                            <td><img src="<c:url value='/images/${arr_airline }.png'/>"></td>
+                            <td>${arr_flight_no }</td>
+                            <td>${arrive_location } - ${depart_location }</td>
                             <td>
-                                <p>07월 01일(금)</p>
-                                <p>09:40</p>
+                                <p>${fn:substring(daterange,11,13) }월 ${fn:substring(daterange,14,16) }일 ${fn:substring(daterange,16,19) }</p>
+                                <p>${arr_start_time }</p>
                             </td>
                             <td>
-                                <p>07월 01일(금)</p>
-                                <p>15:20</p>
+                                <p>${fn:substring(daterange,11,13) }월 ${fn:substring(daterange,14,16) }일 ${fn:substring(daterange,16,19) }</p>
+                                <p>${arr_end_time }</p>
                             </td>
                             <td>
-                                <p>일반석</p>
-                                <p>1석</p>
+                                <p>${classType }</p>
+                                <p>${fn:substring(personCount,0,1) }석</p>
                             </td>
-                            <td>1PC</td>
+                            <td>${fn:substring(personCount,0,1) }PC</td>
                         </tr>
                     </table>
                 </div>
@@ -327,29 +324,29 @@
             <article class="tariff">
                 <!-- 세부 요금 -->
                 <div class="fare_body">
-                    <h3>성인 <b>1</b>명</h3>
+                    <h3>성인 <b>${fn:substring(personCount,0,1) }</b>명</h3>
                     <div class="fare_detail">
                         <div class="fare_detail1">
                             <table>
                                 <tr>
                                     <td>항공 요금</td>
-                                    <td>1명</td>
-                                    <td align="right">221,400원</td>
+                                    <td>${personCount }</td>
+                                    <td align="right"><fmt:formatNumber value='${charge_flight }' pattern='#,###'/>원</td>
                                 </tr>
                                 <tr>
                                     <td>유류할증료</td>
-                                    <td>1명</td>
-                                    <td align="right">173,200원</td>
+                                    <td>${personCount }</td>
+                                    <td align="right"><fmt:formatNumber value='${charge_fuel }' pattern='#,###'/>원</td>
                                 </tr>
                                 <tr>
                                     <td>제세공과금</td>
-                                    <td>1명</td>
-                                    <td align="right">61,100원</td>
+                                    <td>${personCount }</td>
+                                    <td align="right"><fmt:formatNumber value='${charge_tax }' pattern='#,###'/>원</td>
                                 </tr>
                                 <tr>
                                     <td>발권수수류</td>
-                                    <td>1명</td>
-                                    <td align="right">0원</td>
+                                    <td>${personCount }</td>
+                                    <td align="right"><fmt:formatNumber value='${charge_ticket }' pattern='#,###'/>원</td>
                                 </tr>
                             </table>
                         </div>
@@ -357,7 +354,7 @@
                             <table>
                                 <tr>
                                     <td colspan="2">성인 총 요금</td>
-                                    <td align="right">455,700원</td>
+                                    <td align="right"><fmt:formatNumber value='${charge_total }' pattern='#,###'/>원</td>
                                 </tr>
                             </table>
                         </div>
@@ -370,7 +367,7 @@
                             <h3>총 요금</h3>
                         </div>
                         <div>
-                            <h3>455,700<span>원</span></h3>
+                            <h3><fmt:formatNumber value='${charge_total }' pattern='#,###'/><span>원</span></h3>
                             <span>세금 및 수수로 표함</span>
                         </div>
                     </div>

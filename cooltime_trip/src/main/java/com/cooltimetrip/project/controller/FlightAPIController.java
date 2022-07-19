@@ -120,16 +120,17 @@ public class FlightAPIController {
 		
         mv.addObject("objDep", objDep);
         mv.addObject("objArv", objArv);
-        mv.addObject("depart_location", depart_location);
-        mv.addObject("arrive_location", arrive_location);
-		mv.addObject("shuttle", shuttle);
-		mv.addObject("daterange", daterange);
-		mv.addObject("personCount", personCount);
-		mv.addObject("classType",classType);
+        mv.addObject("depart_location", depart_location); // 출발지
+        mv.addObject("arrive_location", arrive_location); // 도착지
+		mv.addObject("shuttle", shuttle); // 왕복 편도 다구간
+		mv.addObject("daterange", daterange); // 기간
+		mv.addObject("personCount", personCount); // 인원수
+		mv.addObject("classType",classType); // 좌석 타입
 		 
         mv.setViewName("flight/flight_list");
 		
 		return mv;
 	}
+	
 }
 

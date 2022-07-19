@@ -219,7 +219,9 @@ $(document).ready(function(){
 
   // 선택 눌러서 페이지 이동
   $('.txt_flight_select').on('click', function(){
-    location.href='/flight_detail';
+	var index = $(this).closest('div').find("input[name='index']").val();
+	$('#index').val(index);
+    $('#form_flight_list').submit();
   });
 
   // 탑 버튼 눌렀을 때 최상단으로

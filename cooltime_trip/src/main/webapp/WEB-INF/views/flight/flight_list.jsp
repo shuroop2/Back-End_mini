@@ -14,21 +14,22 @@
 </head>
 <body><c:import url="/WEB-INF/views/layout/top.jsp" />
 	<!-- 검색 영역 -->
+  <form id="form_flight_list" method="post" action="<c:url value='/flight_detail' />">
   <section class="sec_search_list">
     <span class="div_list_tlt">${shuttle }</span>
     <!-- 검색 설정 영역 / 유효성 검사 필요 -->
     <div class="div_flight_list_search wrap">
       <div class="wrap_flight_div">
-        <form id="flightSearchList">
-            <div class="wrap_search_input">
-              <input type="text" id="flightStartSearchBtn" class="txt_lodgment" value="${depart_location }">
-              <button><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
-              <input type="text" id="flightEndSearchBtn" class="txt_lodgment" value="${arrive_location }">
-              <input type="text" id="flightDatepicker" name="daterange" class="txt_lodgment" value="${daterange }">
-              <input type="text" id="flightPersonCount" class="txt_lodgment" value="${personCount}, ${classType}">
-              <input type="submit" class="btn_search_flight" value="검색하기">
-            </div>
-        </form>
+         <div class="wrap_search_input">
+           <input type="text" id="flightStartSearchBtn" class="txt_lodgment" name="depart_location" value="${depart_location }">
+           <button type="button"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
+           <input type="text" id="flightEndSearchBtn" class="txt_lodgment" name="arrive_location" value="${arrive_location }">
+           <input type="text" id="flightDatepicker" name="daterange" class="txt_lodgment" value="${daterange }">
+           <input type="text" id="flightPersonCount" class="txt_lodgment" value="${personCount}, ${classType}">
+           <input type="hidden" name="personCount" value="${personCount }">
+           <input type="hidden" name="classType" value="${classType }">
+           <input type="submit" class="btn_search_flight" value="검색하기">
+         </div>
         <!-- 검색 팝업 -->
         <div class="popup_lod">
           <h4 class="tlt_popup_lod">여행지 검색</h4><i class="fa-solid fa-xmark" id="popupLodListCloseBtn"></i>
@@ -85,7 +86,7 @@
               <span class="txt_person_sub">만 12세 이상</span>
             </div>
             <div class="box_plus_minus">
-              <fmt:parseNumber var="person_count" value="${fn:substring(personCount,0,2)}" />
+              <fmt:parseNumber var="person_count" value="${fn:substring(personCount,0,1)}" />
               <a id="adultFlightMinusBtn" class="btn_popup_count">-</a>
               <span id="adultFlightCount" class="popup_count_person">${person_count }</span>
               <a href="#" id="adultFlightPlusBtn" class="btn_popup_count btn_adult_plus btn_count_active">+</a>
@@ -134,7 +135,7 @@
     <div class="wrap wrap_result">
       <section class="sec_filter">
         <div class="wrap_start_time">
-          <button class="tlt_start_time">출발시간<i id="arrowDown" class="fa-solid fa-angle-up"></i></button>
+          <button type="button" class="tlt_start_time">출발시간<i id="arrowDown" class="fa-solid fa-angle-up"></i></button>
           <div class="toggle_filter">
             <span class="txt_time_label">가는날</span>
             <ul class="wrap_time_picker">
@@ -153,7 +154,7 @@
           </div>
         </div>
         <div class="wrap_end_time">
-          <button class="tlt_end_time">도착시간<i id="arrowDown2" class="fa-solid fa-angle-down"></i></button>
+          <button type="button" class="tlt_end_time">도착시간<i id="arrowDown2" class="fa-solid fa-angle-down"></i></button>
           <div class="toggle_filter2">
             <span class="txt_time_label">가는날</span>
             <ul class="wrap_time_picker">
@@ -179,7 +180,7 @@
           <span class="result_sub_text">성인 기준 1인 왕복 요금입니다 (세금 및 수수료 모두 포함)</span>
           <!-- 커스텀 셀렉트 -->
           <div class="result_filter">
-            <button class="result_filter_open"><span>가는날 출발 시간 빠른 순</span><i id="arrowDown" class="fa-solid fa-angle-down"></i></button>
+            <button type="button" class="result_filter_open"><span>가는날 출발 시간 빠른 순</span><i id="arrowDown" class="fa-solid fa-angle-down"></i></button>
               <ul class="result_filter_select">
                 <li class="result_filter_option">가격 낮은 순</li>
                 <li class="result_filter_option">비행 시간 짧은 순</li>
@@ -209,6 +210,7 @@
                   <td><span class="end_airport">${obj.arrAirportNm}</span></td>
                 </tr>
               </table>
+			  <input type="hidden" id="dep_during${status.index }" name="dep_during${status.index }" value="01시간 10분">
             </div>
             <div class="wrap_result_flight_info">
               <img src="<c:url value='/images/${objArv[status.index].airlineNm}.png'/>" alt="항공사로고">
@@ -225,16 +227,19 @@
                   <td><span class="end_airport">${objArv[status.index].arrAirportNm}</span></td>
                 </tr>
               </table>
+              <input type="hidden" id="arr_during${status.index }" name="arr_during${status.index }" value="01시간 10분">
             </div>
           </div>
           <div class="wrap_flight_info_right">
             <div class="wrap_flight_price_btn">
               <span class="txt_flight_count">9석 남음</span>
               <c:set var="charge" value="${obj.economyCharge+objArv[status.index].economyCharge}"/>
+              <input type="hidden" name="charge${status.index }" value="${obj.economyCharge+objArv[status.index].economyCharge}">
               <span id="txt_flight_price${status.index }" class="txt_flight_price"><fmt:formatNumber value='${charge}' pattern='#,###'/></span><span>원</span>
               <span class="txt_flight_select">선택 <i class="fa-solid fa-chevron-right"></i></span>
+              <input type="hidden" class="index" name="index" value="${status.index }">
             </div>
-            <button class="toggle_flight_info">상세 정보 보기 <i class="fa-solid fa-chevron-down"></i></button>
+            <button type="button" class="toggle_flight_info">상세 정보 보기 <i class="fa-solid fa-chevron-down"></i></button>
           </div>
         </div>
         <div class="wrap_result_flight_detail">
@@ -247,11 +252,14 @@
           </div>
           <div class="wrap_flight_time">
             <span class="flight_no">${obj.airlineNm } ${obj.vihicleId }</span>
+            <input type="hidden" name="dep_airline${status.index }" value="${obj.airlineNm }">
+            <input type="hidden" name="dep_flight_no${status.index }" value="${obj.airlineNm } ${obj.vihicleId }">
             <div class="flight_time_info">
               <img src="<c:url value='/images/line_plane.png' />">
               <div class="wrap_flight_detail">
                 <div class="wrap_flight_detail_top">
                   <span class="flight_detail_time">${fn:substring(obj.depPlandTime,8,10)}:${fn:substring(obj.depPlandTime,10,12)}</span>
+                  <input type="hidden" name="dep_start_time${status.index }" value="${fn:substring(obj.depPlandTime,8,10)}:${fn:substring(obj.depPlandTime,10,12)}">
                   <span class="flight_detail_loca">${obj.depAirportNm}</span>
                   <span class="flight_detail_etc">무료수하물 1개</span>
                 </div>
@@ -260,6 +268,7 @@
                 </div>
                 <div class="wrap_flight_detail_bottom">
                   <span class="flight_detail_time">${fn:substring(obj.arrPlandTime,8,10)}:${fn:substring(obj.arrPlandTime,10,12)}</span>
+                  <input type="hidden" name="dep_end_time${status.index }" value="${fn:substring(obj.arrPlandTime,8,10)}:${fn:substring(obj.arrPlandTime,10,12)}">
                   <span class="flight_detail_loca">${obj.arrAirportNm}</span>
                 </div>
               </div>
@@ -274,11 +283,14 @@
           </div>
           <div class="wrap_flight_time">
             <span class="flight_no">${objArv[status.index].airlineNm } ${objArv[status.index].vihicleId }</span>
+            <input type="hidden" name="arr_airline${status.index }" value="${objArv[status.index].airlineNm }">
+            <input type="hidden" name="arr_flight_no${status.index }" value="${objArv[status.index].airlineNm } ${objArv[status.index].vihicleId }">
             <div class="flight_time_info">
               <img src="<c:url value='/images/line_plane.png' />">
               <div class="wrap_flight_detail">
                 <div class="wrap_flight_detail_top">
                   <span class="flight_detail_time">${fn:substring(objArv[status.index].depPlandTime,8,10)}:${fn:substring(objArv[status.index].depPlandTime,10,12)}</span>
+                  <input type="hidden" name="arr_start_time${status.index }" value="${fn:substring(objArv[status.index].depPlandTime,8,10)}:${fn:substring(objArv[status.index].depPlandTime,10,12)}">
                   <span class="flight_detail_loca">${objArv[status.index].depAirportNm}</span>
                   <span class="flight_detail_etc">무료수하물 1개</span>
                 </div>
@@ -287,6 +299,7 @@
                 </div>
                 <div class="wrap_flight_detail_bottom">
                   <span class="flight_detail_time">${fn:substring(objArv[status.index].arrPlandTime,8,10)}:${fn:substring(objArv[status.index].arrPlandTime,10,12)}</span>
+                  <input type="hidden" name="arr_end_time${status.index }" value="${fn:substring(objArv[status.index].arrPlandTime,8,10)}:${fn:substring(objArv[status.index].arrPlandTime,10,12)}">
                   <span class="flight_detail_loca">${objArv[status.index].arrAirportNm}</span>
                 </div>
               </div>
@@ -314,6 +327,11 @@
                 <td><fmt:formatNumber value='${charge * person_count}' pattern='#,###'/>원</td>
               </tr>
             </table>
+            <input type="hidden" name="charge_flight${status.index }" value="${(charge - 39600 - 8000 - 1000 ) * person_count}">
+            <input type="hidden" name="charge_fuel${status.index }" value="${39600 * person_count}">
+            <input type="hidden" name="charge_tax${status.index }" value="${8000 * person_count}">
+            <input type="hidden" name="charge_ticket${status.index }" value="${1000 * person_count}">
+            <input type="hidden" name="charge_total${status.index }" value="${charge * person_count}">
             <div class="wrap_total_price">
               <span class="tlt_total_price">총 예상 요금</span>
               <div class="div_total_price">
@@ -366,17 +384,20 @@
 			dep_during_time = dep_during_hour + "시간 " + dep_during_min +  "분";
 			arr_during_time = arr_during_hour + "시간 " + arr_during_min +  "분";
 			
-			$('#dep_taken_time${status.index}').html(dep_during_time);
+			$('#dep_taken_time${status.index }').html(dep_during_time);
 			$('#dep_flight_time${status.index }').html(dep_during_time);
 			$('#dep_flight_detail${status.index }').html(dep_during_time);
+			$('#dep_during${status.index }').val(dep_during_time);
 			
 			$('#arr_taken_time${status.index}').html(arr_during_time);
 			$('#arr_flight_time${status.index }').html(arr_during_time);
 			$('#arr_flight_detail${status.index }').html(arr_during_time);
+			$('#arr_during${status.index }').val(arr_during_time);
 		</script>
         </c:forEach>
+        <input type="hidden" id="index" name="realindex" value="">
       </section>
-    </div>
+      </div>
 	<script type="text/javascript">
 		// 검색결과 계산
 		cnt = ${fn:length(objDep)} - cnt;
@@ -398,8 +419,14 @@
 			$('#sitsFir').attr('checked', 'checked');
 			$('#sitsGenLabel i').attr('class', 'fa-regular fa-circle')
 			$('#sitsFirLabel i').attr('class', 'fa-solid fa-circle-dot')
-		} 
+		}
+		/* 
+		$('.txt_flight_price').click(function(){
+			var index = $(this).closest('div').find("input[name='index']").val();
+			$('#index').val(index);
+		});
+		 */
 	</script>
-  </div><c:import url="/WEB-INF/views/layout/bottom.jsp" />
+  </div></form><c:import url="/WEB-INF/views/layout/bottom.jsp" />
 </body>
 </html>
