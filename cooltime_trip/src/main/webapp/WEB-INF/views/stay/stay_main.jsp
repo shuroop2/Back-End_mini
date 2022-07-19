@@ -20,23 +20,23 @@
     <div class="div_lod_search">
       <div class="wrap_lod_table">
         <!-- 유효성 검사 위한 폼태그 설정 -->
-        <form>
+        <form method="post" action="<c:url value='/stay_list'/>">
           <table>
             <tr>
               <th width="30%">여행지, 숙소</th>
               <th width="35%">날짜</th>
               <th width="20%">인원</th>
               <!-- 검색하기 버튼 -->
-              <td width="15%" rowspan="2"><input type="button" class="btn_search_stay" value="검색하기"></td>
+              <td width="15%" rowspan="2"><input type="submit" class="btn_search_stay" value="검색하기"></td>
             </tr>
             <tr>
               <!-- 해당영역에 js에서 val()로 값 지정 -->
               <!-- 여행지 검색 인풋 -->
-              <td><input type="text" id="lodSearchBtn" class="txt_stay txt_stay_placeholder" value="여행지를 검색해주세요"></td>
+              <td><input type="text" id="lodSearchBtn" name="stayLocation"class="txt_stay txt_stay_placeholder" value="여행지를 검색해주세요"></td>
               <!-- 날짜 선택 인풋 -->
               <td><input type="text" id="lodDatepicker" name="daterange" class="txt_stay txt_stay_placeholder" value="날짜를 선택해주세요"></td>
               <!-- 인원 선택 인풋 -->
-              <td><input type="text" id="lodPersonCount" class="txt_stay" value="성인1, 어린이0"></td>
+              <td><input type="text" id="lodPersonCount" name="personCount"class="txt_stay" value="성인1, 어린이0"></td>
             </tr>
           </table>
         </form>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html><c:import url="/WEB-INF/views/layout/head.jsp" />
 	<!-- custom -->
@@ -16,9 +18,9 @@
       <div class="wrap_lod_div">
         <form id="lodSearchList">
             <div class="wrap_search_input">
-              <input type="text" id="lodListSearchBtn" class="txt_stay" value="제주도">
-              <input type="text" id="lodListDatepicker" name="daterange" class="txt_stay" value="6.27(월) - 6.30(목)">
-              <input type="text" id="lodListPersonCount" class="txt_stay" value="성인2, 어린이0">
+              <input type="text" id="lodListSearchBtn" class="txt_stay" value="${stayLocation }">
+              <input type="text" id="lodListDatepicker" name="daterange" class="txt_stay" value="${daterange }">
+              <input type="text" id="lodListPersonCount" class="txt_stay" value="${personCount }">
               <input type="submit" class="btn_search_stay" value="검색하기">
             </div>
         </form>
@@ -124,7 +126,7 @@
       <!-- 검색 결과 -->
       <section class="sec_result">
         <div class="wrap_result_title">
-          <span class="result_count">검색결과 총 60개</span>
+          <span class="result_count">검색결과 총 ${fn:length(hotelList)}개</span>
           <!-- 커스텀 셀렉트 -->
           <div class="result_filter">
             <button class="result_filter_open"><span>추천순</span><i id="arrowDown" class="fa-solid fa-angle-down"></i></button>
@@ -138,28 +140,19 @@
           </div>
         </div>
         <!-- result data-->
-        <div class="wrap_result_list">
-          <div class="wrap_result_img">
-            <img src="<c:url value='/images/img_maison.jpg'/>" alt="호텔 사진">
-          </div>
-          <div class="wrap_result_hotel_info">
-            <span class="txt_result_name">메종 글래드 제주</span>
-            <span class="txt_result_adrs">4성급 ・ 제주시 연동 노연로 80</span>
-            <span class="txt_result_review"><i class="fa-solid fa-star txt_blue"></i> 4.5<span class="txt_result_review_count">(131)</span></span>
-            <span class="txt_result_price">178,700원</span>
-          </div>
-        </div>
-        <div class="wrap_result_list">
-          <div class="wrap_result_img">
-            <img src="<c:url value='/images/img_shillastay.jpg'/>" alt="호텔 사진">
-          </div>
-          <div class="wrap_result_hotel_info">
-            <span class="txt_result_name">신라스테이 제주</span>
-            <span class="txt_result_adrs">4성급 ・ 제주시 연동 노연로 80</span>
-            <span class="txt_result_review"><i class="fa-solid fa-star txt_blue"></i> 4.5<span class="txt_result_review_count">(131)</span></span>
-            <span class="txt_result_price">178,700원</span>
-          </div>
-        </div>
+        <c:forEach items="${hotelList }" var="hotelList" >
+	        <div class="wrap_result_list">
+	          <div class="wrap_result_img">
+	            <img src="<c:url value='/hotelImg/${hotelList.hotelNo}/h001.png'/>" alt="호텔 사진"> <!-- /hotelImg/ho001/h001.png -->
+	          </div>
+	          <div class="wrap_result_hotel_info">
+	            <span class="txt_result_name">${hotelList.hotelName}</span>
+	            <span class="txt_result_adrs">${hotelList.hotelGrade } ・ ${hotelList.hotelAddress }</span>
+	            <span class="txt_result_review"><i class="fa-solid fa-star txt_blue"></i>${hotelList.hotelAssesment}<span class="txt_result_review_count">(131)</span></span>
+	            <span class="txt_result_price">178,700원</span>
+	          </div>
+	        </div>
+        </c:forEach>
       </section>
     </div>
   </div><c:import url="/WEB-INF/views/layout/bottom.jsp" />
