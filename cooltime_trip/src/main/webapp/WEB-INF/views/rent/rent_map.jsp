@@ -19,6 +19,7 @@
 	</header>
 	<!-- section -->
 	<section>
+		<input type="hidden" id="address" value="${address }">
 		<div id="map"></div>
 	</section>
 </body>

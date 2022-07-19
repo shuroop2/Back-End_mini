@@ -84,7 +84,8 @@ public class RentController {
 	}
 	
 	@RequestMapping("/rent_map")
-	public String rentMap() {
+	public String rentMap(@RequestParam String address, Model model) {
+		model.addAttribute("address", address);
 		return "rent/rent_map";
 	}
 	

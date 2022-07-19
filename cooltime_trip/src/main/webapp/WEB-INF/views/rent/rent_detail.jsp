@@ -95,12 +95,14 @@
                 <div>
                     <div class="agency_address">
                         <span id="agency_address_text">${car.rentAddress}</span>
-                        <input type="hidden" id="address" value="'${car.rentAddress}'">
                         <span><i class="fa-regular fa-copy"></i></span>
                     </div>
-                    <button class="btn_kakaomap">
+                    <form id="form_to_map" method="post" action="/rent_map">
+        			<input type="hidden" name="address" id="address" value="'${car.rentAddress}'">
+                    <button type="button" class="btn_kakaomap">
                         <i class="fa-regular fa-map"></i>지도 보기
                     </button>
+                    </form>
                 </div>
             </div>
             <!-- 이용 규칙 -->
