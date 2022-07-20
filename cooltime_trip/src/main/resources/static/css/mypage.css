@@ -400,8 +400,174 @@ button{
   font-size: 18px;
 }
 
+.wrap_result_flight_detail{
+  display: none;
+  width:100%;
+  background-color: #FFFFFF;
+}
 
+.wrap_result_flight_detail .wrap_flight_title{
+  width:100%;
+  height: 55px;
+  padding: 0px 40px;
+  border: 1px solid #DDDDDD;
+  border-top: 0;
+  background-color: #FBFBFC;
+}
 
+.wrap_result_flight_detail .wrap_flight_title .flight_label{
+  float: left;
+  margin-top: 12px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  background-color:#3C91EB;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.wrap_result_flight_detail .wrap_flight_title .flight_location{
+  display: inline-block;
+  margin: 16px 10px 16px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.wrap_result_flight_detail .wrap_flight_title > img{
+  display: inline-block;
+  width: 22px;
+  margin-bottom: 4px;
+}
+
+.wrap_result_flight_detail .wrap_flight_title .flight_time{
+  float: right;
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.wrap_flight_time{
+  display: flex;
+  padding: 30px 40px;
+  width: 100%;
+  height: 170px;
+  border: 1px solid #DDDDDD;
+  border-top: 0;
+}
+
+.wrap_flight_time .flight_no{
+  width: 200px;
+  margin-right: 120px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.wrap_flight_time .flight_time_info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.wrap_flight_time .flight_time_info > img{
+  width: 12px;
+  margin-right: 13px;
+}
+
+.wrap_flight_time .flight_time_info .wrap_flight_detail{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrap_flight_time .flight_time_info .flight_detail_time{
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.wrap_flight_time .flight_time_info .flight_detail_loca{
+  margin-right: 20px;
+  font-size: 16px;
+  font-weight: 200;
+}
+
+.wrap_flight_time .flight_time_info .flight_detail_etc{
+  color: #BBBBBB;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.wrap_detail_price{
+  width: 100%;
+  height: 254px;
+  padding: 30px 40px;
+  border: 1px solid #DDDDDD;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+}
+
+.wrap_detail_price .tlt_detail_price{
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.wrap_detail_price .table_detail_price{
+  width: 100%;
+  margin-top: 10px;
+  border-spacing: 0;
+}
+
+.wrap_detail_price .table_detail_price tr th{
+  padding: 18px 0;
+  border-bottom: 1px solid #DDDDDD;
+  color: #444444;
+  font-size: 14px;
+  font-weight: 200;
+  text-align: left;
+}
+
+.wrap_detail_price .table_detail_price tr td{
+  padding: 18px 0;
+  border-bottom: 1px solid #DDDDDD;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.wrap_detail_price .table_detail_price tr th:last-child,
+.wrap_detail_price .table_detail_price tr td:last-child{
+  text-align: right;
+}
+
+.wrap_detail_price .wrap_total_price{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.wrap_detail_price .wrap_total_price .tlt_total_price{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.wrap_detail_price .wrap_total_price .div_total_price{
+  display: inline-block;
+}
+
+.wrap_detail_price .wrap_total_price .total_price{
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.wrap_detail_price .wrap_total_price .total_won{
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.b_rb_lb_none{
+  border-radius: 5px 5px 0 0;
+}
 
 /* 여기부터는 예약된 숙박 메뉴 누르면 화면 바뀌는 css */
 

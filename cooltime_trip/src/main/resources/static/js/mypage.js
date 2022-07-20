@@ -153,6 +153,14 @@ function randomIdGenerate(){
   return '_' + Math.random().toString(36).substr(2,9);
 }
 
+  $('.detail_info').click(function() {
+  	console.log($(this).closest('.reservation_air_box').next('.wrap_result_flight_detail').text());
+    $(this).closest('.reservation_air_box').next('.wrap_result_flight_detail').slideToggle(500);
+    $(this).children('i').toggleClass('fa-chevron-down');
+    $(this).children('i').toggleClass('fa-chevron-up');
+    $(this).closest('.reservation_air_contents').toggleClass('b_rb_lb_none');
+  });
+
 // 탑 버튼 눌렀을 때 최상단으로
 $(".btn_top").click(function () {
   $('html, body').animate({
