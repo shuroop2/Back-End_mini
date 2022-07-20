@@ -2,12 +2,12 @@ package com.cooltimetrip.project.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -94,32 +94,50 @@ public class MemberController {
 	  
 	// 비밀번호 변경 처리  
 	@ResponseBody
-	@GetMapping("/updatePassword")
+	//@GetMapping("/updatePassword")
 	@RequestMapping("/updatePassword") 
-	public String updatePassword(@RequestParam(value="input_pwd", required=false) String input_pwd,
-								@RequestParam(value="check_pwd", required=false) String check_pwd, 
-								HttpSession session) {
+	public String updatePassword(HttpSession session,
+								HttpServletRequest req
+								//,@RequestParam(required=false, defaultValue="") String check_pwd
+								//,String input_pwd
+								,@RequestParam HashMap<String, String> map
+								,Model model
+								) {
 		String memId = (String) session.getAttribute("sid");
 		
 		MemberVO mem = memService.getMemberInfo(memId);
 		String memPwd = mem.getMemPwd(); 
-		
+		String test = (String) req.getParameter("check_pwd");
 		String result = "fail";  
 		
+		//String input_pwd = req.getParameter("input_pwd");
+		//String check_pwd = req.getParameter("check_pwd");
+		
+		String input_pwd = map.get("input_pwd");
+		String check_pwd = map.get("check_pwd");
+		//String check = check_pwd;
+		/*
+		 * if(input_pwd!=null) { result="success"; } else result="fail";
+		 */
 		//if(input_pwd.length()!=0) {
-			if(!input_pwd.equals(check_pwd)){
-				result = "notmatch";   
-			} else if(input_pwd.length()<8||input_pwd.length()>15) {
-				result = "range";  
-			} else if(!input_pwd.equals(memPwd)) {
-				memService.updateMemPwd(memId, input_pwd);
-				result = "success";   
-			} else
-				result = "fail"; 
+		if(input_pwd!=null) {
+			if(check_pwd!=null) {
+				if(!input_pwd.equals(check_pwd)){
+					result = "notmatch";   
+				} else if(input_pwd.length()<8||input_pwd.length()>15) {
+					result = "range";  
+				} else if(!input_pwd.equals(memPwd)) {
+					memService.updateMemPwd(memId, input_pwd);
+					result = "success";   
+				} else
+					result = "fail";
+			}
+		}
+			 
 		//} else {
 			
 		//}
-			System.out.println(input_pwd+"\n"+check_pwd);
+			System.out.println(input_pwd+"\n"+check_pwd+"\n"+test);
 			System.out.println(result);
 		return result;
 	}

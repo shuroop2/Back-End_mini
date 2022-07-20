@@ -84,8 +84,11 @@ $(document).ready(function(){
 	    		data:{"input_pwd":$('#input_pwd').val()},
 	    		dataType: "text",
 	    		success: function(result){// 성공 시 수행
-	    			if($.trim(result)=="success"){// 비밀번호 변경 성공
-	    				alert("변경 완료");
+	    			if(result=="success"){// 비밀번호 변경 성공
+	    				if(input_pwd != pwd_check){
+	    					alert("변경 완료");
+	    				}
+	    				
 	    				//location.href="/";
 	    			}else if($.trim(result)=="fail"){// 기존 비밀번호와 일치할 경우
 	    				alert("중복");
