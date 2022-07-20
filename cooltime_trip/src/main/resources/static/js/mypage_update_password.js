@@ -96,13 +96,15 @@ $(document).ready(function(){
 	    				$('.input_update_password').css('border', '1px solid #E65454');
 	            		$('.error_update_password1').show();// 기존 비밀번호와 동일합니다 - 표시
 	    			}else if($.trim(result)=="range"){// 비밀번호 범위 벗어났을 경우
+	    				alert("범위오류");
 		    			$('.input_check_password').css('border', '1px solid #DDDDDD');
 						$('.error_check_password').hide();// 비밀번호가 일치하지 않습니다 - 숨김
 						$('.input_update_password').css('border', '1px solid #DDDDDD');
 						$('.error_update_password1').hide();// 기존 비밀번호와 동일합니다 - 숨김
 						$('.input_update_password').css('border', '1px solid #E65454');
 			    		$('.error_update_password2').show();// 비밀번호를 확인해주세요 - 표시
-	    			} else{// 비밀번호 확인 결과 불일치 경우
+	    			} else if($.trim(result)=="notmatch"){// 비밀번호 확인 결과 불일치 경우
+	    				alert("불일치");
 	    				$('.input_update_password').css('border', '1px solid #DDDDDD');
 				    	$('.error_update_password2').hide();// 비밀번호를 확인해주세요 - 숨김
 			    		$('.error_update_password1').hide();// 기존 비밀번호와 동일합니다 - 숨김
@@ -110,8 +112,9 @@ $(document).ready(function(){
 			    		$('.error_check_password').show();// 비밀번호가 일치하지 않습니다 - 표시
 	    			}
 	    		},
-	    		error: function(){
+	    		error: function(request, error){
 	    			alert("DB_Connection : error");
+	    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
 	    		}		  
 	    	});//ajax
     });

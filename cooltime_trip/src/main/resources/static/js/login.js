@@ -94,6 +94,7 @@ $(document).ready(function(){
     		},
     		error: function(){
     			alert("DB_Connection : error");
+    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
     		}		  
     	});//ajax
     });//submit

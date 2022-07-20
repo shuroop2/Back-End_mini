@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cooltimetrip.project.model.MemberVO;
 import com.cooltimetrip.project.service.MemberService;
@@ -95,25 +94,33 @@ public class MemberController {
 	  
 	// 비밀번호 변경 처리  
 	@ResponseBody
-	@RequestMapping("/updatePassword")
-	public String updatePassword(String input_pwd, String check_pwd, HttpSession session) {
+	@GetMapping("/updatePassword")
+	@RequestMapping("/updatePassword") 
+	public String updatePassword(@RequestParam(value="input_pwd", required=false) String input_pwd,
+								@RequestParam(value="check_pwd", required=false) String check_pwd, 
+								HttpSession session) {
 		String memId = (String) session.getAttribute("sid");
 		
 		MemberVO mem = memService.getMemberInfo(memId);
 		String memPwd = mem.getMemPwd(); 
 		
-		String result = "result"; 
+		String result = "fail";  
 		
-		if(input_pwd.length()!=0) {
-			if(!input_pwd.equals(memPwd)) {
+		//if(input_pwd.length()!=0) {
+			if(!input_pwd.equals(check_pwd)){
+				result = "notmatch";   
+			} else if(input_pwd.length()<8||input_pwd.length()>15) {
+				result = "range";  
+			} else if(!input_pwd.equals(memPwd)) {
 				memService.updateMemPwd(memId, input_pwd);
-				result = "success";  
-			} else if(!input_pwd.equals(check_pwd)){
-				result = "notmatch"; 
-			} else {
-				result = "fail";
-			}
-		}
+				result = "success";   
+			} else
+				result = "fail"; 
+		//} else {
+			
+		//}
+			System.out.println(input_pwd+"\n"+check_pwd);
+			System.out.println(result);
 		return result;
 	}
 	
