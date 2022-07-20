@@ -18,12 +18,22 @@
 	</insert>
 	
 	<!-- 비밀번호 변경 - 확인 -->
-	<select id="updatePassword" parameterType="hashmap" resultType="string">
+	<update id="updateMemPwd" parameterType="String">
+		UPDATE member SET memPwd=#{memPwd} WHERE memId=#{memId}
+	</update>
+	
+	<select id="mypageCheck" parameterType="String" resultType="string">
 		SELECT memPwd FROM member WHERE memId=#{id}
 	</select>
+	
+	<!-- 이름 변경 -->
+	<update id="updateMemName" parameterType="String">
+		UPDATE member SET memName=#{memName} WHERE memId=#{memId}
+	</update>
+	
 	
 	<!-- 멤버리스트 출력 -->
 	<select id="getMemberInfo" parameterType="String" resultType="com.cooltimetrip.project.model.MemberVO">
 		SELECT * FROM member WHERE memId = #{memId}
 	</select>
-</mapper>
+</mapper> 

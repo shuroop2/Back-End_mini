@@ -29,11 +29,33 @@ public class MemberService implements IMemberService {
 	public MemberVO getMemberInfo(String memId) {
 		return dao.getMemberInfo(memId);
 	}
+	
+	@Override
+	public String mypageAuthentication(String memId) {
+		return dao.mypageAuthentication(memId);
+	}
+	
+	@Override
+	public void updateMemPwd(String memId, String memPwd) {
+		dao.updateMemPwd(memId, memPwd);
+	}
 
 	@Override
-	public String updatePassword(HashMap<String, Object> map) {
-		return dao.updatePassword(map);
+	public void updateMemName(String memId, String memName) {
+		dao.updateMemName(memId, memName);
 	}
+
+
+	/*
+	 * @Override public String updatePassword(HashMap<String, Object> map) { return
+	 * dao.updatePassword(map); }
+	 */
+
+
+	/*
+	 * @Override public boolean mypageAuthentication(String memId, String memPwd) {
+	 * return dao.mypageAuthentication(memId, memPwd); }
+	 */
 	
 	
 }

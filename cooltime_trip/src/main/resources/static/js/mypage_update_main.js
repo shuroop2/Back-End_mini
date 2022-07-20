@@ -24,18 +24,47 @@ $(document).ready(function(){
         location.href='/';
     });
 
-    // 저장하기 버튼 - index.html 로 이동
-    $('.btn_update_confirm').click(function(){
-        if(('.input_update_name').val == ""){
-    		alert("이름을 확인해주세요.");
-    	}else {
-    		// 데이터 값 넘겨주기
-	        // 회원 이름
-	        
-	        //
-	        alert("회원정보가 저장되었습니다.");
+	
+	$('#form_mypage_update').on('submit', function(){	
+		event.preventDefault();	
+    	$.ajax({
+    		type: "post",
+    		url: "mypageUpdateMemName",
+    		data:{"input_name":$('#input_name').val()},
+    		dataType: "text",
+    		success: function(result){// 성공 시 수행
+    			if(result=="success"){//
+    				alert("성공적으로 저장되었습니다.");
+    				location.href="/mypage";
+    			} else {
+    				alert("성공적으로 저장되었습니다.");
+    				location.href="/mypage";
+    			}
+    		},
+    		error: function(){
+    			alert("DB_Connection : error");
+    		}		  
+    	});//ajax
+    });//submit
+    /*
+	$('#form_mypage_update').on('submit', function(){
+        if(('.input_update_name').val() != null){
+    		alert("회원정보가 저장되었습니다.");
 	        location.href='/';
+    	}else {
+    		alert("이름을 확인해주세요.");
     	}
     });
-    
+
+
+    // 저장하기 버튼 - index.html 로 이동
+    $('.btn_update_confirm').click(function(){
+        if(('.input_update_name').val() != null){
+    		alert("회원정보가 저장되었습니다.");
+	        location.href='/';
+    	}else {
+    		alert("이름을 확인해주세요.");
+    	}
+    });
+    */
 });

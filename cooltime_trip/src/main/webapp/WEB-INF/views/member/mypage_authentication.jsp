@@ -16,26 +16,30 @@
 		<!-- section -->
 		<section class="section">
 		    <div class="wrap">
-		        <div class="div_authentication_panel">
-		            <div class="div_authentication_title">
-		                <div class="div_authentication_title title_main">
-		                내 정보 수정하기
-		                </div>
-		                <div class="div_authentication_title title_sub">
-		                여행자님의 소중한 정보 보호를 위해 다시 한 번 인증해주세요
-		                </div>
-		            </div>
-		            <div class="div_authentication_field">
-		                <div class="div_authentication_password">
-		                    <p class="text_authentication_password">비밀번호</p>
-		                    <input class="input_authentication_password" type="password" placeholder="비밀번호 입력">
-		                    <div class="error_authentication_password">비밀번호가 일치하지 않습니다</div>
-		                </div>
-		                <div class="div_authentication_button">
-		                    <button class="btn_authentication">비밀번호 인증</button>
-		                </div>
-		            </div>
-		        </div>
+			    <form id="form_authentication" method="post" action="<c:url value='/mypageCheck'/>">
+			    	<input id="mem_id" name="mem_id" type="hidden" value="${mem.memId }">
+			    	<%--<input id="mem_pwd" name="mem_pwd" type="hidden" value="${mem.memPwd }"> --%>
+			    	<div class="div_authentication_panel">
+			            <div class="div_authentication_title">
+			                <div class="div_authentication_title title_main">
+			                내 정보 수정하기
+			                </div>
+			                <div class="div_authentication_title title_sub">
+			                여행자님의 소중한 정보 보호를 위해 다시 한 번 인증해주세요
+			                </div>
+			            </div>
+			            <div class="div_authentication_field">
+			                <div class="div_authentication_password">
+			                    <p class="text_authentication_password">비밀번호</p>
+			                    <input id="input_pwd" name="input_pwd" class="input_authentication_password" type="password" placeholder="비밀번호 입력">
+			                    <div class="error_authentication_password">비밀번호가 일치하지 않습니다</div>
+			                </div>
+			                <div class="div_authentication_button">
+			                    <button class="btn_authentication">비밀번호 인증</button>
+			                </div>
+			            </div>
+			        </div>
+			    </form>
 		    </div>
 	    </section>
 	    <!-- 탑 버튼 -->

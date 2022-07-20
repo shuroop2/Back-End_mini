@@ -34,13 +34,13 @@
 			                </div>
 			                <div class="div_update_password">
 			                    <p class="text_update_password">새 비밀번호</p>
-			                    <input class="input_update_password" type="password" placeholder="비밀번호 입력">
+			                    <input id="input_pwd" name="input_pwd" class="input_update_password" type="password" placeholder="비밀번호 입력">
 			                    <div class="error_update_password1"><p>기존 비밀번호와 동일합니다</p></div>
 			                    <div class="error_update_password2"><p>비밀번호를 확인해주세요</p></div>
 			                </div>
 			                <div class="div_check_password">
 			                    <p class="text_check_password">새 비밀번호 확인</p>
-			                    <input class="input_check_password" type="password" placeholder="비밀번호 입력">
+			                    <input id="check_pwd" name="check_pwd" class="input_check_password" type="password" placeholder="비밀번호 입력">
 			                    <div class="error_check_password"><p>비밀번호가 일치하지 않습니다</p></div>
 			                </div>
 			                <div class="div_update_password_button">

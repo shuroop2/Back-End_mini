@@ -7,9 +7,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cooltimetrip.project.model.MemberVO;
 import com.cooltimetrip.project.service.MemberService;
@@ -28,21 +30,41 @@ public class MemberController {
 	public String signup() {
 		return "member/signup";
 	}
-	
+	 
 	@RequestMapping("/mypage")
 	public String mypage() {
-		return "member/mypage";
+		return "member/mypage"; 
 	}
 	
 	@RequestMapping("/mypage_authentication")
 	public String mypageAuthentication() {
 		return "member/mypage_authentication";
 	}  
+	
+	// 내 정보 비밀번호 인증 확인 
+	@ResponseBody
+	@RequestMapping("/mypageCheck") 
+	public String mypageCheck(String input_pwd, HttpSession session) {
+		String memId = (String) session.getAttribute("sid");
+		MemberVO mem = memService.getMemberInfo(memId);
+		String inputPwd = input_pwd;
+		String memPwd = mem.getMemPwd(); 
+		 
+		String result = "fail";
+		
+		if(inputPwd.length() > 0) {
+			if(inputPwd.equals(memPwd)) { 
+				result="success";
+			} else {	
+				result = "fail";
+			}	
+		}  
+		return result; 
+	}
 	 
 	// 내 정보 수정 메인
 	@RequestMapping("/mypage_update_main")
-	public String mypageUpdateMain(@RequestParam HashMap<String, Object> map, Model model, HttpSession session) {
-		
+	public String mypageUpdateMain(@RequestParam HashMap<String, Object> param, Model model, HttpSession session) {
 		String memId = (String) session.getAttribute("sid");
 		MemberVO mem = memService.getMemberInfo(memId);
 		
@@ -50,27 +72,53 @@ public class MemberController {
 		return "member/mypage_update_main";
 	}
 	
+	// 내 정보 수정 - memName
+	@ResponseBody 
+	@RequestMapping("/mypageUpdateMemName")  
+	public String mypageUpdateMemName(String input_name, HttpSession session) {
+		String memId = (String) session.getAttribute("sid");
+		String result = "fail";
+		
+		if(input_name.length()!=0) {
+			//System.out.println("value:"+input_name+"length:"+input_name.length());
+			memService.updateMemName(memId, input_name);
+			result = "success";  
+		}
+		return result;
+	} 
+	 
+	// 비밀변호 변경 페이지
 	@RequestMapping("/mypage_update_password")
 	public String mypageUpdatePassword() {
 		return "member/mypage_update_password";
 	}
-	
+	  
+	// 비밀번호 변경 처리  
 	@ResponseBody
 	@RequestMapping("/updatePassword")
-	public String updatePassword(@RequestParam HashMap<String, Object> param, HttpSession session) {
-		String memPwd = memService.updatePassword(param);
-		String result = "fail";
+	public String updatePassword(String input_pwd, String check_pwd, HttpSession session) {
+		String memId = (String) session.getAttribute("sid");
 		
-		if(memPwd!=null) {
-			result = "success";
+		MemberVO mem = memService.getMemberInfo(memId);
+		String memPwd = mem.getMemPwd(); 
+		
+		String result = "result"; 
+		
+		if(input_pwd.length()!=0) {
+			if(!input_pwd.equals(memPwd)) {
+				memService.updateMemPwd(memId, input_pwd);
+				result = "success";  
+			} else if(!input_pwd.equals(check_pwd)){
+				result = "notmatch"; 
+			} else {
+				result = "fail";
+			}
 		}
 		return result;
 	}
 	
 	@RequestMapping("/mypage_update_phone")
 	public String mypageUpdatePhone() {
-		
-		
 		return "member/mypage_update_phone";
 	} 
 	 
@@ -116,7 +164,4 @@ public class MemberController {
 		memService.insertMember(vo); 
 		return "/member/login";
 	}
-
-	
-	
 }
