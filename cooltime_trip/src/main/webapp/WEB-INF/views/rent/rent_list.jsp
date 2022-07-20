@@ -21,7 +21,7 @@
 		        <form id="rentSearchList" method="post" action="<c:url value='/rent_list'/>">
 		          <div class="wrap_search_input_box">
 		            <input type="text" class="search_destination" name="rentLocation" value="${rentLocation}">
-		            <input type="text" id="rentDatepicker" name="datetimes" class="search_daterange txt_stay txt_stay_placeholder" value="${daterange}">
+		            <input type="text" id="rentDatepicker" name="datetimes" class="search_daterange txt_stay txt_stay_placeholder" placeholder="날짜를 선택해주세요" value="${daterange}">
 		            <input type="text" class="search_drive_age" name="rentBirth" placeholder="YYMMDD" value="${rentBirth}">
 		            <input type="submit" class="rent_search_btn" value="검색하기">
 		          </div>
@@ -125,7 +125,8 @@
 		      </div>
 		      <!-- result data-->
 			  <c:forEach var="carList" items="${carList}">
-			     <form id="carListForm" name="carListForm" method="post" action="<c:url value='/rent_detail/${carList.carNo}'/>">
+			     <form id="carListForm${carList.carNo}" name="carListForm" method="post" action="<c:url value='/rent_detail/${carList.carNo}'/>">
+			     	<input type="hidden" name="daterange" value="${daterange}">
 				     <div class="wrap_result_car_list">
 				        <div class="result_car_img">
 				          <img src="<c:url value='/carImg/${carList.carImgNo}.png'/>">
@@ -135,10 +136,10 @@
 				            <div class="wrap_result_car_txt">
 				              <div class="txt_k5">${carList.carName}</div>
 				              <div id="txtDateCancel" class="txt_free_cancel">${dateCancel}</div>
-				              
-				              <input type="hidden" id="dateCancel" name="dateCancel" value="dateCancel">
+				              <input type="hidden" id="dateCancel" name="dateCancel" value="${dateCancel}">
+				              <input type="hidden" id="carNo" name="carNo" value="${carList.carNo}">
 				            </div>
-				            <div class="txt_choose">
+				            <div id="selectCar${carList.carNo}" class="txt_choose">
 				              선택 <i class="fa-solid small_angle fa-angle-right"></i>
 				            </div>
 				          </div>
@@ -155,16 +156,14 @@
 				        </div>
 				      </div>
 				    </form>
+				    <script>
+		           		$('#selectCar${carList.carNo}').click(function(){
+		           	  		$('#carListForm${carList.carNo}').submit();
+		           	  	});
+		            </script>
 			    </c:forEach>
            	 </section>
-           	 <script>
-            	$('.txt_choose').click(function(){
-	              	var rr = document.getElementById("txtDateCancel").innerHTML;
-	              	console.log(rr);
-	              	$('#dateCancel').val(rr);
-	              	$('#carListForm').submit();
-	             });
-            </script>
+           	
 		    </div>
 		   </div>
 		   <!-- BOTTOM -->

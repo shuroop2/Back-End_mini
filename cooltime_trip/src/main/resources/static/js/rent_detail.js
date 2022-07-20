@@ -92,10 +92,7 @@ $(document).ready(function(){
 			$('.btn_kakaomap').css('border', '1px solid #DDDDDD');
 	})
 
-	// 렌터카 선택하기 버튼 눌렀을 때 페이지 이동
-	$('.btn_choice').click(function() {
-		location.href='/rent_reservation'
-	});
+	
 
 	// 탑 버튼 눌렀을 때 최상단으로
     $('.btn_top').click(function () {

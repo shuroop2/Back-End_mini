@@ -10,20 +10,22 @@
 </head>
 <body><c:import url="/WEB-INF/views/layout/top.jsp" />
     <!-- 섹션 -->
-    <form method="post" action="<c:url value='/rent_reservation'/>">
+    
     <section>
         <!-- 디테일 컨텐츠 -->
         <div class="detail_contents">
             <!-- 렌터카 정보 -->
+            <form id="rentDetailForm" method="post" action="<c:url value='/rent_reservation'/>">
+            <input type="hidden" name="daterange" value="${daterange}">
             <div class="car_info">
                 <div class="car_detail">
                     <div class="car_detail_text">
                         <div>${car.carName}</div>
-                        <input type="hidden" name="carNo" value="${car.carNo}">
                         <div class="car_agency">
                             ${car.rentName}<i class="fa-solid fa-circle-info gray"></i>
                         </div>
                         <div class="model_image gray">현장에서 받는 차의 색상과 디테일은 다를 수 있어요</div>
+                        <input type="hidden" name="carNo" value="${car.carNo}">
                     </div>
                     <div class="car_detail_img">
                         <img src="<c:url value='/carImg/${car.carImgNo}.png'/>">
@@ -63,6 +65,7 @@
                 	}
                 </script>
             </div>
+            </form>
             <!-- 업체 정보 -->
             <div class="agency_info">
                 <div>
@@ -100,10 +103,10 @@
                         <span><i class="fa-regular fa-copy"></i></span>
                     </div>
                     <form id="form_to_map" method="post" action="/rent_map">
-        			<input type="hidden" name="address" id="address" value="'${car.rentAddress}'">
-                    <button type="button" class="btn_kakaomap">
-                        <i class="fa-regular fa-map"></i>지도 보기
-                    </button>
+	        			<input type="hidden" name="address" id="address" value="'${car.rentAddress}'">
+	                    <button type="button" class="btn_kakaomap">
+	                        <i class="fa-regular fa-map"></i>지도 보기
+	                    </button>
                     </form>
                 </div>
             </div>
@@ -114,7 +117,7 @@
                     <div class="agency_policy_first">
                         ▶ 전차량 금연<br>
                         ▶ 낚시용품 지참 불가, 애완동물 동승 불가<br>
-                        ▶ 차량 반납시 실내 오염 및 악취 발생시 클리닝 비용 발생 가능(10~30만원)<br>
+                        ▶ 차량 반납시 실내 오염 및 악취 발생시 클리닝 비용 발생 가능(10 ~ 30만원)<br>
                         <br>
                         ▶ 영업시간(8시~20시)외 인수시 사전 문의(렌트카업체)필수(반납은 불가)<br>
                         ▶ 야간 인수(20시~22시)시 시간당 1만원 추가 비용 발생<br>
@@ -169,10 +172,20 @@
                 <div>${car.carName}</div>
                 <div>${car.rentName}</div>
             </div>
-            <button class="btn_choice">렌터카 선택하기</button>
+            <button type="button" class="btn_choice">렌터카 선택하기</button>
         </div>
     </section>
-    </form>
+    <script>
+		// 예약하기 버튼 눌렀을 때 로그인 안했으면 로그인 페이지로, 로그인 상태라면 이동
+		$('.btn_choice').on('click', function(){
+	    	if(${sessionScope.sid == null }) {
+	    		alert("로그인이 필요한 페이지입니다.\n로그인을 해주세요.");
+	    		location.href="/login";
+	    	} else {
+		    	$('#rentDetailForm').submit();
+	    	}
+	    });
+    </script>
     <!-- 주소 복사 시 팝업 박스 -->
     <div id="copy_box">주소가 클립보드에 복사되었습니다. </div><c:import url="/WEB-INF/views/layout/bottom.jsp" />
 </body>

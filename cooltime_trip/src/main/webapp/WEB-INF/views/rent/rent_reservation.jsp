@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
@@ -18,26 +19,26 @@
           <article class="rent_info">
             <div class="rent_info_box">
               <div class="rent_img_box">
-                <img src="<c:url value='/images/k5.png'/>">
+                <img src="<c:url value='/carImg/${car.carImgNo}.png'/>">
               </div>
               <div class="name_date_box">
-                <div class="car_name">THE NEW K5</div>
-                <div class="car_date">2022년 07월 19일 (화) 오전 10:00 ~ <br>2022년 07월 20일 (수) 오전 10:00, 24시간</div>
+                <div class="car_name">${car.carName}</div>
+                <div class="car_date">${dateTime[0]} ~ <br>${dateTime[1]}</div>
               </div>
             </div>
             <div class="rent_price_info">
               <div>
                 <span>차량 대여료</span>
-                <span>40,000원</span>
+                <span><fmt:formatNumber value='${car.carPrice * 0.8}' pattern='#,###'/>원</span>
               </div>
               <div>
                 <span>일반 자차</span>
-                <span>0원</span>
+                <span><fmt:formatNumber value='${car.carPrice * 0.2}' pattern='#,###'/>원</span>
               </div>
             </div>
             <div class="car_total_price">
               <span>총 상품 금액</span>
-              <span>40,000원</span>
+              <span><fmt:formatNumber value='${car.carPrice}' pattern='#,###'/>원</span>
             </div>
           </article>
           <article class="booker_info">
@@ -45,15 +46,15 @@
             <table class="booker_info_box">
               <tr class="booker_info_content">
                 <td>예약자 이름</td>
-                <td id="rentBookerName">이혜원</td>
+                <td id="rentBookerName">${mem.memName}</td>
               </tr>
               <tr class="booker_info_content">
                 <td>이메일 주소</td>
-                <td id="rentBookerEmail">hwwwon@gmail.com</td>
+                <td id="rentBookerEmail">${mem.memEmail}</td>
               </tr>
               <tr class="booker_info_content">
                 <td>휴대폰 번호</td>
-                <td id="rentBookerPhone">010-1111-2222</td>
+                <td id="rentBookerPhone">${memPH1}-${memPH2}-${memPH3}</td>
               </tr>
             </table>
           </article>
@@ -64,11 +65,11 @@
             </div>
             <div class="add_reservation_box" id="addBookerBox">
               <p>운전자 한글 이름</p>
-              <input type="text" id ="driverKrName" value="이혜원">
+              <input type="text" id ="driverKrName" value="${mem.memName}">
               <p>이메일 주소</p>
               <div class="driver_email_container">
-                <input type="text" id="driverEmail" value="hwwwon">&nbsp;<span>@</span>&nbsp;
-                <input type="text" placeholder="직접입력" id="driverEmailDomain" value="gmail.com">
+                <input type="text" id="driverEmail" value="${email[0]}">&nbsp;<span>@</span>&nbsp;
+                <input type="text" placeholder="직접입력" id="driverEmailDomain" value="${email[1]}">
                 <div class="select_email">
                   <div class="selected_email">
                     <span class="selected_value">직접입력</span>
@@ -86,7 +87,7 @@
               <p>휴대폰 번호</p>
               <div class="select_phone">
                 <div class="selected_phone">
-                  <span class="selected_phone_value">010</span>
+                  <span class="selected_phone_value">${memPH1}</span>
                   <span><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <ul>
@@ -96,10 +97,10 @@
                   <li class="phone_option">019</li>
                 </ul>
               </div>
-              <input type="text" class="add_reservation_phone" id="driverPhoneNum1" maxlength="4" value="1111">
-              <input type="text" class="add_reservation_phone" id="driverPhoneNum2" maxlength="4" value="2222">
+              <input type="text" class="add_reservation_phone" id="driverPhoneNum1" maxlength="4" value="${memPH2}">
+              <input type="text" class="add_reservation_phone" id="driverPhoneNum2" maxlength="4" value="${memPH3}">
               <p>생년월일</p>
-              <input type="text" placeholder="EX) 19900101" id="driverBirth" value="19961027">
+              <input type="text" placeholder="EX) 19900101" id="driverBirth" value="">
               <p>운전면허</p>
               <div class="drive_type_box">
                 <input type="radio" name = "license" id="license1" class="drive_type" value="2종 보통" checked="checked" />
@@ -144,12 +145,12 @@
         <div class="rent_total_price_info">
           <div>결제정보</div>
           <div>
-            <span>주문금액</span>
-            <span>40,000원</span>
+            <span>차량 대여료<br>일반 자차</span>
+            <span><fmt:formatNumber value='${car.carPrice * 0.8}' pattern='#,###'/>원<br><fmt:formatNumber value='${car.carPrice * 0.2}' pattern='#,###'/>원</span>
           </div>
           <div class="rent_total_price_box">
             <span>총 결제 금액</span>
-            <div class="rent_total_price"><span>40,000</span><span>원</span></div>
+            <div class="rent_total_price"><span><fmt:formatNumber value='${car.carPrice}' pattern='#,###'/></span><span>원</span></div>
           </div>
         </div>
       </div>

@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cooltimetrip.project.model.CarVO;
+import com.cooltimetrip.project.model.MemberVO;
+import com.cooltimetrip.project.service.MemberService;
 import com.cooltimetrip.project.service.RentService;
 
 @Controller
@@ -23,6 +27,9 @@ public class RentController {
 	// DI 설정
 	@Autowired
 	RentService rentService;
+	
+	@Autowired
+	MemberService memService;
 	
 	@RequestMapping("/rent_main")
 	public String rentMain() {
@@ -89,6 +96,7 @@ public class RentController {
 		}
 	
 		model.addAttribute("strCancel2", strCancel2);
+		model.addAttribute("daterange", (String)map.get("daterange"));
 		model.addAttribute("car", car);
 		
 		return "rent/rent_detail";
@@ -101,8 +109,29 @@ public class RentController {
 	}
 	
 	@RequestMapping("/rent_reservation")
-	public String rentReservation(Model model) {
+	public String rentReservation(@RequestParam int carNo,
+								  @RequestParam String daterange,
+								  HttpSession session,
+								  Model model) {
+		// 예약 화면에 car 정보 + rent 정보 가져오기
+		// carNo 가져오기
+		// carNo를 담아 carVO 가져오기
+		CarVO car = rentService.detailViewCar(carNo);
+		String memId = (String) session.getAttribute("sid");
+		MemberVO mem = memService.getMemberInfo(memId);
+		String memPH1 = mem.getMemPhone().substring(0, 3);
+		String memPH2 = mem.getMemPhone().substring(3, 7);
+		String memPH3 = mem.getMemPhone().substring(7, 11);
+		String[] email = mem.getMemEmail().split("@");
+		String[] dateTime = daterange.split("-");
 		
+		model.addAttribute("car", car);
+		model.addAttribute("mem", mem);
+		model.addAttribute("memPH1", memPH1);
+		model.addAttribute("memPH2", memPH2);
+		model.addAttribute("memPH3", memPH3);
+		model.addAttribute("email", email);
+		model.addAttribute("dateTime", dateTime);
 		
 		return "rent/rent_reservation";
 	}

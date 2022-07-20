@@ -1,17 +1,26 @@
-// 다른 사람이 운전해요 클릭 시
+// 약관 전체 동의 클릭 시
 $('.check_agree_terms').click(function() {
   $(this).addClass('check')
   $('.check i').toggleClass('fa-active');
+});
+
+// 다른 사람이 운전해요 클릭 시
+$('.another_person_drive').click(function() {
+  $(this).addClass('another')
+  $('.another i').toggleClass('fa-active');
+  
+  // input 초기화
+  $('#driverKrName').val("");
+  $('#driverEmail').val("");
+  $('#driverEmailDomain').val("");
+  $('.selected_phone_value').text("010");
+  $('#driverPhoneNum1').val("");
+  $('#driverPhoneNum2').val("");
+  $('#"driverBirth"').val("");
   
   // 라디오 버튼 초기화
   $('input[name="license"]').removeAttr('checked');
   $('input[name="license"]')[0].checked = true;
-});
-
-// 약관 전체 동의 클릭 시
-$('.another_person_drive').click(function() {
-  $(this).addClass('another')
-  $('.another i').toggleClass('fa-active');
   
 });
 
