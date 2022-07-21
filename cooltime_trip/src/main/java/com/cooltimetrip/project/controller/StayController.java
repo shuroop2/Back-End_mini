@@ -28,7 +28,10 @@ public class StayController {
 	
 	
 	@RequestMapping("/stay_main")
-	public String viewStayMain() {
+	public String viewStayMain(Model model) {
+		ArrayList<HotelVO> hotelList = hotelService.listAllHotel();
+		model.addAttribute("hotelList", hotelList);
+		
 		return "stay/stay_main";
 	}
 	

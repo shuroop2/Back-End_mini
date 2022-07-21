@@ -94,6 +94,11 @@ section.flight_reservation{
   cursor: pointer;
 }
 
+.departure_location::placeholder,
+.arrival_location::placeholder {
+  color: #AAAAAA;
+}
+
 .txt_gray{
   color: #757575;
 }
@@ -131,16 +136,22 @@ section.flight_reservation{
 .flight_date_box input{
   width: 220px;
   height: 30px;
+  margin-top: 10px;
   border: none;
   outline-style: none;
   font-size: 22px;
   font-weight: bold;
 }
 
+.flight_date_box input::placeholder{
+  color: #AAAAAA;
+}
+
 
 /* 인원 좌석등급 선택 */
 .sit_class_box{
   width: 130px;
+  padding-bottom: 2px;
 }
 
 .sit_class_area{
@@ -240,7 +251,7 @@ section.flight_reservation{
   height: 130px;
 }
 
-.recently_slide_box > div{
+.recently_slide_box form > div{
   min-width: 400px;
   height: 120px;
   margin: 0 40px 12px 0;
@@ -256,13 +267,13 @@ section.flight_reservation{
 .recently_prev{
   position: absolute;
   top: 93px;
-  left: -20px;
+  left: -35px;
   cursor: pointer;
 }
 .recently_next{
   position: absolute;
   top: 93px;
-  right: -20px;
+  right: -35px;
   cursor: pointer;
 }
 

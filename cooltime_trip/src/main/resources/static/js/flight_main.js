@@ -17,7 +17,8 @@ $(function(){
 });
 
 $('input[name="daterange"]').on('apply.daterangepicker', function(ev,picker){
-$(this).val(picker.startDate.format('MM.DD(dd)') + ' ~ ' + picker.endDate.format('MM.DD(dd)'));
+$('.flight_date').val(picker.startDate.format('MM.DD(dd)') + ' ~ ' + picker.endDate.format('MM.DD(dd)'));
+
 });
 
 // 출발지 선택하는 버튼 block/none
@@ -58,22 +59,22 @@ function clickCount2(){
 var city;
 $('#depart_location_table td').click(function(){
   city = $(this).text();
-  $('#depart_loacation').attr('value', city);
+  $('.departure_location').attr('value', city);
   $('.depart_popup').css('display','none');
 });
 
 // 도착지
 $('#arrive_location_table td').click(function(){
   city = $(this).text();
-  $('#arriveLocation').attr('value', city);
+  $('.arrival_location').attr('value', city);
   $('.arrive_popup').css('display','none');
 });
 
 // 출발지 도착지 서로 바꾸는 아이콘 클릭 시 내용 변경
 $('#change').click(function(){
-	var temp = $('#depart_loacation').val();
-	$('#depart_loacation').attr('value', $('#arriveLocation').val());
-	$('#arriveLocation').attr('value', temp);
+	var temp = $('.depart_loacation').val();
+	$('.depart_loacation').attr('value', $('.arrival_location').val());
+	$('.arrival_location').attr('value', temp);
 });
 
 //인원수 및 좌석 선택 버튼 block/none
@@ -195,6 +196,7 @@ $("#popupLodSearch2").on("keyup",function(key){
 // 인원 좌석 선택 버튼 클릭
 let adultBtnMinus = document.getElementById('adultBtnMinus');
 let personCount = document.getElementById('personCount');
+let historyCount = document.getElementById('historyCount');
 let classType = document.getElementById('classType');
 let maxNumber = 1;
 
@@ -255,6 +257,7 @@ function plusMinusBtn(pm){
   cdCount.innerHTML = cdNumber;
   bbCount.innerHTML = bbNumber;
   personCount.value = maxNumber + "명";
+  historyCount.value = maxNumber;
   
   // 버튼 비활성화
   if(adCount.innerHTML > 1){
@@ -317,7 +320,7 @@ function plusMinusBtn(pm){
 
 // 좌석 선택
 $('input[name="sits"]').on('click', function(){
-  $('#classType').attr('value', $('input:radio[name="sits"]:checked').val());
+  $('.sit_class2').attr('value', $('input:radio[name="sits"]:checked').val());
 });
 
 //유효성검사, 링크
@@ -359,7 +362,7 @@ function rctPrevButton(){
     rctSlideBox.style.transform = `translateX(${rctPosition}px)`
     rctIndex -= 1;
   }
-
+/*
   if(rctIndex == (rctSlideCount-(rctSlideCount-2))){
     rctNext.style.visibility = "visible";
   }
@@ -367,18 +370,21 @@ function rctPrevButton(){
   if(rctIndex == 0){
     rctPrev.style.visibility = "hidden";
   }
-
+*/
+	rctNext.style.visibility = "visible";
+	rctPrev.style.visibility = "hidden";
 }
 
 // 최근 항공권 검색 다음버튼
 function rctNextButton(){
+
   if(rctIndex < (rctSlideCount-3)){
     rctPosition -= moveWidth;
     rctSlideBox.style.transform = `translateX(${rctPosition}px)`;
     rctSlideBox.style.transition = "0.5s";
     rctIndex += 1;
   }
-
+/*
   if(rctIndex == (rctSlideCount-3)){
     rctNext.style.visibility = "hidden";
   }
@@ -386,6 +392,9 @@ function rctNextButton(){
   if(rctIndex <= (rctSlideCount-3)){
     rctPrev.style.visibility = "visible";
   }
+  */
+  rctPrev.style.visibility = "visible";
+  rctNext.style.visibility = "hidden";
 
 }
 // 최근 검색한 항공권 초기 설정 및 클릭 이벤트
@@ -396,6 +405,16 @@ function rctInit(){
 }
 
 rctInit();
+
+// 최근 검색한 항공권 슬라이드 3개 이상 되었을 때 이동 버튼 보이게
+if($('.recently_item').length > 3) {
+	rctNext.style.visibility = "visible";
+}
+
+// 최근 검색한 항공권이 없을 때 공간 안보이도록
+if($('.recently_item').length == 0){
+	$('.recently_slide_container').css('display', 'none');
+}	
 
 //최근 검색한 항공권 슬라이드 내용 지우기
 let rctBox = document.querySelectorAll(".recently_slide_box > div");
@@ -408,6 +427,7 @@ $('.recently_colse_btn').click(function(){
   if($('.recently_item').length == 0){
     $('.recently_slide_container').css('display', 'none');
   }
+  
 });
 
 // 탑 버튼 눌렀을 때 최상단으로

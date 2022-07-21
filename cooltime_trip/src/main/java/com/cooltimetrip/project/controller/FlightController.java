@@ -1,5 +1,6 @@
 package com.cooltimetrip.project.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -7,20 +8,45 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cooltimetrip.project.model.HistoryVO;
 import com.cooltimetrip.project.model.MemberVO;
+import com.cooltimetrip.project.service.HistoryService;
 import com.cooltimetrip.project.service.MemberService;
 
 @Controller
 public class FlightController {
 	@Autowired
 	MemberService memService;
+	@Autowired
+	HistoryService hService;
 	
 	@RequestMapping("/")
-	public String flightMain() {
+	public String flightMain(HttpSession session, Model model) {
+		String memId = (String) session.getAttribute("sid");
+		if(memId != null) {
+			ArrayList<HistoryVO> hList = hService.historyList(memId);
+			model.addAttribute("hList", hList);
+		}
 		return "flight/flight_main";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteHistory/{historyNo}")
+	public int deleteHistory(@PathVariable int historyNo) {
+		
+		int result = 0;
+		
+		if(historyNo != 0) {
+			hService.deleteHistory(historyNo);
+			result = 1;
+		}
+		
+		return result;
 	}
 	
 	@RequestMapping("/flight_list")
