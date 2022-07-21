@@ -72,9 +72,9 @@ $('#arrive_location_table td').click(function(){
 
 // 출발지 도착지 서로 바꾸는 아이콘 클릭 시 내용 변경
 $('#change').click(function(){
-	var temp = $('.depart_loacation').val();
-	$('.depart_loacation').attr('value', $('.arrival_location').val());
-	$('.arrival_location').attr('value', temp);
+	var temp = $('#depart_loacation').val();
+	$('#depart_loacation').attr('value', $('#arriveLocation').val());
+	$('#arriveLocation').attr('value', temp);
 });
 
 //인원수 및 좌석 선택 버튼 block/none
@@ -366,13 +366,13 @@ function rctPrevButton(){
   if(rctIndex == (rctSlideCount-(rctSlideCount-2))){
     rctNext.style.visibility = "visible";
   }
-
+*/
   if(rctIndex == 0){
     rctPrev.style.visibility = "hidden";
   }
-*/
+
 	rctNext.style.visibility = "visible";
-	rctPrev.style.visibility = "hidden";
+	// rctPrev.style.visibility = "hidden";
 }
 
 // 최근 항공권 검색 다음버튼
@@ -384,17 +384,17 @@ function rctNextButton(){
     rctSlideBox.style.transition = "0.5s";
     rctIndex += 1;
   }
-/*
+
   if(rctIndex == (rctSlideCount-3)){
     rctNext.style.visibility = "hidden";
   }
-
+/*
   if(rctIndex <= (rctSlideCount-3)){
     rctPrev.style.visibility = "visible";
   }
-  */
+*/  
   rctPrev.style.visibility = "visible";
-  rctNext.style.visibility = "hidden";
+  // rctNext.style.visibility = "hidden";
 
 }
 // 최근 검색한 항공권 초기 설정 및 클릭 이벤트

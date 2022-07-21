@@ -260,9 +260,9 @@ if (request.getProtocol().equals("HTTP/1.1"))
 	          <span class="flight_reservation_subtitle">인원, 좌석등급</span>
 	          <div class="sit_class_area" id="person_sit">
 	            <input type="text" class="sit_class1" id="personCount" name="personCount" value="1명" readonly></input><span>,</span>
-	            <input type="text" class="sit_class2" id="classType" name="classType" value="좌석 전체" readonly></input>
-	            <input type="hidden" class="sit_class1" id="historyCount" name="historyCount">
-	            <input type="hidden" class="sit_class2" name="historyType">
+	            <input type="text" class="sit_class2" id="classType" name="classType" value="일반석" readonly></input>
+	            <input type="hidden" class="sit_class1" id="historyCount" name="historyCount" value="1명">
+	            <input type="hidden" class="sit_class2" name="historyType" value="일반석">
 	          </div>
 	          
 	        </div>
