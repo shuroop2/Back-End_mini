@@ -1,8 +1,8 @@
 package com.cooltimetrip.project.controller; 
 
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,7 +144,24 @@ public class MemberController {
 		return "member/mypage_update_phone";
 	} 
 	
-	
+	// 전화번호 변경 처리   
+	@ResponseBody
+	@RequestMapping("/updatePhone") 
+	public String updatePhone(HttpSession session
+								,@RequestParam("input_phone") String input_phone
+								,@RequestParam("input_serial") String input_serial
+								,@RequestParam("input_check") String input_check
+								) {
+		String memId = (String) session.getAttribute("sid");
+		String result = "fail";
+		
+		if(input_check.equals(input_serial)) {
+			memService.updateMemPhone(memId, input_phone);
+			result = "success";
+		}
+
+		return result;
+	}
 	 
 	
 	// 회원가입 요청
