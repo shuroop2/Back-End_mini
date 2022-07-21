@@ -6,9 +6,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,15 +19,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cooltimetrip.project.model.HistoryVO;
 import com.cooltimetrip.project.model.KeyValue;
+import com.cooltimetrip.project.service.HistoryService;
 
 @RestController
 public class FlightAPIController {
+	@Autowired
+	HistoryService hService;
+	
 	@ResponseBody
 	@RequestMapping(value="/flight_list", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView callapihttp(ModelAndView mv, KeyValue key, @RequestParam String depart_location, 
 			@RequestParam String arrive_location, @RequestParam String shuttle, @RequestParam String daterange,
-			@RequestParam String personCount, @RequestParam String classType) throws Exception {
+			@RequestParam String personCount, @RequestParam String classType, HttpSession session, HistoryVO vo) throws Exception {
 		
 		// 출발/도착 항공 지정
 		// 제주 : NAARKPC / 김포 : NAARKSS
@@ -109,15 +117,34 @@ public class FlightAPIController {
         
         // 가는편 오브젝트 배열에 담아 출력
         ArrayList<JSONObject> objDep = new ArrayList<JSONObject>();
-        for(int i = 0; i<parse_item.size(); i++) {
-        	objDep.add((JSONObject) parse_item.get(i));
-        }
-        
         ArrayList<JSONObject> objArv = new ArrayList<JSONObject>();
-        for(int i = 0; i<parse_item2.size(); i++) {
-        	objArv.add((JSONObject) parse_item2.get(i));
+        
+        if(parse_item.size() < parse_item2.size()) {
+        	for(int i = 0; i<parse_item.size(); i++) {
+        		objDep.add((JSONObject) parse_item.get(i));
+        		objArv.add((JSONObject) parse_item2.get(i));
+        	}
+        } else if (parse_item.size() > parse_item2.size()) {
+        	for(int i = 0; i<parse_item2.size(); i++) {
+        		objDep.add((JSONObject) parse_item.get(i));
+        		objArv.add((JSONObject) parse_item2.get(i));
+        	}
         }
 		
+        // 로그인한 상태로 검색 시 최근 검색 기록에 추가
+        String memId = (String) session.getAttribute("sid");
+        if(memId != null) {
+        	vo.setMemId(memId);
+            
+            int count = hService.checkInHistory(vo.getHistoryDep(), vo.getHistoryArr(), memId);
+            
+            if(count == 0) {
+            	hService.insertHistory(vo);
+            } else {
+            	hService.updateHistory(vo);
+            }
+        }
+        
         mv.addObject("objDep", objDep);
         mv.addObject("objArv", objArv);
         mv.addObject("depart_location", depart_location); // 출발지

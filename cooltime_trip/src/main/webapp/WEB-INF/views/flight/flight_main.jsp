@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%    
+response.setHeader("Cache-Control","no-store");    
+response.setHeader("Pragma","no-cache");    
+response.setDateHeader("Expires",0);    
+if (request.getProtocol().equals("HTTP/1.1"))  
+        response.setHeader("Cache-Control", "no-cache");  
+%>
 <!DOCTYPE html>
 <html>
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
@@ -18,19 +25,21 @@
 	        <button type="button" id="roundTrip" class="flight_shuttle_select selectBtn">왕복</button>
 	        <button type="button" id="oneWay" class="flight_shuttle_select">편도</button>
 	        <button type="button" id="multi" class="flight_shuttle_select">다구간</button>
-	        <input type="hidden" name="shuttle" id="shuttle" name="shuttle" value="왕복">
+	        <input type="hidden" id="shuttle" name="shuttle" value="왕복">
+	        <input type="hidden" id="shuttle" name="historyShuttle" value="왕복">
 	      </div>
 	      <div class="departure_arrival_container">
 	        <div class="location_box">
 	          <div class="depart_location">
 	            <span class="flight_reservation_subtitle">출발</span>
 	            <input type="text" class="departure_location" id="depart_loacation" name="depart_location" placeholder="출발지를 선택하세요" autocomplete="off">
+	            <input type="hidden" class="departure_location" name="historyDep">
 	          </div>
 	          <div class="depart_popup" id="depart_pop">
 	            <div class="popup_wrap">
 	              <p class="depart_popup_title">출발 도시/공항 선택</p>
 	              <div class="depart_popup_search_box">
-	                <input id="popupLodSearch" type="text" placeholder="도시를 검색하세요" autocomplete="off">
+	                <input type="text" id="popupLodSearch" placeholder="도시를 검색하세요" autocomplete="off">
 	                <button id="popupLodSearchBtn">검색하기</button>
 	              </div>
 	              <p class="depart_popup_subtitle">주요도시 바로 선택</p>
@@ -134,6 +143,7 @@
 	          <div class="arrive_location">
 	            <span class="flight_reservation_subtitle">도착</span>
 	            <input type="text" class="arrival_location" id="arriveLocation" name="arrive_location" placeholder="도착지를 선택하세요" autocomplete="off">
+	            <input type="hidden" class="arrival_location" name="historyArr">
 	          </div>
 	          <div class="arrive_popup" id="arrive_pop">
 	            <div class="popup_wrap">
@@ -244,12 +254,15 @@
 	        <div class="flight_date_box">
 	          <div class="flight_reservation_subtitle">출발일 - 도착일</div>
 	          <input type="text" class="flight_date" id="rangepicker" name="daterange" placeholder="여행 날짜 선택" autocomplete="off">
+	          <input type="hidden" class="flight_date" name="historyDateRange">
 	        </div>
 	        <div class="sit_class_box">
 	          <span class="flight_reservation_subtitle">인원, 좌석등급</span>
 	          <div class="sit_class_area" id="person_sit">
 	            <input type="text" class="sit_class1" id="personCount" name="personCount" value="1명" readonly></input><span>,</span>
 	            <input type="text" class="sit_class2" id="classType" name="classType" value="좌석 전체" readonly></input>
+	            <input type="hidden" class="sit_class1" id="historyCount" name="historyCount">
+	            <input type="hidden" class="sit_class2" name="historyType">
 	          </div>
 	          
 	        </div>
@@ -313,7 +326,7 @@
 	      </div>
 	    </div>
 	  </section>
-	
+	</form>
 	  <!-- 비행기 배경 -->
 	  <section class="flight_background">
 	    <img src="<c:url value='/images/bg_plane@2x.png'/>" alt="비행기 배경">
@@ -328,87 +341,31 @@
 	
 	    <div class="recently_slide_container">
 	      <div class="recently_slide_box">
-	        <div class="recently_item">
-	          <div class="shuttle_close_line">
-	            <span class="recently_shuttle_way">왕복</span>
-	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
-	          </div>
-	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>제주 (CJU)</span>
-	          </div>
-	          <div class="recently_desc">
-	            <span>6월 20일 ~ 6월 25일 · </span><span>성인1 · </span><span>전체</span>
-	          </div>
-	        </div>
-	        <div class="recently_item">
-	          <div class="shuttle_close_line">
-	            <span class="recently_shuttle_way">왕복</span>
-	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
-	          </div>
-	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>괌 (GUM)</span>
-	          </div>
-	          <div class="recently_desc">
-	            <span>6월 20일 ~ 6월 23일 · </span><span>성인1 · </span><span>전체</span>
-	          </div>
-	        </div>
-	        <div class="recently_item">
-	          <div class="shuttle_close_line">
-	            <span class="recently_shuttle_way">왕복</span>
-	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
-	          </div>
-	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>세부 (CBU)</span>
-	          </div>
-	          <div class="recently_desc">
-	            <span>6월 21일 ~ 6월 27일 · </span><span>성인1 · </span><span>전체</span>
-	          </div>
-	        </div>
-	        <div class="recently_item">
-	          <div class="shuttle_close_line">
-	            <span class="recently_shuttle_way">왕복</span>
-	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
-	          </div>
-	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>괌 (GUM)</span>
-	          </div>
-	          <div class="recently_desc">
-	            <span>6월 22일 ~ 6월 26일 · </span><span>성인1 · </span><span>전체</span>
-	          </div>
-	        </div>
-	        <div class="recently_item">
-	          <div class="shuttle_close_line">
-	            <span class="recently_shuttle_way">왕복</span>
-	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
-	          </div>
-	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>제주 (CJU)</span>
-	          </div>
-	          <div class="recently_desc">
-	            <span>6월 20일 ~ 6월 24일 · </span><span>성인1 · </span><span>전체</span>
-	          </div>
-	        </div>
-	        <div class="recently_item">
-	          <div class="shuttle_close_line">
-	            <span class="recently_shuttle_way">왕복</span>
-	            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
-	          </div>
-	          <div class="recently_destination">
-	            <span>김포 (GMP)</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>세부 (CBU)</span>
-	          </div>
-	          <div class="recently_desc">
-	            <span>6월 24일 ~ 6월 30일 · </span><span>성인1 · </span><span>전체</span>
-	          </div>
-	        </div>
+	      	<c:forEach var="hList" items="${hList }" varStatus="status">
+	      	  <form id="form_history" method="post" action="/deleteHistory/${hList.historyNo }">
+		      	<div class="recently_item" data-no="${hList.historyNo }">
+		      	<input type="hidden" class="historyNo${status.index }" name="historyNo" value="${hList.historyNo }">
+		          <div class="shuttle_close_line">
+		          	<input type="hidden" name="index" value="${hList.historyNo }">
+		            <span class="recently_shuttle_way">왕복</span>
+		            <span class="recently_colse_btn"><i class="fa fa-times close" aria-hidden="true"></i></span>
+		          </div>
+		          <div class="recently_destination">
+		            <span>${hList.historyDep }</span><i class="fa-solid fa-arrow-right-arrow-left"></i><span>${hList.historyArr }</span>
+		          </div>
+		          <div class="recently_desc">
+		            <span>${hList.historyDateRange } · </span><span>성인${hList.historyCount } · </span><span>${hList.historyType }</span>
+		          </div>
+		        </div>
+		      </form>
+	      	</c:forEach>
 	      </div>
 	    </div>
 	    
-	    <span class="recently_prev" id="flightPrev"><i class="fas fa-chevron-left"></i></span>
-	    <span class="recently_next" id="flightNext"><i class="fas fa-chevron-right"></i></span>
-	    
+	    <span class="recently_prev" id="flightPrev" style="visibility: hidden;"><i class="fas fa-chevron-left"></i></span>
+	    <span class="recently_next" id="flightNext" style="visibility: hidden;"><i class="fas fa-chevron-right"></i></span>
 	    
 	  </section>
-	
 	  <!-- 제주여행 -->
 	  <section class="jeju_trip">
 	    <div class="jeju_title">제주 휴가 즐겨요 🏝️</div>
@@ -534,8 +491,26 @@
 	      </div>
 	    </div>
 	  </section>
-	  <input type="hidden" name="dep_flight_no" value="1000">
-  </form>
+	  <script type="text/javascript">
+	  $('.recently_colse_btn').click(function(){
+		  var index = $(this).closest('div').find("input[name='index']").val();
+		  $.ajax({
+			type: "post",
+			url: "deleteHistory/" + index,
+			data: {"historyNo": index},
+			success: function(result) {
+				if(result == 1) {
+					alert(index);
+				} else {
+					alert("삭제 실패");
+				}
+			},
+			error: function() {
+				alert("전송 실패");
+			}
+		  });
+	  });
+	  </script>
   <!-- footer -->
   <c:import url="/WEB-INF/views/layout/bottom.jsp"/>
 </body>
