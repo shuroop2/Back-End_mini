@@ -14,7 +14,6 @@
 	     			</c:if>
 	     			<c:if test="${not empty sessionScope.sid }">
 	     				<a class="btn_account btn_mypage" href="<c:url value='/mypage' />">마이페이지</a>
-	     				<a class="btn_account btn_logout" href="<c:url value='/logout' />">로그아웃</a>
 	     			</c:if>
 		    	</div>
 	    	</div>
