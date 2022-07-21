@@ -83,7 +83,7 @@
                 <div>총 결제 금액</div>
                 <div><fmt:formatNumber value='${fList.charge_total }' pattern='#,###'/><span>원</span></div>
                 <div>
-                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
+                  <span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i>
                 </div>
               </div>
             </div>
