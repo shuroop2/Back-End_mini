@@ -20,7 +20,7 @@
             <div class="wrap_search_input">
               <input type="text" id="lodListSearchBtn" class="txt_stay" value="${stayLocation }">
               <input type="text" id="lodListDatepicker" name="daterange" class="txt_stay" value="${daterange }">
-              <input type="text" id="lodListPersonCount" class="txt_stay" value="${personCount }">
+              <input type="text" id="lodListPersonCount" name="personCount" class="txt_stay" value="${personCount }">
               <input type="submit" class="btn_search_stay" value="검색하기">
             </div>
         </form>
@@ -141,17 +141,27 @@
         </div>
         <!-- result data-->
         <c:forEach items="${hotelList }" var="hotelList" >
+        <form id="hotelListForm${hotelList.hotelNo }" method="post" action="<c:url value='/stay_detail/${hotelList.hotelNo }'/>">
 	        <div class="wrap_result_list">
 	          <div class="wrap_result_img">
 	            <img src="<c:url value='/hotelImg/${hotelList.hotelNo}/h001.png'/>" alt="호텔 사진"> <!-- /hotelImg/ho001/h001.png -->
 	          </div>
-	          <div class="wrap_result_hotel_info">
+	          <div class="wrap_result_hotel_info" id="wrap_result_hotel_info${hotelList.hotelNo }">
 	            <span class="txt_result_name">${hotelList.hotelName}</span>
 	            <span class="txt_result_adrs">${hotelList.hotelGrade } ・ ${hotelList.hotelAddress }</span>
-	            <span class="txt_result_review"><i class="fa-solid fa-star txt_blue"></i>${hotelList.hotelAssesment}<span class="txt_result_review_count">(131)</span></span>
-	            <span class="txt_result_price"><fmt:formatNumber value='${hotelList.roomPrice}'/>원</span>
+	            <span class="txt_result_review"><i class="fa-solid fa-star txt_blue"></i> ${fn:substring(hotelList.hotelAssesment,0,3)}
+	            <span class="txt_result_review_count">${fn:substring(hotelList.hotelAssesment,3,9)}</span></span>
+	            <span class="txt_result_price"><fmt:formatNumber value='${hotelList.roomTPrice}'/>원</span>
 	          </div>
 	        </div>
+	        <input type="hidden" name="daterange" value="${daterange}">
+	        <input type="hidden" name="personCount" value="${personCount}">
+        </form>
+        <script>
+		  $('#wrap_result_hotel_info${hotelList.hotelNo }').click(function(){
+		     $('#hotelListForm${hotelList.hotelNo }').submit();
+		   });
+		</script>
         </c:forEach>
       </section>
     </div>
