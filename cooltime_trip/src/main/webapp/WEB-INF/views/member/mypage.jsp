@@ -22,10 +22,14 @@
         <div class="mypage_nav" id="mypageNav">
           <div class="mypage_nav_hover1 nav_hover" id="myBookedAirline"><p>예약한 항공권</p></div>
           <div id="myBookedHotel" class="nav_hover"><p>예약한 숙박</p></div>
+          <div id="myBookedHotel" class="nav_hover"><p>예약한 렌트</p></div>
           <div id="myCheckList" class="nav_hover"><p>여행 필수 체크리스트</p></div>
           <div class="mypage_nav_hover2 nav_hover"><p>지난 여행기록</p></div>
         </div>
-        <div class="myinfo_title">내 정보</div>
+        <div class="myinfo_box">
+        	<span class="myinfo_title">내 정보</span>
+        	<span class="logout">로그아웃</span>
+        </div>
         <div class="myinfo_nav">
           <a href="<c:url value='/mypage_authentication'/>"><div class="myinfo_nav_hover1 nav_hover" id="myinfoNav"><p>내 정보 수정하기</p></div></a>
         </div>
@@ -62,7 +66,7 @@
                 </div>
                 <div class="reservation_air_content2">
                   <div class="reservation_airline">
-                    <img src="<c:url value='/images/${fList.dep_airline }.png'/>" alt="진에어 로고">
+                    <img src="<c:url value='/images/${fList.arr_airline }.png'/>" alt="진에어 로고">
                     <div>${fList.arr_airline }</div>
                   </div>
                   <div class="air_fly">

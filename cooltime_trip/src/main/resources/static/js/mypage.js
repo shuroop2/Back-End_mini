@@ -51,6 +51,11 @@ function mypageNavClick(e){
       mypageNavBtn[i].classList.remove("selectBtn");
     }
     e.target.classList.add("selectBtn");
+    if(e.target.classList.add("selectBtn")){
+    	mypageNavBtn[0].style.background = '#ffffff';
+        mypageNavBtn[0].style.border = 'none';
+    }
+    	
   }
 }
 
@@ -153,6 +158,7 @@ function randomIdGenerate(){
   return '_' + Math.random().toString(36).substr(2,9);
 }
 
+//상세정보 드롭업, 다운
   $('.detail_info').click(function() {
   	console.log($(this).closest('.reservation_air_box').next('.wrap_result_flight_detail').text());
     $(this).closest('.reservation_air_box').next('.wrap_result_flight_detail').slideToggle(500);
@@ -160,6 +166,14 @@ function randomIdGenerate(){
     $(this).children('i').toggleClass('fa-chevron-up');
     $(this).closest('.reservation_air_contents').toggleClass('b_rb_lb_none');
   });
+  
+// 예약완료화면에서 마이페이지로 이동
+let rsvBtn = document.getElementsById("rsvBtn");
+function rsvBtnClick(){
+	location.href='/mypage';
+}
+rsvBtn.addEventListener('click',rsvBtnClick);
+
 
 // 탑 버튼 눌렀을 때 최상단으로
 $(".btn_top").click(function () {

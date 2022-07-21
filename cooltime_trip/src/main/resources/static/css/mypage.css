@@ -32,18 +32,24 @@ button{
 
 /* 내 여행 메뉴 */
 .mypage_nav{
-  height: 312px;
+  height: 390px;
   width: 310px;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
 }
 
+.mypage_nav > div:first-child{
+	border-left: 8px solid #48A0FF;
+	background-color: #eeeeee;
+}
+
 .mypage_nav div{
   display: flex;
   align-items: center;
-  height: 25%;
+  height: 20%;
   padding-left: 40px;
 }
+
 .mypage_nav div p{
   color: #222222;
   font-weight: bold;
@@ -77,12 +83,27 @@ button{
   border-radius: 0 0 5px 5px;
 }
 
+/* 내 정보 title 박스*/
+.myinfo_box{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
 /* 내 정보 title */
 .myinfo_title{
-  margin-top: 30px;
   font-size: 26px;
   font-weight: bold;
   color: #222222;
+}
+
+/* 내 정보 logout */
+.logout{
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 31px;
+  color: #999999;
+  cursor: pointer;
 }
 
 /* 내 정보 메뉴 */
