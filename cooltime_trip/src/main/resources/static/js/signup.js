@@ -71,21 +71,25 @@ $(document).ready(function(){
     // 아이디 중복 확인 버튼 클릭 시
     // 아이디 중복 체크
     // DB 사용 부분
-    /*
+    
     var check_id=false;
+/*
     $('.btn_check_id').click(function(){
         var userId=$('.input_signup_id').val();
         if(userId==""){
             alert("아이디를 입력하세요");
+            $('.input_signup_id').css('border', '1px solid #E65454');
+            check_id=false;
         }else if(userId=="admin"){
             alert("중복된 아이디입니다.");
             $('.input_signup_id').css('border', '1px solid #E65454');
+            check_id=false;
         }else{
             alert("사용 가능한 아이디입니다.");
             check_id=true;// 회원가입 버튼 실행 시 확인 1
         }
     });
-	*/
+*/
     // 인증 번호 입력란 숨기기(초기설정)
     $('.input_check_phone').hide();
     $('.btn_check_phone').hide();
@@ -109,6 +113,7 @@ $(document).ready(function(){
             alert("인증번호 발송 : " + num);
             $('.input_check_phone').show();
             $('.btn_check_phone').show();
+            $('.input_check_serial').val(num);
         }
     });
    
@@ -150,7 +155,6 @@ $(document).ready(function(){
         }
     });
 
-
     $('.eyes_check_password').click(function(){
         if(!eyes_check_password){
             $('.eyes_check_password').attr('src', '../images/ic_eye-slash-solid.png');
@@ -162,6 +166,7 @@ $(document).ready(function(){
             eyes_check_password=false;
         }
     });
+
 
     // [약관 전체 동의] 박스 체크 시, 전체 체크 / 해제
     var check_Tos=false;
@@ -192,6 +197,7 @@ $(document).ready(function(){
     var check_name=false;
     var check_email=false;
     var check_signup=false;
+    $('#resultSignup').val("false");
     $('.btn_signup').click(function(){
         // 비밀번호
         var password1=$('.input_signup_password').val();
@@ -201,8 +207,10 @@ $(document).ready(function(){
         }else{
             if(password1!=password2){
                 check_password=false;
+                $('#checkPwd').val("");
             } else{
                check_password=true; // 회원가입 버튼 실행 시 확인 3
+               $('#checkPwd').val(password1);
             }
         }
 
@@ -214,9 +222,10 @@ $(document).ready(function(){
         // if(name==""){
         if(!(name_rule.test(name))){
             check_name=false;
+            $('#checkName').val("");
         } else{
             check_name=true;// 회원가입 버튼 실행 시 확인 4
-         
+        	$('#checkName').val(name);
         }
 
         // 이메일
@@ -226,8 +235,10 @@ $(document).ready(function(){
         
         if(email_rule.test(email_val)){
             check_email=true;
+            $('#checkEmail').val(email_val);
         } else{
             check_email=false;
+            //alert("이메일 형식을 확인해주세요");
         }
 
         // 이용약관 동의 여부 검사
@@ -240,10 +251,11 @@ $(document).ready(function(){
         // 회원 정보 처리 검사
         if(check_id&&check_password&&check_name&&check_phoneNum&&check_email&&check_Tos){
            // 회원 가입 완료 - 로그인 페이지로 이동
-           alert("회원가입이 완료되었습니다."); 
+           //alert("회원가입이 완료되었습니다."); 
            check_signup=true;
-           location.href='/login';
+           $('#resultSignup').val("true");
         } else{
+        	$('#resultSignup').val("false");
             if(!check_id){
                 alert("아이디 중복확인을 해주세요.");
                 $('.input_signup_id').css('border', '1px solid #E65454');
@@ -264,14 +276,70 @@ $(document).ready(function(){
             }
         }
     });
-
+/*
     // 탑 버튼 눌렀을 때 최상단으로
     $(".btn_top").click(function () {
         $('html, body').animate({
             scrollTop: 0
         }, 400);
-        return false;
+        return false; 
     });
-
-
+*/
+	// 아이디 중복 체크
+	$('#form_check_id').on('submit', function(){
+		event.preventDefault();
+		alert("버튼 클릭"); 
+		$.ajax({
+	    	type:"post",
+	    	url:"checkMemId",
+	    	data:{"memId":$('#memId').val()},
+	    	success: function(result){
+	    		if(result=="use"){// 사용하는 아이디가 없을 때
+	    			alert("사용 가능한 아이디입니다.");
+	    			$(.input_signup_id).css('border', '1px solid #DDDDDD');
+	    			check_id = true;
+	    		}
+	    		else{
+	    			alert("이미 사용중인 아이디입니다.");
+	    			$('.input_signup_id').css('border', '1px solid #E65454');
+	    			check_id = false;
+	    			$('#memId').val("");
+	    		}
+	    		$('#resultId').val($('#memId').val());
+	    	},
+	    	error: function(request, error){
+    			alert("error");
+    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
+    		}
+	    });
+	});
+	
+	// 휴대폰 번호 인증
+	$('#form_check_phone').on('submit', function(){
+		event.preventDefault();
+		alert("버튼 클릭"); 
+		$.ajax({
+	    	type:"post",
+	    	url:"checkMemPhone",
+	    	data:{"memPhoneSerial":$('#memPhoneSerial').val()
+	    			, "memPhoneCheck":$('#memPhoneCheck').val()},
+	    	success: function(result){
+	    		if(result=="success"){// 인증번호 일치
+	    			alert("일치");
+	    			$('#resultPhone').val($('#memPhone').val());
+	    		}
+	    		else{// 인증번호 불일치
+	    			alert("불일치");
+	    		}
+	    	},
+	    	error: function(request, error){
+    			alert("error");
+    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
+    		}
+	    });
+	});
+	
+	// 회원가입
+	
+	
 });

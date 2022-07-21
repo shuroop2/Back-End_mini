@@ -12,11 +12,20 @@
 		SELECT memId FROM member WHERE memId=#{id} AND memPwd=#{pwd}
 	</select>
 	
-	<!-- 회원 등록 -->
+	<!-- 회원가입 - 회원 등록 -->
 	<insert id="insertMember" parameterType="com.cooltimetrip.project.model.MemberVO">
 		INSERT member (memId, memPwd, memName, memEmail, memPhone)
 		VALUES (#{memId}, #{memPwd}, #{memName}, #{memEmail}, #{memPhone})
 	</insert>
+	
+	<!-- 회원가입 - 아이디 중복 체크 (DB에서 중복되는 아이디가 있는지 확인) -->
+	<!-- <select id="checkMemId" resultType="int">
+		SELECT COUUNT(*) FROM member WHERE memId=#{memId}
+	</select> -->
+	
+	<select id="checkMemId" parameterType="String" resultType="String">
+		SELECT memId FROM member WHERE memId=#{memId}
+	</select>
 	
 	<!-- 비밀번호 변경 -->
 	<update id="updateMemPwd" parameterType="String">

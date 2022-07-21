@@ -17,32 +17,39 @@
 		<section class="section">
 		<!-- 섹션 wrap -->
 		    <div class="wrap">
-			    <form id="form_signup" method="post" action="<c:url value='/signupMember'/>">
+			    <%-- <form id="form_signup" method="post" action="<c:url value='/checkMemId'/>"> --%>
 			    	<div class="div_signup_panel">
 			        	<div class="div_signup_title"><p>SIGN UP</p></div>
-			        	<div class="div_signup_id"><p>아이디 *</p>
-			          		<input class="input_signup_id" type="text" id="memId" name="memId" placeholder="아이디 입력">
-			          		<button class="btn_check_id" type="button" style="cursor:pointer">중복확인</button>
-			        	</div>
-			        	<div class="div_signup_password"><p>비밀번호 *</p>
-			          		<input class="input_signup_password" type="password" id="memPwd" name="memPwd" placeholder="영문 숫자 특수문자 조합 8~16자리">
-			         		<div class="eyes"><img class="eyes_signup_password" src="<c:url value='/images/ic_eye-solid.png' />"></div>
-			        	</div>
-			        	<div class="div_check_password"><p>비밀번호 확인 *</p>
-			          		<input class="input_check_password" type="password" id="memPwdchk" name="memPwdchk" placeholder="비밀번호 확인">
-			          		<div class="eyes"><img class="eyes_check_password" src="<c:url value='/images/ic_eye-solid.png' />"></div>
-			        	</div>
+			        	<form id="form_check_id" method="post" action="<c:url value='/checkMemId'/>">
+				        	<div class="div_signup_id"><p>아이디 *</p>
+				          		<input class="input_signup_id" type="text" id="memId" name="memId" placeholder="아이디 입력">
+				          		<button id="check_id" name="check_id" class="btn_check_id" style="cursor:pointer" type="submit" >중복확인</button>
+				        	</div>
+			        	</form>
+			        	<form id="form_signup" method="post" action="<c:url value='/checkMemPwd'/>">
+				        	<div class="div_signup_password"><p>비밀번호 *</p>
+				          		<input class="input_signup_password" type="password" id="memPwd" name="memPwd" placeholder="영문 숫자 특수문자 조합 8~16자리">
+				         		<div class="eyes"><img class="eyes_signup_password" src="<c:url value='/images/ic_eye-solid.png' />"></div>
+				        	</div>
+				        	<div class="div_check_password"><p>비밀번호 확인 *</p>
+				          		<input class="input_check_password" type="password" id="memPwdchk" name="memPwdchk" placeholder="비밀번호 확인">
+				          		<div class="eyes"><img class="eyes_check_password" src="<c:url value='/images/ic_eye-solid.png' />"></div>
+				        	</div>
+			        	</form>
 			        	<div class="div_signup_name"><p>이름 *</p>
 			          		<input class="input_signup_name" type="text" id="memName" name="memName" placeholder="실명 입력">
 			        	</div>
-			        	<div class="div_signup_phone"><p>휴대폰 번호 *</p>
-			          		<input class="input_signup_phone" type="text" id="memPhone" name="memPhone" placeholder="숫자만 입력">
-			          		<button class="btn_signup_phone" type="button" style="cursor:pointer">인증하기</button>
-			        	</div>
-			        	<div class="div_check_phone">
-			          		<input class="input_check_phone" type="text" id="memPhonechk" name="memPhonechk" placeholder="인증번호 입력">
-			          		<button class="btn_check_phone" type="button" style="cursor:pointer">확인</button>
-			        	</div>
+			        	<form id="form_check_phone" method="post" action="<c:url value='/checkMemPhone'/>">
+				        	<div class="div_signup_phone"><p>휴대폰 번호 *</p>
+				          		<input class="input_signup_phone" type="text" id="memPhone" name="memPhone" placeholder="숫자만 입력">
+				          		<button class="btn_signup_phone" type="button" style="cursor:pointer">인증하기</button>
+				        	</div>
+				        	<div class="div_check_phone">
+				        		<input class="input_check_serial" type="text" id="memPhoneSerial" name="memPhoneSerial">
+				          		<input class="input_check_phone" type="text" id="memPhoneCheck" name="memPhoneCheck" placeholder="인증번호 입력">
+				          		<button class="btn_check_phone" type="submit" style="cursor:pointer">확인</button>
+				        	</div>
+			        	</form>
 			        	<div class="div_signup_email"><p>이메일 *</p>
 			          		<input class="input_signup_email" type="text" id="memEmail" name="memEmail" placeholder="ID@example.com">
 			        	</div>
@@ -68,11 +75,18 @@
 			        	</div>
 			        	<br>
 			        	<br>
+			        	<form id="form_signup" method="post" action="<c:url value='/signupMember'/>"></form>
 			        	<div class="div_signup_button">
 			            	<button class="btn_signup" type="submit" style="cursor:pointer">회원가입</button>
+			            	<input id="resultId" name="resultId" type="text">
+			            	<input id="resultPwd" name="resultPwd" type="text">
+			            	<input id="resultName" name="resultName" type="text">
+			            	<input id="resultPhone" name="resultPhone" type="text">
+			            	<input id="resultEmail" name="resultEmail" type="text">
+			            	<input id="resultSignup" name="resultSignup" type="text">
 			        	</div>
-					</div>           
-			    </form>
+					</div>
+				<!-- </form> -->           
 			</div> 	
 		</section>
 		<!-- bottom.jsp -->

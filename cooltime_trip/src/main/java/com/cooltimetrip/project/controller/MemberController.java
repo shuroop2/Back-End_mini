@@ -30,10 +30,51 @@ public class MemberController {
 		return "member/signup";
 	}
 	
-	@RequestMapping("/mypage_authentication")
-	public String mypageAuthentication() {
-		return "member/mypage_authentication";
-	}  
+	
+	
+	// 회원가입 - 아이디 중복 체크
+	@ResponseBody
+	@RequestMapping("/checkMemId")
+	public String checkMemId(@RequestParam("memId") String memId) {
+		String memId_result = memService.checkMemId(memId);
+		
+		String result = "use";
+		if(memId_result != null)
+			result = "no_use";
+		
+		return result;
+	}
+	
+	// 회원가입 - 비밀번호 확인
+	@ResponseBody
+	@RequestMapping("/checkMemPwd")
+	public String checkMemPwd(@RequestParam("memPwd") String memPwd) {
+		String result = "fail";
+		if(memPwd.length() < 8 ||memPwd.length() > 16) {
+			result = "success";
+		}
+		return result;
+	}
+	
+	// 회원가입 - 휴대폰번호 인증
+	@ResponseBody
+	@RequestMapping("/checkMemPhone")
+	public String checkMemPhone(@RequestParam("memPhoneSerial") String memPhoneSerial
+								, @RequestParam("memPhoneCheck") String memPhoneCheck) {
+		String result = "fail";
+		if(memPhoneCheck.equals(memPhoneSerial)) {
+			result = "success";
+		}
+		return result;
+	}
+	
+	// 회원가입 요청
+	@RequestMapping("/signupMember") 
+	public String signupMember(MemberVO vo) {
+		memService.insertMember(vo); 
+		return "/member/login";
+	}
+	
 	
 	// 로그인 처리     
 	@ResponseBody
@@ -63,6 +104,12 @@ public class MemberController {
 //			}
 //			return result;  
 //		}  
+	
+	// 내 정보 비밀번호 인증 페이지
+	@RequestMapping("/mypage_authentication")
+	public String mypageAuthentication() {
+		return "member/mypage_authentication";
+	}  
 	
 	// 내 정보 비밀번호 인증 확인 
 	@ResponseBody
@@ -162,19 +209,11 @@ public class MemberController {
 		return result;
 	}
 	
-	// 회원가입 요청
-	@RequestMapping("/signupMember") 
-	public String signupMember(MemberVO vo) {
-		memService.insertMember(vo); 
-		return "/member/login";
-	}
-	
 	// 회원탈퇴
 	@RequestMapping("/deleteMember")
 	public String deleteMember(HttpSession session) {
 		String memId = (String) session.getAttribute("sid");
 		memService.deleteMember(memId);
-		System.out.println(memId+"의 회원 정보 삭제 완료");
 		session.invalidate();
 		return "redirect:/";
 	}

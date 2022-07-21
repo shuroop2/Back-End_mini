@@ -54,5 +54,16 @@ public class MemberService implements IMemberService {
 	public void deleteMember(String memId) {
 		dao.deleteMember(memId);
 	}
+
+	@Override
+	public String checkMemId(String memId) {
+		return dao.checkMemId(memId);
+	}
+
+//	@Override
+//	public int checkMemId(MemberVO vo) {
+//		int result = dao.checkMemId(vo);
+//		return result;
+//	}
 }
  
