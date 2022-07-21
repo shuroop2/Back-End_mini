@@ -534,6 +534,7 @@
 	      </div>
 	    </div>
 	  </section>
+	  <input type="hidden" name="dep_flight_no" value="1000">
   </form>
   <!-- footer -->
   <c:import url="/WEB-INF/views/layout/bottom.jsp"/>
