@@ -20,12 +20,13 @@ public class BookedController {
 	@Autowired
 	BookedService bService;
 	
-	@RequestMapping("/mypage")
+	@RequestMapping("/mypage_rsv_complete")
 	public String bookedFlightView(@RequestParam HashMap<String, Object> map, Model model, HttpSession session, BookedFlightVO vo) {
-		bService.insertFlight(vo);
 		
 		String memId = session.getAttribute("sid").toString();
-		ArrayList<BookedFlightVO> fList = bService.bookedList(memId);
+		
+		vo.setMemId(memId);
+		bService.insertFlight(vo);
 		// BookedFlightVO vo = booked.bookedList(memId);
 		
 		  model.addAttribute("dep_flight_no", map.get("dep_flight_no").toString());
@@ -49,12 +50,19 @@ public class BookedController {
 		  model.addAttribute("charge_total", map.get("charge_total").toString());
 		  model.addAttribute("dep_airline", map.get("dep_airline").toString());
 		  model.addAttribute("arr_airline", map.get("arr_airline").toString());
-		  
+    	 
 		
-		model.addAttribute("fList", fList); 
-		
-		return "member/mypage";
+		return "member/mypage_rsv_complete";
 	}
 	
+	@RequestMapping("/mypage")
+	public String mypage(HttpSession session, Model model) {
+		
+		String memId = session.getAttribute("sid").toString();
+		ArrayList<BookedFlightVO> fList = bService.bookedList(memId);
+		model.addAttribute("fList", fList); 
+		
+		return "member/mypage"; 
+	}
 
 }

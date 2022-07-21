@@ -40,8 +40,9 @@
         </div>
 
        <!-- 마이페이지 항공리스트 -->
-       <c:forEach var="fList" items="${fList }">
+       
         <section class="reservation_air_container" id="booked_air_page">
+        <c:forEach var="fList" items="${fList }">
           <div class="reservation_air_box">
             <div class="reservation_air_contents">
               <div>
@@ -76,7 +77,7 @@
               </div>
               <div class="air_total_pay">
                 <div>총 결제 금액</div>
-                <div>${fList.charge_total }<span>원</span></div>
+                <div><fmt:formatNumber value='${fList.charge_total }' pattern='#,###'/><span>원</span></div>
                 <div>
                   <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
                 </div>
@@ -169,8 +170,9 @@
             </div>
           </div>
         </div>
+        </c:forEach>
         </section>
-       </c:forEach>
+       
 
         <!-- 마이페이지 예약한 숙박 -->
         <section class="reservation_hotel_container" id="booked_hotel_page">

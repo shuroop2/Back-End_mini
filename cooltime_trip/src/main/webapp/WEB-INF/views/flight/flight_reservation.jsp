@@ -14,7 +14,7 @@
     <div class="section_wrap">
         <!-- 섹션 왼쪽 부분 -->
         <section class="section_left">
-        <form id="form_flight_reservation" method="post" action="/mypage">
+        <form id="form_flight_reservation" method="post" action="/mypage_rsv_complete">
             <!-- 예약한 항공권 정보 -->
             <article class="rsv_info">
                 <!-- 예약한 항공권 요약 -->

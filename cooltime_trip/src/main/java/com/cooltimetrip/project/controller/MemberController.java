@@ -29,11 +29,6 @@ public class MemberController {
 	public String signup() {
 		return "member/signup";
 	}
-	 
-//	@RequestMapping("/mypage")
-//	public String mypage() {
-//		return "member/mypage"; 
-//	}
 	
 	@RequestMapping("/mypage_authentication")
 	public String mypageAuthentication() {
