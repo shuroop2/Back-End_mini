@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!-- 양식 다시 제출 방지 -->
 <%    
 	response.setHeader("Cache-Control","no-store");    
@@ -31,7 +32,10 @@
               </div>
               <div class="name_date_box">
                 <div class="car_name">${car.carName}</div>
-                <div class="car_date">${dateTime[0]} ~ <br>${dateTime[1]}</div>
+                <div class="car_date">
+                	${fn:substring(dateTime[0],0,2)}월 ${fn:substring(dateTime[0],3,5)}일 ${fn:substring(dateTime[0],5,17)} ~<br> 
+                	${fn:substring(dateTime[1],1,3)}월 ${fn:substring(dateTime[1],4,6)}일 ${fn:substring(dateTime[1],6,18)}
+               	</div>
               </div>
             </div>
             <div class="rent_price_info">
