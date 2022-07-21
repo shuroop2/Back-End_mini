@@ -6,6 +6,7 @@
 <mapper namespace="com.cooltimetrip.project.dao.IMemberDAO">
 	<!-- resultmap 작성할 것 -->
 	
+	<!-- 회원 정보 관리 시작 -->
 	<!-- 로그인 확인 -->
 	<select id="loginCheck" parameterType="hashmap" resultType="string">
 		SELECT memId FROM member WHERE memId=#{id} AND memPwd=#{pwd}
@@ -17,15 +18,12 @@
 		VALUES (#{memId}, #{memPwd}, #{memName}, #{memEmail}, #{memPhone})
 	</insert>
 	
-	<!-- 비밀번호 변경 - 확인 -->
-	<!-- <update id="updateMemPwd" parameterType="String">
-		UPDATE member SET memPwd=#{memPwd} WHERE memId=#{memId}
-	</update> -->
-	
+	<!-- 비밀번호 변경 -->
 	<update id="updateMemPwd" parameterType="String">
 		UPDATE member SET memPwd=#{memPwd} WHERE memId=#{memId}
 	</update>
 	
+	<!-- 마이페이지 접근 - 비밀번호 인증 -->
 	<select id="mypageCheck" parameterType="String" resultType="string">
 		SELECT memPwd FROM member WHERE memId=#{id}
 	</select>
@@ -35,9 +33,14 @@
 		UPDATE member SET memName=#{memName} WHERE memId=#{memId}
 	</update>
 	
+	<!-- 전화번호 변경 -->
+	<update id="updateMemPhone" parameterType="String">
+		UPDATE member SET memPhone=#{memPhone} WHERE memId=#{memId}
+	</update>
 	
 	<!-- 멤버리스트 출력 -->
 	<select id="getMemberInfo" parameterType="String" resultType="com.cooltimetrip.project.model.MemberVO">
 		SELECT * FROM member WHERE memId = #{memId}
 	</select>
+	<!-- 회원 정보 관리 끝 -->
 </mapper> 

@@ -52,8 +52,7 @@ public class MemberService implements IMemberService {
 
 	@Override
 	public void updateMemPhone(String memId, String memPhone) {
-		// TODO Auto-generated method stub
-		
+		dao.updateMemPhone(memId, memPhone);
 	}
 
 	/*

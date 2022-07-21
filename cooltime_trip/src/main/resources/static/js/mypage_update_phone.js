@@ -28,6 +28,8 @@ $(document).ready(function(){
     // 휴대폰 번호 유효성 검사
     var phoneNum_rule=/^01([0|1|6|7|8|9])([0-9]{4})([0-9]{4})$/;
     var phoneNum = null;// 회원 휴대폰 번호
+    
+    
 
     // 휴대폰 인증
     // 휴대폰 번호 인증하기 버튼 클릭 시
@@ -46,18 +48,34 @@ $(document).ready(function(){
             num=Math.round(Math.random()*899999)+100000;
             alert("인증번호 발송 : " + num);
             $('.btn_phoneNum_confirm').show();// 변경하기 버튼
+            $('#input_serial').val(num);
         }
     });
 
-    // 변경하기 버튼 클릭 시 - 인증번호 확인
-    $('.btn_phoneNum_confirm').click(function(){
-        if($('.input_phoneNum_check').val()!=num){  
-            $('.input_phoneNum_check').css('border', '1px solid #E65454');
-            $('.error_check_phoneNum').show();// 경고 - 인증번호를 확인해주세요
-        }
-        else{
-            alert("휴대폰 번호가 변경되었습니다.");
-            location.href = '/';
-        }
+    $('#form_update_phone').on('submit', function(){
+    	event.preventDefault();	
+    	
+    	$.ajax({
+    		type: "post",
+    		url: "updatePhone",
+    		data:{"input_phone":$('#input_phone').val()
+    		, "input_serial":$('#input_serial').val()
+    		, "input_check":$('#input_check').val()},
+    		dataType: "text",
+    		success: function(result){// 성공 시 수행
+				if(result=="success"){
+					alert("성공적으로 저장되었습니다.");
+	               	location.href = '/mypage';
+				} else {
+					alert("실패");
+					$('.input_phoneNum_check').css('border', '1px solid #E65454');
+            		$('.error_check_phoneNum').show();// 경고 - 인증번호를 확인해주세요
+				}	
+    		},
+    		error: function(request, error){
+    			alert("error");
+    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
+    		}		
+    	});
     });
 });
