@@ -211,6 +211,7 @@ button{
 .air_fly{
   display: flex;
   flex-direction: column;
+  width: 255px;
 }
 
 .air_fly_time1 span{
@@ -226,7 +227,15 @@ button{
 .air_fly_time2 span{
   font-size: 14px;
   font-weight: 300;
-  margin-left: 35.5px;
+  margin-left: 32px;
+}
+
+.air_fly_time2 span:nth-child(2){
+  margin-left: 43px;
+}
+
+.air_fly_time2 span:nth-child(3){
+  margin-left: 41px;
 }
 
 .air_total_pay{

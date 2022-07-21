@@ -94,59 +94,65 @@ public class FlightAPIController {
 				resultArv.append(returnLine2);
 			}
 			
+			JSONParser jsonParser = new JSONParser();
+			
+	        JSONObject jsonObject = (JSONObject) jsonParser.parse(resultDep.toString());
+	        JSONObject parse_response = (JSONObject) jsonObject.get("response");
+	        JSONObject parse_body = (JSONObject) parse_response.get("body"); // response 로 부터 body 찾아오기
+	        JSONObject parse_items = (JSONObject) parse_body.get("items"); // body 로 부터 items 받아오기
+	        // items 로 부터 itemList : 뒤에 [ 로 시작하므로 jsonArray 이다.
+	        JSONArray parse_item = (JSONArray) parse_items.get("item");
+	        
+	        JSONObject jsonObject2 = (JSONObject) jsonParser.parse(resultArv.toString());
+	        JSONObject parse_response2 = (JSONObject) jsonObject2.get("response");
+	        JSONObject parse_body2 = (JSONObject) parse_response2.get("body"); // response 로 부터 body 찾아오기
+	        JSONObject parse_items2 = (JSONObject) parse_body2.get("items"); // body 로 부터 items 받아오기
+	        // items 로 부터 itemList : 뒤에 [ 로 시작하므로 jsonArray 이다.
+	        JSONArray parse_item2 = (JSONArray) parse_items2.get("item");
+	        
+	        // 가는편 오브젝트 배열에 담아 출력
+	        ArrayList<JSONObject> objDep = new ArrayList<JSONObject>();
+	        ArrayList<JSONObject> objArv = new ArrayList<JSONObject>();
+	        
+	        if(parse_item.size() < parse_item2.size()) {
+	        	System.out.println("짜잔");
+	        	for(int i = 0; i<parse_item.size(); i++) {
+	        		objDep.add((JSONObject) parse_item.get(i));
+	        		objArv.add((JSONObject) parse_item2.get(i));
+	        	}
+	        } else if (parse_item.size() > parse_item2.size()) {
+	        	System.out.println("뿡뿡");
+	        	for(int i = 0; i<parse_item2.size(); i++) {
+	        		objDep.add((JSONObject) parse_item.get(i));
+	        		objArv.add((JSONObject) parse_item2.get(i));
+	        	}
+	        }
+			
+	        // 로그인한 상태로 검색 시 최근 검색 기록에 추가
+	        String memId = (String) session.getAttribute("sid");
+	        if(memId != null) {
+	        	vo.setMemId(memId);
+	            
+	            int count = hService.checkInHistory(vo.getHistoryDep(), vo.getHistoryArr(), memId);
+	            
+	            if(count == 0) {
+	            	hService.insertHistory(vo);
+	            } else {
+	            	hService.updateHistory(vo);
+	            }
+	        }
+	        
+	        mv.addObject("objDep", objDep);
+	        mv.addObject("objArv", objArv);
+			
 			urlConnection.disconnect();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
-		JSONParser jsonParser = new JSONParser();
 		
-        JSONObject jsonObject = (JSONObject) jsonParser.parse(resultDep.toString());
-        JSONObject parse_response = (JSONObject) jsonObject.get("response");
-        JSONObject parse_body = (JSONObject) parse_response.get("body"); // response 로 부터 body 찾아오기
-        JSONObject parse_items = (JSONObject) parse_body.get("items"); // body 로 부터 items 받아오기
-        // items 로 부터 itemList : 뒤에 [ 로 시작하므로 jsonArray 이다.
-        JSONArray parse_item = (JSONArray) parse_items.get("item");
         
-        JSONObject jsonObject2 = (JSONObject) jsonParser.parse(resultArv.toString());
-        JSONObject parse_response2 = (JSONObject) jsonObject2.get("response");
-        JSONObject parse_body2 = (JSONObject) parse_response2.get("body"); // response 로 부터 body 찾아오기
-        JSONObject parse_items2 = (JSONObject) parse_body2.get("items"); // body 로 부터 items 받아오기
-        // items 로 부터 itemList : 뒤에 [ 로 시작하므로 jsonArray 이다.
-        JSONArray parse_item2 = (JSONArray) parse_items2.get("item");
         
-        // 가는편 오브젝트 배열에 담아 출력
-        ArrayList<JSONObject> objDep = new ArrayList<JSONObject>();
-        ArrayList<JSONObject> objArv = new ArrayList<JSONObject>();
-        
-        if(parse_item.size() < parse_item2.size()) {
-        	for(int i = 0; i<parse_item.size(); i++) {
-        		objDep.add((JSONObject) parse_item.get(i));
-        		objArv.add((JSONObject) parse_item2.get(i));
-        	}
-        } else if (parse_item.size() > parse_item2.size()) {
-        	for(int i = 0; i<parse_item2.size(); i++) {
-        		objDep.add((JSONObject) parse_item.get(i));
-        		objArv.add((JSONObject) parse_item2.get(i));
-        	}
-        }
-		
-        // 로그인한 상태로 검색 시 최근 검색 기록에 추가
-        String memId = (String) session.getAttribute("sid");
-        if(memId != null) {
-        	vo.setMemId(memId);
-            
-            int count = hService.checkInHistory(vo.getHistoryDep(), vo.getHistoryArr(), memId);
-            
-            if(count == 0) {
-            	hService.insertHistory(vo);
-            } else {
-            	hService.updateHistory(vo);
-            }
-        }
-        
-        mv.addObject("objDep", objDep);
-        mv.addObject("objArv", objArv);
         mv.addObject("depart_location", depart_location); // 출발지
         mv.addObject("arrive_location", arrive_location); // 도착지
 		mv.addObject("shuttle", shuttle); // 왕복 편도 다구간

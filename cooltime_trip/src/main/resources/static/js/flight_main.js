@@ -256,7 +256,7 @@ function plusMinusBtn(pm){
   adCount.innerHTML = adNumber;
   cdCount.innerHTML = cdNumber;
   bbCount.innerHTML = bbNumber;
-  personCount.value = maxNumber + "명";
+  personCount.value = maxNumber;
   historyCount.value = maxNumber;
   
   // 버튼 비활성화
