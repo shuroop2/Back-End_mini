@@ -19,7 +19,33 @@ if (request.getProtocol().equals("HTTP/1.1"))
 		var cnt = 0;
 	</script>
 </head>
-<body><c:import url="/WEB-INF/views/layout/top.jsp" />
+<body>
+	<div class="load_flight">
+		<img class="load_flight_bg" src="<c:url value='/images/bg_load_flight.png'/>">
+		<div class="load_flight_txt">
+			<span><b>${depart_location}</b>에서 <b>${arrive_location}</b>까지<br>왕복 항공권을 찾고 있습니다</span>
+			<div class="wrap_load_flight_loc">
+				<div class="load_flight_loc load_flight_dep">
+					<span id="depEng">GMP</span>
+					<span>${depart_location}</span>
+					<span>${fn:substring(daterange,0,2)}월 ${fn:substring(daterange,3,5)}일</span>
+				</div>
+				<div></div>
+				<div class="load_flight_loc load_flight_dep">
+					<span id="arvEng">CJU</span>
+					<span>${arrive_location}</span>
+					<span>${fn:substring(daterange,11,13)}월 ${fn:substring(daterange,14,16)}일</span>
+				</div>
+			</div>
+			<script>
+				if('${depart_location}' == '제주' && '${arrive_location}' == '김포'){
+					$('#depEng').text('CJU');
+					$('#arvEng').text('GMP');
+				}
+			</script>
+		</div>
+	</div>
+	<c:import url="/WEB-INF/views/layout/top.jsp" />
 	<!-- 검색 영역 -->
   <form id="form_flight_list" method="post" action="<c:url value='/flight_detail' />">
   <section class="sec_search_list">

@@ -1,6 +1,17 @@
 // flight_list.html의 기능 설정
 
 $(document).ready(function(){
+  // 페이지 로딩 시 이미지 노출되었다가 fadeout
+  $('.load_flight').on('scroll touchmove mousewheel', function(event) {
+	  event.preventDefault();
+	  event.stopPropagation();
+	  return false;
+	});
+  $('.load_flight').fadeOut(5000, function(){
+  	$(this).off('scroll touchmove mousewheel');
+  });
+
+
   // daterangepicker
   // 오늘 날짜 가져오기
   var now = new Date();
@@ -223,12 +234,5 @@ $(document).ready(function(){
 	$('#index').val(index);
     $('#form_flight_list').submit();
   });
-
-  // 탑 버튼 눌렀을 때 최상단으로
-  $(".btn_top").click(function () {
-    $('html, body').animate({
-        scrollTop: 0
-    }, 400);
-    return false;
-  });
+  
 });

@@ -955,13 +955,86 @@
   cursor: pointer;
 }
 
-/* 탑 버튼 */
-.btn_top {
-  float: right;
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  right: 40px;
-  bottom: 40px;
-  cursor: pointer;
+/* 로딩 */
+.load_flight{
+	position: absolute;
+	display:block;
+	width:100%;
+	height: 100vh;
+	overflow: hidden;
+	z-index: 5;
+}
+
+.load_flight .load_flight_bg{
+	position: absolute;
+	display:block;
+	width:100%;
+	height: 100vh;
+	overflow: hidden;
+	z-index: 2;
+}
+
+.load_flight .load_flight_txt{
+	position: absolute;
+	display: flex;
+	width: 100%;
+	margin-top: 200px;
+	text-align: center;
+	z-index: 2;
+	flex-direction: column;
+	align-items: center;
+}
+
+.load_flight .load_flight_txt>span,
+.load_flight .load_flight_txt b{
+	color:#FFFFFF;
+	font-size: 28px;
+}
+
+.load_flight .load_flight_txt>span{
+	font-weight: 200;
+}
+
+.load_flight .load_flight_txt .wrap_load_flight_loc{
+	display: flex;
+	width: 444px;
+	height: 166px;
+	margin-top: 40px;
+	border-top: 1px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+	color:#FFFFFF;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.load_flight .load_flight_txt .wrap_load_flight_loc .load_flight_loc{
+	display: flex;
+	flex-direction: column;
+}
+
+.load_flight .load_flight_txt .wrap_load_flight_loc .load_flight_loc span{
+	color: #FFFFFF;
+	font-weight: 200;
+}
+
+.load_flight .load_flight_txt .wrap_load_flight_loc .load_flight_loc span:first-child{
+	font-weight: 600;
+	font-size: 32px;
+}
+
+.load_flight .load_flight_txt .wrap_load_flight_loc .load_flight_loc span:nth-child(2){
+	font-size: 20px;
+	margin-top: 4px;
+}
+
+.load_flight .load_flight_txt .wrap_load_flight_loc .load_flight_loc span:last-child{
+	font-size: 16px;
+	margin-top: 16px;
+}
+
+.load_flight .load_flight_txt .wrap_load_flight_loc div:nth-child(2){
+	width:50px;
+	height:1px;
+	background-color:#FFFFFF;
 }
