@@ -94,6 +94,11 @@ section.flight_reservation{
   cursor: pointer;
 }
 
+.departure_location::placeholder,
+.arrival_location::placeholder {
+  color: #AAAAAA;
+}
+
 .txt_gray{
   color: #757575;
 }
@@ -131,10 +136,15 @@ section.flight_reservation{
 .flight_date_box input{
   width: 220px;
   height: 30px;
+  margin-top: 10px;
   border: none;
   outline-style: none;
   font-size: 22px;
   font-weight: bold;
+}
+
+.flight_date_box input::placeholder{
+  color: #AAAAAA;
 }
 
 
