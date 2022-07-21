@@ -54,6 +54,17 @@ $(document).ready(function(){
   // 오늘 날짜 가져오기
   var now = new Date();
   var today = (now.getMonth()+1) + "/" + now.getDate() + "/" + now.getFullYear();
+  
+  // 여기부터 시작
+  function dateCalculator(date, n) {
+	return new Date(date.setDate(date.getDate() + n));
+  }
+  var day = ["일", "월", "화", "수", "목", "금", "토"];
+  var todayDate = (now.getMonth()+1) + "." + now.getDate()+ "(" + day[now.getDay()]+")";
+  var nowNext = dateCalculator(now, 1);
+  var tomorrowDate = (nowNext.getMonth()+1) + "." + (nowNext.getDate())+ "(" + day[nowNext.getDay()]+")";
+  
+  $('.todayDate').val(todayDate+" - "+tomorrowDate+", 1박");
 
   // daterangepicker 정의
   $(function() {

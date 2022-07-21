@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!-- 페이지 새로고침 안해도댐! -->
 <%    
 response.setHeader("Cache-Control","no-store");    
@@ -135,36 +137,27 @@ if (request.getProtocol().equals("HTTP/1.1"))
     <h4 class="tlt_recent">최근 검색한 숙소</h4>
     <!-- 숙박은 최근 검색 최대 3개만 뜨게 -->
     <div class="div_recent_list">
+    <c:forEach begin="7" end="9" items="${hotelList }" var="hotelList">
+    <form id="recentForm${hotelList.hotelNo}" method="post" action="<c:url value='/stay_detail/${hotelList.hotelNo }'/>">
       <div class="box_recent">
         <div class="div_recent_img">
-          <img class="img_recent_hotel" src="../images/img_ramada.jpg" alt="숙소 사진">
+          <img id="recentHotel${hotelList.hotelNo }" class="img_recent_hotel" src="<c:url value='/hotelImg/${hotelList.hotelNo }/h001.png'/>" alt="숙소 사진">
         </div>
         <div class="inner_recent_info">
           <span class="txt_recent_location">호텔 ・ 제주도</span>
-          <span class="txt_recent_hotel">라마다 제주시티 호텔</span>
-          <span class="txt_recent_price">73,000원</span>
+          <span class="txt_recent_hotel">${hotelList.hotelName }</span>
+          <span class="txt_recent_price"><fmt:formatNumber value='${hotelList.roomTPrice}'/>원</span>
         </div>
       </div>
-      <div class="box_recent">
-        <div class="div_recent_img">
-          <img class="img_recent_hotel" src="../images/img_maison.jpg" alt="숙소 사진">
-        </div>
-        <div class="inner_recent_info">
-          <span class="txt_recent_location">호텔 ・ 제주도</span>
-          <span class="txt_recent_hotel">메종 글래드 제주</span>
-          <span class="txt_recent_price">178,700원</span>
-        </div>
-      </div>
-      <div class="box_recent mr_0">
-        <div class="div_recent_img">
-          <img class="img_recent_hotel" src="../images/img_shillastay.jpg" alt="숙소 사진">
-        </div>
-        <div class="inner_recent_info">
-          <span class="txt_recent_location">호텔 ・ 제주도</span>
-          <span class="txt_recent_hotel">신라스테이 제주</span>
-          <span class="txt_recent_price">157,500원</span>
-        </div>
-      </div>
+      <input type="hidden" class ="todayDate" name="daterange">
+	  <input type="hidden" name="personCount" value="성인2, 어린이0">
+      </form>
+      <script>
+      	$('#recentHotel${hotelList.hotelNo}').click(function(){
+      		$('#recentForm${hotelList.hotelNo}').submit();
+      	});
+      </script>
+      </c:forEach>
     </div>
   </section>
   <!-- 최근 검색 숙소 끝 -->
@@ -187,92 +180,22 @@ if (request.getProtocol().equals("HTTP/1.1"))
         </div>
       </div>
       <div id="rmdfirstList" class="box_rmd_list">
+      <c:forEach begin="1" end="10" items="${hotelList }" var="hotelList">
         <div class="inner_rmd_list">
           <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_maison.jpg" alt="메종 글래드 제주">
+            <img class="img_rmd_hotel" src="<c:url value='hotelImg/${hotelList.hotelNo }/h001.png'/>" alt="메종 글래드 제주">
           </div>
           <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">메종 글래드 제주</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.5<span class="txt_review_count">(131)</span></span>
-          <span class="txt_rmd_price">178,700원</span>
+          <span class="txt_rmd_hotel">${hotelList.hotelName }</span>
+          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>${fn:substring(hotelList.hotelAssesment,0,3)}<span class="txt_review_count">${fn:substring(hotelList.hotelAssesment,3,9)}</span></span>
+          <span class="txt_rmd_price"><fmt:formatNumber value='${hotelList.roomTPrice}'/>원</span>
         </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_shillastay.jpg" alt="신라스테이 제주">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">신라 스테이 제주</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.6<span class="txt_review_count">(61)</span></span>
-          <span class="txt_rmd_price">157,500원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_first70.jpg" alt="서귀포 퍼스트70 호텔">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">서귀포 퍼스트70 호텔</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.3<span class="txt_review_count">(123)</span></span>
-          <span class="txt_rmd_price">70,000원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_coopcityhotel.jpg" alt="코업시티 호텔 하버뷰">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">코업시티 호텔 하버뷰</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.3<span class="txt_review_count">(81)</span></span>
-          <span class="txt_rmd_price">59,000원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_phoenix.jpg" alt="휘닉스 제주 섭지코지">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">휘닉스 제주 섭지코지</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.4<span class="txt_review_count">(39)</span></span>
-          <span class="txt_rmd_price">330,000원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_cordelia.jpg" alt="코델리아S 호텔">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">코델리아S 호텔</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>3.8<span class="txt_review_count">(91)</span></span>
-          <span class="txt_rmd_price">44,850원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_thecube.jpg" alt="더큐브 리조트 제주">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">더큐브 리조트 제주</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.5<span class="txt_review_count">(321)</span></span>
-          <span class="txt_rmd_price">65,000원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_thecube.jpg" alt="더큐브 리조트 제주">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">더큐브 리조트 제주</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.5<span class="txt_review_count">(321)</span></span>
-          <span class="txt_rmd_price">65,000원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_thecube.jpg" alt="더큐브 리조트 제주">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">더큐브 리조트 제주</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.5<span class="txt_review_count">(321)</span></span>
-          <span class="txt_rmd_price">65,000원</span>
-        </div>
+        </c:forEach>
       </div>
     </div>
     <!-- 강원도 인기 호텔 -->
     <div class="div_rmd_list">
-      <h3 class="tlt_rmd">강원도 인기 호텔 ⛱</h3>
+      <h3 class="tlt_rmd">신혼여행 인기 호텔 ⛱</h3>
       <!-- Prev / Next -->
       <div class="box_rmd_prev">
         <div id="divsecondPrev" class="prev">
@@ -287,69 +210,17 @@ if (request.getProtocol().equals("HTTP/1.1"))
         </div>
       </div>
       <div id="rmdsecondList" class="box_rmd_list">
+      <c:forEach begin="11" end="20" items="${hotelList }" var="hotelList">
         <div class="inner_rmd_list">
           <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_maison.jpg" alt="메종 글래드 제주">
+            <img class="img_rmd_hotel" src="<c:url value='hotelImg/${hotelList.hotelNo }/h001.png'/>" alt="메종 글래드 제주">
           </div>
           <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">메종 글래드 제주</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.5<span class="txt_review_count">(131)</span></span>
-          <span class="txt_rmd_price">178,700원</span>
+          <span class="txt_rmd_hotel">${hotelList.hotelName}</span>
+          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>${fn:substring(hotelList.hotelAssesment,0,3)}<span class="txt_review_count">${fn:substring(hotelList.hotelAssesment,3,9)}</span></span>
+          <span class="txt_rmd_price"><fmt:formatNumber value='${hotelList.roomTPrice}'/>원</span>
         </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_shillastay.jpg" alt="신라스테이 제주">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">신라 스테이 제주</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.6<span class="txt_review_count">(61)</span></span>
-          <span class="txt_rmd_price">157,500원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_first70.jpg" alt="서귀포 퍼스트70 호텔">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">서귀포 퍼스트70 호텔</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.3<span class="txt_review_count">(123)</span></span>
-          <span class="txt_rmd_price">70,000원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_coopcityhotel.jpg" alt="코업시티 호텔 하버뷰">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">코업시티 호텔 하버뷰</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.3<span class="txt_review_count">(81)</span></span>
-          <span class="txt_rmd_price">59,000원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_phoenix.jpg" alt="휘닉스 제주 섭지코지">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">휘닉스 제주 섭지코지</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.4<span class="txt_review_count">(39)</span></span>
-          <span class="txt_rmd_price">330,000원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_cordelia.jpg" alt="코델리아S 호텔">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">코델리아S 호텔</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>3.8<span class="txt_review_count">(91)</span></span>
-          <span class="txt_rmd_price">44,850원</span>
-        </div>
-        <div class="inner_rmd_list">
-          <div class="div_img_hotel">
-            <img class="img_rmd_hotel" src="../images/img_thecube.jpg" alt="더큐브 리조트 제주">
-          </div>
-          <span class="txt_rmd_location">호텔 ・ 제주도</span>
-          <span class="txt_rmd_hotel">더큐브 리조트 제주</span>
-          <span class="txt_rmd_star"><i class="fa-solid fa-star"></i>4.5<span class="txt_review_count">(321)</span></span>
-          <span class="txt_rmd_price">65,000원</span>
-        </div>
+        </c:forEach>
       </div>
     </div>
   </section><c:import url="/WEB-INF/views/layout/bottom.jsp" />
