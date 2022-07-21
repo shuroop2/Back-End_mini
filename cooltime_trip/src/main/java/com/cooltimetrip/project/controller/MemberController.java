@@ -189,4 +189,10 @@ public class MemberController {
 		memService.insertMember(vo); 
 		return "/member/login";
 	}
+	
+	// 예약 완료 요청
+	@RequestMapping("/rsv_complete") 
+	public String rsvComplete() {
+		return "/member/mypage_rsv_complete";
+	}
 }
