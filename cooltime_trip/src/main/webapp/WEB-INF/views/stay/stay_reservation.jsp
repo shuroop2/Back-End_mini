@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<!-- 페이지 새로고침 안해도댐! -->
+<%    
+response.setHeader("Cache-Control","no-store");    
+response.setHeader("Pragma","no-cache");    
+response.setDateHeader("Expires",0);    
+if (request.getProtocol().equals("HTTP/1.1"))  
+        response.setHeader("Cache-Control", "no-cache");  
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,34 +25,39 @@
 		    <div class="final_price_line">
 		      <div class="book_detail">
 		        <div class="book_hotel_stay">
-		          <img src="<c:url value='/images/glad_jeju.png'/>">
+		          <img src="<c:url value='/hotelImg/${hotel.hotelNo }/h001.png'/>">
 		          <div class="maison_text_box">
-		            <div class="glad_jeju_text">메종 글래드 제주</div>
+		            <div class="glad_jeju_text">${hotel.hotelName }</div>
 		            <div class="glad_jeju_stay">
-		              <div class="first_stay">2022년 07월 19일 (화)</div>
-		              <div class="second_stay">2022년 07월 20일 (수), 1박</div>
+		              <div class="first_stay">${dateTime[0]}~${dateTime[1]}</div>
+		              <div class="second_stay">${hotel.hotelAddress}</div>
 		            </div>
 		          </div>
 		        </div>
 		        <div class="num_people_bed_box">
-		          <div class="num_people_bed">스탠다드 더블-2인 / 더블침대 1개</div>
-		          <div class="num_people_bed_price">89,100원</div>
+		          <div class="num_people_bed">${roomType}-2인 / <span id="bedType">더블침대 1개</span></div>
+		          <div class="num_people_bed_price">${roomTypePrice}원</div>
+		          <script>
+		          	if('${roomType}'=='디럭스 트윈'){
+		          		$('#bedType').text('싱글침대 2개');
+		          	}
+		          </script>
 		        </div>
 		        <div class="total_price_box">
 		          <div class="total_price_text">총 상품 금액</div>
-		          <div class="total_price_won">89,100원</div>
+		          <div class="total_price_won">${roomTypePrice}원</div>
 		        </div>
 		        <div class="booked_info">
 		          <div>예약자 정보</div>
 		        </div>
 		        <div class="booked_customer_info">
 		          <div class="b_name">예약자 이름</div>
-		          <input type="text" class="booked_p_name" id="cusName" value="곽경록" disabled>
+		          <input type="text" class="booked_p_name" id="cusName" value="${mem.memName }" disabled>
 		          <div class="b_mail">이메일 주소</div>
 		          <div class="email_text_box">
-		            <input type="text" class="email_id" id="emailId">
+		            <input type="text" class="email_id" id="emailId" value="${email[0]}">
 		            <span>@</span>
-		            <input type="text" class="email_address_insert" id="emailAddress" placeholder="직접입력"> 
+		            <input type="text" class="email_address_insert" id="emailAddress" value="${email[1] }" placeholder="직접입력"> 
 		            <select class="email_address_select" id="cusSel">
 		              <option value="" selected>직접입력</option>
 		              <option value="naver.com">naver.com</option>
@@ -54,13 +68,13 @@
 		          </div>
 		          <div class="b_phone">휴대폰 번호</div>
 		          <div class="phone_num_box">
-		            <select class="phone_first" id="cusPsel"selected="010">
+		            <select class="phone_first" id="cusPsel"selected="010" value="${memPH1 }">
 		              <option>010</option>
 		              <option>011</option>
 		              <option>019</option>
 		            </select>
-		            <input type="text" class="phone_second" id="num_second">
-		            <input type="text" class="phone_third" id="num_third">
+		            <input type="text" class="phone_second" id="num_second" value="${memPH2 }">
+		            <input type="text" class="phone_third" id="num_third" value="${memPH3 }">
 		          </div> 
 		        </div>
 		        <div class="stay_p_info">
@@ -117,11 +131,11 @@
 		        <div class="info_pay">결제정보</div>
 		        <div class="order_price_box">
 		          <div>주문금액</div>
-		          <div>89,100원</div>
+		          <div>${roomTypePrice}원</div>
 		        </div>
 		        <div class="total_price_final">
 		          <div class="ttp_text">총 요금</div>
-		          <div class="ttp_num">89,100<div class="ttr_won">원</div></div>          
+		          <div class="ttp_num">${roomTypePrice}<div class="ttr_won">원</div></div>          
 		        </div>
 		      </div>
 		    </div>
