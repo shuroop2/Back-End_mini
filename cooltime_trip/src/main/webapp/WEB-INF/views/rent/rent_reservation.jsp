@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!-- 양식 다시 제출 방지 -->
+<%    
+	response.setHeader("Cache-Control","no-store");    
+	response.setHeader("Pragma","no-cache");    
+	response.setDateHeader("Expires",0);    
+	if (request.getProtocol().equals("HTTP/1.1"))  
+	        response.setHeader("Cache-Control", "no-cache");  
+%>
 <!DOCTYPE html>
 <html>
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
@@ -61,7 +69,7 @@
           <article class="add_reservation_info">
             <div class="add_reservation_info_title">
               <p>추가 예약 정보</p>
-              <span class="another_person_drive" onclick="anotherPersonCheck()"><i class="fa-solid fa-check"></i>다른 사람이 운전해요</span>
+              <span class="another_person_drive"><i class="fa-solid fa-check"></i>다른 사람이 운전해요</span>
             </div>
             <div class="add_reservation_box" id="addBookerBox">
               <p>운전자 한글 이름</p>
