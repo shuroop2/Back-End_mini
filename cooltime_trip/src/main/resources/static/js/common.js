@@ -43,7 +43,17 @@ $(document).ready(function(){
 			if($('.nav_flight').hasClass('nav_active'));
 				$('.nav_flight').removeClass('nav_active');
 		}
-	} 
+	} else if(path == 'mypa') {
+		if($('.nav_rent').hasClass('nav_active')){
+			$('.nav_rent').removeClass('nav_active');
+		}
+		if($('.nav_stay').hasClass('nav_active')){
+			$('.nav_stay').removeClass('nav_active');
+		}
+		if($('.nav_flight').hasClass('nav_active')){
+			$('.nav_flight').removeClass('nav_active');
+		}
+	}
 	
 	// 탑 버튼 눌렀을 때 최상단으로
 	$(".btn_top").click(function () {
