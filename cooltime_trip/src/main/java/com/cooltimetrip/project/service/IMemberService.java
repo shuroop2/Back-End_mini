@@ -11,6 +11,7 @@ public interface IMemberService {
 	public String mypageAuthentication(String memId);
 	void updateMemPwd(String memId, String memPwd);
 	void updateMemName(String memId, String memName);
+	void updateMemPhone(String memId, String memPhone);
 	//public String mypageAuthentication(HashMap<String, Object> map);
 	//public boolean mypageAuthentication(String memId, String memPwd);
 }

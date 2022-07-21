@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!-- 양식 다시 제출 방지 -->
+<!-- 페이지 새로고침 안해도댐! -->
 <%    
 response.setHeader("Cache-Control","no-store");    
 response.setHeader("Pragma","no-cache");    

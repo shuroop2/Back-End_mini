@@ -6,21 +6,32 @@ $('.check_agree_terms').click(function() {
 
 // 다른 사람이 운전해요 클릭 시
 $('.another_person_drive').click(function() {
-  $(this).addClass('another')
-  $('.another i').toggleClass('fa-active');
+  $(this).toggleClass('another');
+  $('.fa-check').toggleClass('fa-active');
   
-  // input 초기화
-  $('#driverKrName').val("");
-  $('#driverEmail').val("");
-  $('#driverEmailDomain').val("");
-  $('.selected_phone_value').text("010");
-  $('#driverPhoneNum1').val("");
-  $('#driverPhoneNum2').val("");
-  $('#"driverBirth"').val("");
-  
-  // 라디오 버튼 초기화
-  $('input[name="license"]').removeAttr('checked');
-  $('input[name="license"]')[0].checked = true;
+  if($(this).hasClass('another')){
+  	  // input 초기화
+	  $('#driverKrName').val("");
+	  $('#driverEmail').val("");
+	  $('#driverEmailDomain').val("");
+	  $('.selected_phone_value').text("010");
+	  $('#driverPhoneNum1').val("");
+	  $('#driverPhoneNum2').val("");
+	  $('#driverBirth').val("");
+	  
+	  // 라디오 버튼 초기화
+	  $('input[name="license"]').removeAttr('checked');
+	  $('input[name="license"]')[0].checked = true;
+	  
+  }else{
+  	  // 다시 재 선택했을 경우
+  	  $('#driverKrName').val($('#rentBookerName').text());
+	  $('#driverEmail').val($('#rentBookerEmail').text().substr(0,$('#rentBookerEmail').text().indexOf('@')));
+	  $('#driverEmailDomain').val($('#rentBookerEmail').text().substr($('#rentBookerEmail').text().indexOf('@')+1));
+	  $('.selected_phone_value').text($('#rentBookerPhone').text().substr(0,3));
+	  $('#driverPhoneNum1').val($('#rentBookerPhone').text().substr(4,4));
+	  $('#driverPhoneNum2').val($('#rentBookerPhone').text().substr(9,4));
+  }
   
 });
 

@@ -147,6 +147,23 @@ $(document).ready(function () {
     }, 400);
     return false;
   });
+  
+  // 지도보기 클릭 시 새탭에서 큰 지도 보기
+	$('.btn_kakaomap').click(function() {
+		$('#form_to_map').submit();
+	});
+
+	$('.btn_kakaomap').hover(
+		function(){
+			$('.btn_kakaomap').css('border', '1px solid #48A0FF');
+		},
+		function(){
+			$('.btn_kakaomap').css('border', '1px solid #DDDDDD');
+	});
+	
+	
+	
+	
 });
 
 

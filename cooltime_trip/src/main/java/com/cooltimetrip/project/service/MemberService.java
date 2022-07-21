@@ -50,6 +50,12 @@ public class MemberService implements IMemberService {
 		dao.updateMemPwd(memId, memPwd);
 	}
 
+	@Override
+	public void updateMemPhone(String memId, String memPhone) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/*
 	 * @Override public String updateMemPwd(HashMap<String, String> map) { // TODO
 	 * Auto-generated method stub return dao.updateMemPwd(map); }

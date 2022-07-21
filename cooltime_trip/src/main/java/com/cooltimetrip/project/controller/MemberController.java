@@ -30,10 +30,10 @@ public class MemberController {
 		return "member/signup";
 	}
 	 
-	@RequestMapping("/mypage")
-	public String mypage() {
-		return "member/mypage"; 
-	}
+//	@RequestMapping("/mypage")
+//	public String mypage() {
+//		return "member/mypage"; 
+//	}
 	
 	@RequestMapping("/mypage_authentication")
 	public String mypageAuthentication() {
@@ -143,14 +143,14 @@ public class MemberController {
 		return result;
 	}
 	
+	// 전화번호 변경 페이지
 	@RequestMapping("/mypage_update_phone") 
 	public String mypageUpdatePhone() {
 		return "member/mypage_update_phone";
 	} 
+	
+	
 	 
-	
-	
-	
 	
 	// 회원가입 요청
 	@RequestMapping("/signupMember") 
@@ -165,4 +165,10 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	} 
+
+	// 예약 완료 요청
+	@RequestMapping("/rsv_complete") 
+	public String rsvComplete() {
+		return "/member/mypage_rsv_complete";
+	}
 }

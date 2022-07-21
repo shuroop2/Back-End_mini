@@ -193,6 +193,7 @@ $(document).ready(function(){
       left: '0'
     }, 500, function(){
       $('#rmdfirstList').css('right','');
+      $('#rmdfirstList').css('left','');
     });
     $('#divfirstNext').fadeIn(300);
     $('#divfirstPrev').fadeOut(300);
@@ -215,6 +216,7 @@ $(document).ready(function(){
       left: '0'
     }, 500, function(){
       $('#rmdsecondList').css('right','');
+      $('#rmdsecondList').css('left','');
     });
     $('#divsecondNext').fadeIn(300);
     $('#divsecondPrev').fadeOut(300);

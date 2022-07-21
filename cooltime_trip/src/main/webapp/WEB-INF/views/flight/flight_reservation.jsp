@@ -14,6 +14,7 @@
     <div class="section_wrap">
         <!-- 섹션 왼쪽 부분 -->
         <section class="section_left">
+        <form id="form_flight_reservation" method="post" action="/mypage">
             <!-- 예약한 항공권 정보 -->
             <article class="rsv_info">
                 <!-- 예약한 항공권 요약 -->
@@ -40,6 +41,7 @@
                             <td>
                                 <p>${arrive_location }</p>
                                 <p>CJU</p>
+                                
                             </td>
                             <td>
                                 <p>운항종류</p>
@@ -114,6 +116,7 @@
                         </tr>
                     </table>
                 </div>
+                
                 <!-- 항공 예약 규정 -->
                 <div class="rsv_flight_regulation">
                     <ul>
@@ -122,6 +125,30 @@
                     </ul>
                 </div>
             </article>
+            	<input type="hidden" name="dep_airline" value="${dep_airline }">
+                <input type="hidden" name="dep_flight_no" value="${dep_flight_no }">
+                <input type="hidden" name="dep_start_time" value="${dep_start_time }">
+                <input type="hidden" name="dep_end_time" value="${dep_end_time }">
+                <input type="hidden" name="dep_start_city" value="${depart_location }">
+                <input type="hidden" name="dep_end_city" value="${arrive_location }">
+                <input type="hidden" name="dep_during_time" value="${dep_during_time }">
+                <input type="hidden" name="arr_airline" value="${arr_airline }">
+                <input type="hidden" name="arr_flight_no" value="${arr_flight_no }">
+                <input type="hidden" name="arr_start_time" value="${arr_start_time }">
+                <input type="hidden" name="arr_end_time" value="${arr_end_time }">
+                <input type="hidden" name="arr_start_city" value="${arrive_location }">
+                <input type="hidden" name="arr_end_city" value="${depart_location }">
+                <input type="hidden" name="arr_during_time" value="${arr_during_time }">
+                <input type="hidden" name="daterange" value="${daterange }">
+                <input type="hidden" name="personCount" value="${personCount }">
+                <input type="hidden" name="charge_flight" value="${charge_flight }">
+                <input type="hidden" name="charge_fuel" value="${charge_fuel }">
+                <input type="hidden" name="charge_tax" value="${charge_tax }">
+                <input type="hidden" name="charge_ticket" value="${charge_ticket }">
+                <input type="hidden" name="charge_total" value="${charge_total }">
+
+                
+            </form>
             <!-- 예약자 정보 -->
             <article class="user_info">
                 <h3>예약자 정보</h3>

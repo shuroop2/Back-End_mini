@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cooltimetrip.project.dao.IHotelDAO;
 import com.cooltimetrip.project.model.HotelVO;
+import com.cooltimetrip.project.model.RoomVO;
 
 @Service
 public class HotelService implements IHotelService {
@@ -21,4 +22,10 @@ public class HotelService implements IHotelService {
 		return dao.listAllHotel();
 	}
 
+	@Override
+	public HotelVO viewDetailRoom(String hotelNo) {
+		return dao.viewDetailRoom(hotelNo);
+	}
+
+	
 }

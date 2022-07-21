@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.rsv_wrap{
+	height: 50vh;
+	text-align: center;
+}
+
+#rsvImg{
+	text-align: center;
+}
+
+#rsvImg img{
+	width: 100px;
+	margin-top: 150px;
+}
+
+.rsv_text{
+	display: block;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.rsv_btn{
+	width: 350px;
+    height: 50px;
+    margin-top: 50px;
+    border: none;
+    background-color: #48A0FF;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+}

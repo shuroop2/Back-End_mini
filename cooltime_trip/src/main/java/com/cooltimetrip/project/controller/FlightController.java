@@ -93,6 +93,8 @@ public class FlightController {
 		model.addAttribute("dep_end_time", (String) map.get("dep_end_time"));
 		model.addAttribute("arr_start_time", (String) map.get("arr_start_time"));
 		model.addAttribute("arr_end_time", (String) map.get("arr_end_time"));
+		model.addAttribute("dep_during_time", (String) map.get("dep_during"));
+	    model.addAttribute("arr_during_time", (String) map.get("arr_during"));
 		model.addAttribute("classType", (String) map.get("classType"));
 		model.addAttribute("personCount", (String) map.get("personCount"));
 		model.addAttribute("charge_flight", (String) map.get("charge_flight"));

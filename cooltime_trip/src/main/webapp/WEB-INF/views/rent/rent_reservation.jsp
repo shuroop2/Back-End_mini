@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<!-- 양식 다시 제출 방지 -->
+<%    
+	response.setHeader("Cache-Control","no-store");    
+	response.setHeader("Pragma","no-cache");    
+	response.setDateHeader("Expires",0);    
+	if (request.getProtocol().equals("HTTP/1.1"))  
+	        response.setHeader("Cache-Control", "no-cache");  
+%>
 <!DOCTYPE html>
 <html>
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
@@ -23,7 +32,10 @@
               </div>
               <div class="name_date_box">
                 <div class="car_name">${car.carName}</div>
-                <div class="car_date">${dateTime[0]} ~ <br>${dateTime[1]}</div>
+                <div class="car_date">
+                	${fn:substring(dateTime[0],0,2)}월 ${fn:substring(dateTime[0],3,5)}일 ${fn:substring(dateTime[0],5,17)} ~<br> 
+                	${fn:substring(dateTime[1],1,3)}월 ${fn:substring(dateTime[1],4,6)}일 ${fn:substring(dateTime[1],6,18)}
+               	</div>
               </div>
             </div>
             <div class="rent_price_info">
@@ -61,7 +73,7 @@
           <article class="add_reservation_info">
             <div class="add_reservation_info_title">
               <p>추가 예약 정보</p>
-              <span class="another_person_drive" onclick="anotherPersonCheck()"><i class="fa-solid fa-check"></i>다른 사람이 운전해요</span>
+              <span class="another_person_drive"><i class="fa-solid fa-check"></i>다른 사람이 운전해요</span>
             </div>
             <div class="add_reservation_box" id="addBookerBox">
               <p>운전자 한글 이름</p>
