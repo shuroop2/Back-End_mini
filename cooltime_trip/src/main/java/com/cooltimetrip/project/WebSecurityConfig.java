@@ -24,7 +24,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin().disable()
 			.headers().frameOptions().disable();
 	}
-	
 }
 
 // .csrf() : 사이트 간 요청 위조 (공격자가 위도하지 않는 요청을 수행하게 하는 취약점)

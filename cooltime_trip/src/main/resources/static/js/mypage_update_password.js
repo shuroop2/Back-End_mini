@@ -31,12 +31,10 @@ $(document).ready(function(){
     // var password2 = $('.input_check_password').val();// 새 비밀번호 확인 입력 값
     //var check_password = false;// 
 
-/*
+	/*
     $('.btn_update_password').click(function(){ 
-    
-    	
         // 비밀번호 길이 6~15 범위 벗어났을 경우
-        if($('.input_update_password').val().length < 8 || $('.input_update_password').val().length > 16){
+        if($('.input_update_password').val().length < 8 || $('.input_update_password').val().length > 15){
             $('.error_update_password1').hide();// 기존 비밀번호와 동일합니다 - 숨김
             $('.error_check_password').hide();// 비밀번호가 일치하지 않습니다 - 숨김
             $('.input_update_password').css('border', '1px solid #E65454');
@@ -58,67 +56,43 @@ $(document).ready(function(){
                 $('.error_check_password').hide();// 비밀번호가 일치하지 않습니다 - 숨김
                 user_pw = $('.input_update_password').val();// 기존 비밀번호를 새 비밀번호로 대체
                 alert("비밀번호가 변경되었습니다.");
-                location.href = '/';
+                //location.href = '/';
             }
         }
     });
-*/
+	*/
 
-    
+
     $('#form_update_password').on('submit', function(){
-    
-    	var new_pwd = $('.input_update_password').val();// 입력한 새로운 비밀번호 input 값
-    	var check_pwd = $('.input_check_password').val();// 비밀번호 확인 input 값
-    	alert("작동");
-    	/*
-    	if(new_pwd.length() > 7 && new_pwd.length() < 16){// 비밀번호 길이 체크
-    		
-    	} else {// 비밀번호 길이 충족 시
-    		
-    	}*/
+    	event.preventDefault();	
     	
-    		event.preventDefault();	
-	    	$.ajax({
-	    		type: "post",
-	    		url: "updatePassword",
-	    		data:{"input_pwd":$('#input_pwd').val()},
-	    		dataType: "text",
-	    		success: function(result){// 성공 시 수행
-	    			if(result=="success"){// 비밀번호 변경 성공
-	    				if(input_pwd != pwd_check){
-	    					alert("변경 완료");
-	    				}
-	    				
-	    				//location.href="/";
-	    			}else if($.trim(result)=="fail"){// 기존 비밀번호와 일치할 경우
-	    				alert("중복");
-	    				$('.input_check_password').css('border', '1px solid #DDDDDD');
-    					$('.error_check_password').hide();// 비밀번호가 일치하지 않습니다 - 숨김
-	    				$('.input_update_password').css('border', '1px solid #DDDDDD');
-	    				$('.error_update_password2').hide();// 비밀번호를 확인해주세요 - 숨김
-	    				$('.input_update_password').css('border', '1px solid #E65454');
-	            		$('.error_update_password1').show();// 기존 비밀번호와 동일합니다 - 표시
-	    			}else if($.trim(result)=="range"){// 비밀번호 범위 벗어났을 경우
-	    				alert("범위오류");
-		    			$('.input_check_password').css('border', '1px solid #DDDDDD');
-						$('.error_check_password').hide();// 비밀번호가 일치하지 않습니다 - 숨김
-						$('.input_update_password').css('border', '1px solid #DDDDDD');
-						$('.error_update_password1').hide();// 기존 비밀번호와 동일합니다 - 숨김
-						$('.input_update_password').css('border', '1px solid #E65454');
-			    		$('.error_update_password2').show();// 비밀번호를 확인해주세요 - 표시
-	    			} else if($.trim(result)=="notmatch"){// 비밀번호 확인 결과 불일치 경우
-	    				alert("불일치");
-	    				$('.input_update_password').css('border', '1px solid #DDDDDD');
-				    	$('.error_update_password2').hide();// 비밀번호를 확인해주세요 - 숨김
-			    		$('.error_update_password1').hide();// 기존 비밀번호와 동일합니다 - 숨김
-			    		$('.input_check_password').css('border', '1px solid #E65454');
-			    		$('.error_check_password').show();// 비밀번호가 일치하지 않습니다 - 표시
-	    			}
-	    		},
-	    		error: function(request, error){
-	    			alert("DB_Connection : error");
-	    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
-	    		}		  
-	    	});//ajax
+    	$.ajax({
+    		type: "post",
+    		url: "updatePassword",
+    		data:{"input_pwd":$('#input_pwd').val(),"check_pwd":$('#check_pwd').val()},
+    		dataType: "text",
+    		success: function(result){// 성공 시 수행
+				if(result=="success"){
+					$('.error_update_password1').hide();// 기존 비밀번호와 동일합니다 - 숨김
+	                $('.error_update_password2').hide();// 비밀번호를 확인해주세요 - 숨김
+	                $('.error_check_password').hide();// 비밀번호가 일치하지 않습니다 - 숨김
+	                $('.input_update_password').css('border', '1px solid #DDDDDD');
+	                user_pw = $('.input_update_password').val();// 기존 비밀번호를 새 비밀번호로 대체
+	                alert("비밀번호가 변경되었습니다.");
+	               	location.href = '/mypage';
+				} 
+				else{
+					$('.error_update_password1').hide();// 기존 비밀번호와 동일합니다 - 숨김
+			        $('.error_check_password').hide();// 비밀번호가 일치하지 않습니다 - 숨김
+			        $('.input_update_password').css('border', '1px solid #E65454');
+			        $('.error_update_password2').show();// 비밀번호를 확인해주세요 - 표시
+				}	
+    		},
+    		error: function(request, error){
+    			alert("error");
+    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
+    		}		  
+    	});//ajax
     });
+   
 });

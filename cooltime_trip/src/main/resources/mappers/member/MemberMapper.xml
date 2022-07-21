@@ -18,6 +18,10 @@
 	</insert>
 	
 	<!-- 비밀번호 변경 - 확인 -->
+	<!-- <update id="updateMemPwd" parameterType="String">
+		UPDATE member SET memPwd=#{memPwd} WHERE memId=#{memId}
+	</update> -->
+	
 	<update id="updateMemPwd" parameterType="String">
 		UPDATE member SET memPwd=#{memPwd} WHERE memId=#{memId}
 	</update>

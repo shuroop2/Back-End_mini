@@ -40,6 +40,35 @@ public class MemberController {
 		return "member/mypage_authentication";
 	}  
 	
+	// 로그인 처리     
+	@ResponseBody
+	@RequestMapping("/loginCheck") 
+	public String loginCheck(@RequestParam HashMap<String, Object> param, HttpSession session) { 
+		String memId = memService.loginCheck(param); 
+		String result = "fail";
+ 
+		// 아이디/비밀번호 일치하면 
+		if(memId!=null) { // 로그인 성공 시 세션 변수 지정 
+			session.setAttribute("sid", memId); 
+			result = "success"; 
+		}
+  		return result; 
+	}
+	 
+	// 로그인 처리 (비밀번호 암호화)   
+//		@ResponseBody
+//		@RequestMapping("/loginCheck")
+//		public String loginCheck(@RequestParam HashMap<String, Object> param, HttpSession session) {
+//			String result = memService.loginCheck(param);
+//			
+//			// 아이디/비밀번호 일치하면
+//			if(result.equals("success")) {
+//				// 로그인 성공 시 세션 변수 지정
+//				session.setAttribute("sid", param.get("id"));
+//			}
+//			return result;  
+//		}  
+	
 	// 내 정보 비밀번호 인증 확인 
 	@ResponseBody
 	@RequestMapping("/mypageCheck") 
@@ -92,96 +121,36 @@ public class MemberController {
 		return "member/mypage_update_password";
 	}
 	  
-	// 비밀번호 변경 처리  
+	// 비밀번호 변경 처리   
 	@ResponseBody
-	//@GetMapping("/updatePassword")
 	@RequestMapping("/updatePassword") 
-	public String updatePassword(HttpSession session,
-								HttpServletRequest req
-								//,@RequestParam(required=false, defaultValue="") String check_pwd
-								//,String input_pwd
-								,@RequestParam HashMap<String, String> map
-								,Model model
+	public String updatePassword(HttpSession session
+								,@RequestParam("input_pwd") String input_pwd
+								,@RequestParam("check_pwd") String check_pwd
 								) {
 		String memId = (String) session.getAttribute("sid");
-		
 		MemberVO mem = memService.getMemberInfo(memId);
-		String memPwd = mem.getMemPwd(); 
-		String test = (String) req.getParameter("check_pwd");
-		String result = "fail";  
-		
-		//String input_pwd = req.getParameter("input_pwd");
-		//String check_pwd = req.getParameter("check_pwd");
-		
-		String input_pwd = map.get("input_pwd");
-		String check_pwd = map.get("check_pwd");
-		//String check = check_pwd;
-		/*
-		 * if(input_pwd!=null) { result="success"; } else result="fail";
-		 */
-		//if(input_pwd.length()!=0) {
-		if(input_pwd!=null) {
-			if(check_pwd!=null) {
-				if(!input_pwd.equals(check_pwd)){
-					result = "notmatch";   
-				} else if(input_pwd.length()<8||input_pwd.length()>15) {
-					result = "range";  
-				} else if(!input_pwd.equals(memPwd)) {
-					memService.updateMemPwd(memId, input_pwd);
-					result = "success";   
-				} else
-					result = "fail";
-			}
+		String memPwd = mem.getMemPwd();
+		 
+		String result = "fail";
+		if((input_pwd.length()<8 || input_pwd.length()>15)
+			|| (input_pwd.equals(memPwd))
+			|| !(input_pwd.equals(check_pwd))) {
+		}else {
+			result = "success";	
+			memService.updateMemPwd(memId, input_pwd);
 		}
-			 
-		//} else {
-			
-		//}
-			System.out.println(input_pwd+"\n"+check_pwd+"\n"+test);
-			System.out.println(result);
 		return result;
 	}
 	
-	@RequestMapping("/mypage_update_phone")
+	@RequestMapping("/mypage_update_phone") 
 	public String mypageUpdatePhone() {
 		return "member/mypage_update_phone";
 	} 
 	 
-	// 로그인 처리     
-	@ResponseBody
-	@RequestMapping("/loginCheck") 
-	public String loginCheck(@RequestParam HashMap<String, Object> param, HttpSession session) { 
-		String memId = memService.loginCheck(param); 
-		String result = "fail";
- 
-		// 아이디/비밀번호 일치하면 
-		if(memId!=null) { // 로그인 성공 시 세션 변수 지정
-			session.setAttribute("sid", memId); 
-			result = "success"; 
-		}
-  		return result; 
-	}
-	 
-	// 로그인 처리 (비밀번호 암호화)   
-//	@ResponseBody
-//	@RequestMapping("/loginCheck")
-//	public String loginCheck(@RequestParam HashMap<String, Object> param, HttpSession session) {
-//		String result = memService.loginCheck(param);
-//		
-//		// 아이디/비밀번호 일치하면
-//		if(result.equals("success")) {
-//			// 로그인 성공 시 세션 변수 지정
-//			session.setAttribute("sid", param.get("id"));
-//		}
-//		return result;  
-//	}  
 	
-	// 로그아웃
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
-	} 
+	
+	
 	
 	// 회원가입 요청
 	@RequestMapping("/signupMember") 
@@ -189,4 +158,11 @@ public class MemberController {
 		memService.insertMember(vo); 
 		return "/member/login";
 	}
+	
+	// 로그아웃
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	} 
 }

@@ -24,7 +24,7 @@ $(document).ready(function(){
         location.href='/';
     });
 
-	
+	/*
 	$('#form_mypage_update').on('submit', function(){	
 		event.preventDefault();	
     	$.ajax({

@@ -9,9 +9,10 @@ public interface IMemberDAO {
 	void insertMember(MemberVO vo);
 	public MemberVO getMemberInfo(String memId);
 	public String mypageAuthentication(String memId);
-	void updateMemPwd(String memId, String memPwd);
-	void updateMemName(String memId, String memName);
+	//void updateMemPwd(String memId, String memPwd);
+	void updateMemName(String memId, String memName);  
 	//public String mypageAuthentication(HashMap<String, Object> map);
 	//public boolean mypageAuthentication(String memId, String memPwd);
+	void updateMemPwd(String memId, String memPwd);
 	
 }
