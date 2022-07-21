@@ -99,8 +99,6 @@ inputEmail.addEventListener('click',()=>{
 });
 
 
-
-
 // 이름, 이메일, 휴대폰번호, 생년월일 중 하나라도 입력되지 않으면 입력하라는 알림
 let driverKrName = document.getElementById("driverKrName");
 let driverEmail = document.getElementById("driverEmail");
@@ -170,6 +168,10 @@ function checkDriverInfo2(){
     // 입력 생년월일로 만 18세 이상 체크
     alert("생년월일을 다시 입력해주세요");
   }
+}
+
+function formSubmit(){
+	$('#rentRsvForm').submit();
 }
 
 

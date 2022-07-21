@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cooltimetrip.project.model.BookedRentVO;
 import com.cooltimetrip.project.model.CarVO;
 import com.cooltimetrip.project.model.MemberVO;
 import com.cooltimetrip.project.service.MemberService;
@@ -102,12 +103,14 @@ public class RentController {
 		return "rent/rent_detail";
 	}
 	
+	// 상세에서 지도보기 요청
 	@RequestMapping("/rent_map")
 	public String rentMap(@RequestParam String address, Model model) {
 		model.addAttribute("address", address);
 		return "rent/rent_map";
 	}
 	
+	// 예약 페이지
 	@RequestMapping("/rent_reservation")
 	public String rentReservation(@RequestParam int carNo,
 								  @RequestParam String daterange,
@@ -134,5 +137,27 @@ public class RentController {
 		model.addAttribute("dateTime", dateTime);
 		
 		return "rent/rent_reservation";
+	}
+	
+	// 예약 완료 페이지
+	@RequestMapping("/rent_rsv_complete")
+	public String rentRsvInsert(BookedRentVO vo,
+								@RequestParam int carNo,
+								@RequestParam String daterange,
+								@RequestParam String chk,
+								HttpSession session,
+								Model model) {
+		String memId = (String)session.getAttribute("sid");
+		
+		// VO에 memId 값 설정
+		vo.setMemId(memId);
+		vo.setCarNo(carNo);
+		vo.setBookDateRange(daterange);
+		
+		rentService.insertBookedRentInfo(vo);
+		
+		model.addAttribute("chk", chk);
+		
+		return "member/mypage_rsv_complete";
 	}
 }

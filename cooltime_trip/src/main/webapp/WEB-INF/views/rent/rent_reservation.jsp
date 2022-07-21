@@ -20,7 +20,8 @@
 <body>
   <!-- header -->
  	<c:import url="/WEB-INF/views/layout/top.jsp"/>
- <!-- 렌트 예약 -->	
+ <!-- 렌트 예약 -->
+ <form id="rentRsvForm" method="post" action="<c:url value='/rent_rsv_complete'/>">	
   <section>
     <div class="rent_reservation wrap">
       <div class="rent_reservation_container">
@@ -32,10 +33,15 @@
               </div>
               <div class="name_date_box">
                 <div class="car_name">${car.carName}</div>
-                <div class="car_date">
-                	${fn:substring(dateTime[0],0,2)}월 ${fn:substring(dateTime[0],3,5)}일 ${fn:substring(dateTime[0],5,17)} ~<br> 
-                	${fn:substring(dateTime[1],1,3)}월 ${fn:substring(dateTime[1],4,6)}일 ${fn:substring(dateTime[1],6,18)}
+                <div id="carDate" class="car_date">
+                	${fn:substring(dateTime[0],0,2)}월 ${fn:substring(dateTime[0],3,5)}일 ${fn:substring(dateTime[0],5,17)} ~ <br>${fn:substring(dateTime[1],1,3)}월 ${fn:substring(dateTime[1],4,6)}일 ${fn:substring(dateTime[1],6,18)}
                	</div>
+               	<input type="hidden" id="carNo" name="carNo" value="${car.carNo}"/>
+               	<input type="hidden" id="daterange" name="daterange" value=""/>
+               	<input type="hidden" id="rentRsvTitle" name="chk" value="3"/>
+               	<script>
+               		$('#daterange').val($.trim($('#carDate').text()));
+               	</script>
               </div>
             </div>
             <div class="rent_price_info">
@@ -170,11 +176,12 @@
   </section>
   <section>
     <div class="rent_reservation_btn">
-      <button onclick="checkDriverInfo1() && checkDriverInfo2()" id="rentReservationBtn">
+      <button type="button" onclick="checkDriverInfo1() && checkDriverInfo2(); formSubmit();" id="rentReservationBtn">
         예약하기
       </button>
     </div>
   </section>
+  </form>
   <img class="btn_top" src="<c:url value='/images/btn_top.png'/>">
 </body>
 </html>

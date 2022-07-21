@@ -26,12 +26,27 @@
 	
 	<!-- 전체 car 조회  -->
 	<select id="listAllCar" resultMap="carResult">
-		SELECT * FROM car C INNER JOIN rent R ON R.rentNo = C.rentNo ORDER BY carYear DESC
+		SELECT * FROM car C INNER JOIN rent R ON R.rentNo = C.rentNo ORDER BY carCount
 	</select>
 	
 	<!--  상품 상세 정보 조회 -->
 	<select id="detailViewCar" parameterType="int" resultType="com.cooltimetrip.project.model.CarVO">
 		SELECT * FROM car C INNER JOIN rent R ON R.rentNo = C.rentNo WHERE carNo = #{carNo}
+	</select>
+	
+	<!-- 마이페이지에 추가 / booked_rent_no는 자동 증가 -->
+	<insert id="insertBookedRentInfo" parameterType="com.cooltimetrip.project.model.BookedRentVO">
+		INSERT INTO booked_rent (carNo, memId, bookDateRange)
+		VALUES(#{carNo}, #{memId}, #{bookDateRange})
+	</insert>
+	
+	<!-- 마이페이지에 예약 렌트카 불러오기 -->	
+	<select id="listBookedCar" parameterType="string" resultType="com.cooltimetrip.project.model.BookedRentVO">
+		SELECT * FROM booked_rent BR
+			INNER JOIN car C ON C.carNo = BR.carNO
+			INNER JOIN Rent R ON R.rentNo = C.rentNo
+		WHERE BR.memId = #{memId}
+		ORDER BY BR.booked_rent_no
 	</select>
 
 </mapper>

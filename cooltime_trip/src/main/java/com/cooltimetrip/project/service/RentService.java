@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.cooltimetrip.project.dao.IRentDAO;
+import com.cooltimetrip.project.model.BookedRentVO;
 import com.cooltimetrip.project.model.CarVO;
 
 @Service
@@ -25,5 +26,17 @@ public class RentService implements IRentService {
 	public CarVO detailViewCar(int carNo) {
 		return dao.detailViewCar(carNo);
 	}
+
+	@Override
+	public void insertBookedRentInfo(BookedRentVO vo) {
+		dao.insertBookedRentInfo(vo);
+	}
+
+	@Override
+	public ArrayList<BookedRentVO> listBookedCar(String memId) {
+		return dao.listBookedCar(memId);
+	}
+
+	
 
 }
