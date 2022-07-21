@@ -345,87 +345,79 @@ function flightCheck(){
 }
 
 // 최근 검색한 항공권 슬라이드
-
 let rctSlideBox = document.querySelector(".recently_slide_box");
 let rctSlideCount = rctSlideBox.childElementCount;
 let rctPrev = document.querySelector(".recently_prev");
 let rctNext = document.querySelector(".recently_next");
 let rctIndex = 0;
 let rctPosition = 0;
-const moveWidth = 440;
-
-// 최근 항공권 검색 이전 버튼
-function rctPrevButton(){
-
-  if(rctIndex > 0){
-    rctPosition += moveWidth;
-    rctSlideBox.style.transform = `translateX(${rctPosition}px)`
-    rctIndex -= 1;
-  }
-/*
-  if(rctIndex == (rctSlideCount-(rctSlideCount-2))){
-    rctNext.style.visibility = "visible";
-  }
-*/
-  if(rctIndex == 0){
-    rctPrev.style.visibility = "hidden";
-  }
-
-	rctNext.style.visibility = "visible";
-	// rctPrev.style.visibility = "hidden";
-}
+const nMoveWidth = 440;
+const pMoveWidth = 440;
 
 // 최근 항공권 검색 다음버튼
 function rctNextButton(){
 
-  if(rctIndex < (rctSlideCount-3)){
-    rctPosition -= moveWidth;
-    rctSlideBox.style.transform = `translateX(${rctPosition}px)`;
-    rctSlideBox.style.transition = "0.5s";
-    rctIndex += 1;
-  }
+	  if(rctSlideCount > 3){
+	  		rctPrev.style.visibility = "visible";
+	  		rctIndex += 1
+	   		rctPosition += nMoveWidth;
+		    rctSlideBox.style.transform = `translateX(-${rctPosition}px)`;
+		    rctSlideBox.style.transition = "0.5s"
+		   console.log(rctIndex);
+		   console.log(rctPosition);
+		   if( rctIndex == rctSlideCount-3){
+		   	rctNext.style.visibility = "hidden";
+		   }
+	  }
+}
 
-  if(rctIndex == (rctSlideCount-3)){
-    rctNext.style.visibility = "hidden";
-  }
-/*
-  if(rctIndex <= (rctSlideCount-3)){
-    rctPrev.style.visibility = "visible";
-  }
-*/  
-  rctPrev.style.visibility = "visible";
-  // rctNext.style.visibility = "hidden";
+// 최근 항공권 검색 이전 버튼
+function rctPrevButton(){
+
+		if(rctSlideCount > 3){
+	  		rctIndex -= 1
+	   		rctPosition -= pMoveWidth;
+		    rctSlideBox.style.transform = `translateX(-${rctPosition}px)`;
+		    rctNext.style.visibility = "visible";
+		   console.log(rctIndex);
+		   console.log(rctPosition);
+		   if(rctIndex == 0){
+		   		rctPrev.style.visibility = "hidden";
+		   		rctNext.style.visibility = "visible";
+		   }
+		   
+	  }
+	 
 
 }
+
 // 최근 검색한 항공권 초기 설정 및 클릭 이벤트
 function rctInit(){
   rctPrev.addEventListener('click',rctPrevButton);
   rctNext.addEventListener('click',rctNextButton);
   rctPrev.style.visibility = "hidden";
+  rctNext.style.visibility = "hidden";
+  if(rctSlideCount > 3){
+  	rctNext.style.visibility = "visible";
+  }
 }
 
 rctInit();
 
-// 최근 검색한 항공권 슬라이드 3개 이상 되었을 때 이동 버튼 보이게
-if($('.recently_item').length > 3) {
-	rctNext.style.visibility = "visible";
-}
-
-// 최근 검색한 항공권이 없을 때 공간 안보이도록
-if($('.recently_item').length == 0){
-	$('.recently_slide_container').css('display', 'none');
-}	
 
 //최근 검색한 항공권 슬라이드 내용 지우기
 let rctBox = document.querySelectorAll(".recently_slide_box > div");
 $('.recently_colse_btn').click(function(){
   $(this).closest('.recently_item').remove();
-  if($('.recently_item').length == 3){
-    rctNext.style.visibility = "hidden";
-    rctPrev.style.visibility = "hidden";
+  rctPrevButton();
+  if($('.recently_item').length <4){
+  	rctNext.style.visibility = "hidden";
   }
+
   if($('.recently_item').length == 0){
     $('.recently_slide_container').css('display', 'none');
+    rctPrev.style.visibility = "hidden";
+ 	rctNext.style.visibility = "hidden";
   }
   
 });

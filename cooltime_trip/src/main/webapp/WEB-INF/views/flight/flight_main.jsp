@@ -500,7 +500,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 			data: {"historyNo": index},
 			success: function(result) {
 				if(result == 1) {
-					alert(index);
+					
 				} else {
 					alert("삭제 실패");
 				}
