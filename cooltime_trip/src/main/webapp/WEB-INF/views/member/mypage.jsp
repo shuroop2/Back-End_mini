@@ -39,115 +39,109 @@
           <a href="<c:url value='#'/>"><img src="<c:url value='/images/btn_right.png'/>"></a>
         </div>
 
-        <!-- 마이페이지 항공리스트 -->
+       <!-- 마이페이지 항공리스트 -->
+       <c:forEach var="fList" items="${fList }">
         <section class="reservation_air_container" id="booked_air_page">
           <div class="reservation_air_box">
             <div class="reservation_air_contents">
               <div>
                 <div class="reservation_air_content1">
                   <div class="reservation_airline">
-                    <img src="<c:url value='/images/lg_jin_air.png'/>" alt="진에어 로고">
-                    <div>진에어</div>
+                    <img src="<c:url value='/images/${fList.dep_airline }.png'/>" alt="진에어 로고">
+                    <div>${fList.dep_airline }</div>
                   </div>
                   <div class="air_fly">
                     <div class="air_fly_time1">
-                      <span>09:40</span><img src="<c:url value='/images/ic_arrow_right_plane.png'/>" alt="화살표"><span>15:05</span>
+                      <span>${fList.dep_start_time }</span><img src="<c:url value='/images/ic_arrow_right_plane.png'/>" alt="화살표"><span>${fList.arr_end_time }</span>
                     </div>
                     <div class="air_fly_time2">
-                      <span>ICN</span><span>04시간 25분</span><span>GUM</span>
+                      <span>${fList.dep_start_city }</span><span>${fList.dep_during_time }</span><span>${fList.dep_end_city }</span>
                     </div>
                   </div>
                 </div>
                 <div class="reservation_air_content2">
                   <div class="reservation_airline">
-                    <img src="<c:url value='/images/lg_jin_air.png'/>" alt="진에어 로고">
-                    <div>진에어</div>
+                    <img src="<c:url value='/images/${fList.dep_airline }.png'/>" alt="진에어 로고">
+                    <div>${fList.arr_airline }</div>
                   </div>
                   <div class="air_fly">
                     <div class="air_fly_time1">
-                      <span>09:40</span><img src="<c:url value='/images/ic_arrow_right_plane.png'/>" alt="화살표"><span>15:20</span>
+                      <span>${fList.arr_start_time }</span><img src="<c:url value='/images/ic_arrow_right_plane.png'/>" alt="화살표"><span>${fList.dep_end_time }</span>
                     </div>
                     <div class="air_fly_time2">
-                      <span>ICN</span><span>04시간 40분</span><span>GUM</span>
+                      <span>${fList.arr_start_city }</span><span>${fList.arr_during_time }</span><span>${fList.arr_end_city }</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="air_total_pay">
                 <div>총 결제 금액</div>
-                <div>455,700<span>원</span></div>
-                <div class="detail_info">
-                  <span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-down right"></i>
+                <div>${fList.charge_total }<span>원</span></div>
+                <div>
+                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
                 </div>
               </div>
             </div>
           </div>
+        
           <div class="wrap_result_flight_detail">
           <div class="wrap_flight_title">
             <span class="flight_label">가는편</span>
-            <span class="flight_location">${obj.depAirportNm}</span>
+            <span class="flight_location">${fList.dep_start_city }</span>
             <img src="<c:url value='/images/ic_arrow_right_short.png' />">
-            <span class="flight_location">${obj.arrAirportNm}</span>
-            <span id="dep_flight_time${status.index }" class="flight_time">04시간 25분</span>
+            <span class="flight_location">${fList.arr_start_city }</span>
+            <span id="dep_flight_time" class="flight_time">${fList.dep_during_time }</span>
           </div>
           <div class="wrap_flight_time">
-            <span class="flight_no">${obj.airlineNm } ${obj.vihicleId }</span>
-            <input type="hidden" name="dep_airline${status.index }" value="${obj.airlineNm }">
-            <input type="hidden" name="dep_flight_no${status.index }" value="${obj.airlineNm } ${obj.vihicleId }">
+            <span class="flight_no">${fList.dep_flight_no }</span>
             <div class="flight_time_info">
               <img src="<c:url value='/images/line_plane.png' />">
               <div class="wrap_flight_detail">
                 <div class="wrap_flight_detail_top">
-                  <span class="flight_detail_time">${fn:substring(obj.depPlandTime,8,10)}:${fn:substring(obj.depPlandTime,10,12)}</span>
-                  <input type="hidden" name="dep_start_time${status.index }" value="${fn:substring(obj.depPlandTime,8,10)}:${fn:substring(obj.depPlandTime,10,12)}">
-                  <span class="flight_detail_loca">${obj.depAirportNm}</span>
+                  <span class="flight_detail_time">${fList.dep_start_time }</span>
+                  <span class="flight_detail_loca">${fList.dep_start_city }</span>
                   <span class="flight_detail_etc">무료수하물 1개</span>
                 </div>
                 <div class="wrap_flight_detail_middle">
-                  <span id="dep_flight_detail${status.index }" class="flight_detail_etc">04시간 25분</span>
+                  <span id="dep_flight_detail" class="flight_detail_etc">${fList.dep_during_time }</span>
                 </div>
                 <div class="wrap_flight_detail_bottom">
-                  <span class="flight_detail_time">${fn:substring(obj.arrPlandTime,8,10)}:${fn:substring(obj.arrPlandTime,10,12)}</span>
-                  <input type="hidden" name="dep_end_time${status.index }" value="${fn:substring(obj.arrPlandTime,8,10)}:${fn:substring(obj.arrPlandTime,10,12)}">
-                  <span class="flight_detail_loca">${obj.arrAirportNm}</span>
+                  <span class="flight_detail_time">${fList.arr_start_time }</span>
+                  <span class="flight_detail_loca">${fList.arr_start_city  }</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="wrap_flight_title">
             <span class="flight_label">오는편</span>
-            <span class="flight_location">${objArv[status.index].depAirportNm}</span>
+            <span class="flight_location">${fList.dep_end_city  }</span>
             <img src="<c:url value='/images/ic_arrow_right_short.png' />">
-            <span class="flight_location">${objArv[status.index].arrAirportNm}</span>
-            <span id="arr_flight_time${status.index }" class="flight_time">04시간 40분</span>
+            <span class="flight_location">${fList.arr_end_city  }</span>
+            <span id="arr_flight_time" class="flight_time">${fList.arr_during_time }</span>
           </div>
           <div class="wrap_flight_time">
-            <span class="flight_no">${objArv[status.index].airlineNm } ${objArv[status.index].vihicleId }</span>
-            <input type="hidden" name="arr_airline${status.index }" value="${objArv[status.index].airlineNm }">
-            <input type="hidden" name="arr_flight_no${status.index }" value="${objArv[status.index].airlineNm } ${objArv[status.index].vihicleId }">
+            <span class="flight_no">${fList.arr_flight_no }</span>
             <div class="flight_time_info">
               <img src="<c:url value='/images/line_plane.png' />">
               <div class="wrap_flight_detail">
                 <div class="wrap_flight_detail_top">
-                  <span class="flight_detail_time">${fn:substring(objArv[status.index].depPlandTime,8,10)}:${fn:substring(objArv[status.index].depPlandTime,10,12)}</span>
-                  <input type="hidden" name="arr_start_time${status.index }" value="${fn:substring(objArv[status.index].depPlandTime,8,10)}:${fn:substring(objArv[status.index].depPlandTime,10,12)}">
-                  <span class="flight_detail_loca">${objArv[status.index].depAirportNm}</span>
+                  <span class="flight_detail_time">${fList.dep_end_time }</span>
+                  <span class="flight_detail_loca">${fList.dep_end_city  }</span>
                   <span class="flight_detail_etc">무료수하물 1개</span>
                 </div>
                 <div class="wrap_flight_detail_middle">
-                  <span id="arr_flight_detail${status.index }" class="flight_detail_etc">04시간 40분</span>
+                  <span id="arr_flight_detail" class="flight_detail_etc">${fList.arr_during_time }</span>
                 </div>
                 <div class="wrap_flight_detail_bottom">
-                  <span class="flight_detail_time">${fn:substring(objArv[status.index].arrPlandTime,8,10)}:${fn:substring(objArv[status.index].arrPlandTime,10,12)}</span>
-                  <input type="hidden" name="arr_end_time${status.index }" value="${fn:substring(objArv[status.index].arrPlandTime,8,10)}:${fn:substring(objArv[status.index].arrPlandTime,10,12)}">
-                  <span class="flight_detail_loca">${objArv[status.index].arrAirportNm}</span>
+                  <span class="flight_detail_time">${fList.arr_end_time }</span>
+                  <span class="flight_detail_loca">${fList.arr_end_city }</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="wrap_detail_price">
             <span class="tlt_detail_price">상세 요금</span>
-            <table id="table_detail_price${status.index }" class="table_detail_price">
+            <table id="table_detail_price" class="table_detail_price">
               <tr>
                 <th width="12%">항목</th>
                 <th width="12%">항공 요금</th>
@@ -159,28 +153,24 @@
               </tr>
               <tr>
                 <td>성인</td>
-                <td><fmt:formatNumber value='${(charge - 39600 - 8000 - 1000 ) * person_count}' pattern='#,###'/>원</td>
-                <td><fmt:formatNumber value='${39600 * person_count}' pattern='#,###'/>원</td>
-                <td><fmt:formatNumber value='${8000 * person_count}' pattern='#,###'/>원</td>
-                <td><fmt:formatNumber value='${1000 * person_count}' pattern='#,###'/>원</td>
+                <td><fmt:formatNumber value='${fList.charge_flight }' pattern='#,###'/>원</td>
+                <td><fmt:formatNumber value='${fList.charge_fuel }' pattern='#,###'/>원</td>
+                <td><fmt:formatNumber value='${fList.charge_tax }' pattern='#,###'/>원</td>
+                <td><fmt:formatNumber value='${fList.charge_ticket }' pattern='#,###'/>원</td>
                 <td>${personCount }</td>
-                <td><fmt:formatNumber value='${charge * person_count}' pattern='#,###'/>원</td>
+                <td><fmt:formatNumber value='${fList.charge_total }' pattern='#,###'/>원</td>
               </tr>
             </table>
-            <input type="hidden" name="charge_flight${status.index }" value="${(charge - 39600 - 8000 - 1000 ) * person_count}">
-            <input type="hidden" name="charge_fuel${status.index }" value="${39600 * person_count}">
-            <input type="hidden" name="charge_tax${status.index }" value="${8000 * person_count}">
-            <input type="hidden" name="charge_ticket${status.index }" value="${1000 * person_count}">
-            <input type="hidden" name="charge_total${status.index }" value="${charge * person_count}">
             <div class="wrap_total_price">
               <span class="tlt_total_price">총 예상 요금</span>
               <div class="div_total_price">
-                <span class="total_price"><fmt:formatNumber value='${charge * person_count}' pattern='#,###'/></span><span class="total_won">원</span>
+                <span class="total_price"><fmt:formatNumber value='${fList.charge_total }' pattern='#,###'/></span><span class="total_won">원</span>
               </div>
             </div>
           </div>
         </div>
         </section>
+       </c:forEach>
 
         <!-- 마이페이지 예약한 숙박 -->
         <section class="reservation_hotel_container" id="booked_hotel_page">

@@ -202,6 +202,8 @@
     <input type="hidden" name="dep_end_time" value="${dep_end_time }">
     <input type="hidden" name="arr_start_time" value="${arr_start_time }">
     <input type="hidden" name="arr_end_time" value="${arr_end_time }">
+    <input type="hidden" name="dep_during" value="${dep_during }">
+    <input type="hidden" name="arr_during" value="${arr_during }">
     <input type="hidden" name="classType" value="${classType }">
     <input type="hidden" name="personCount" value="${personCount }">
     <input type="hidden" name="charge_flight" value="${charge_flight }">

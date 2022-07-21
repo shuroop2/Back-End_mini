@@ -30,10 +30,10 @@ public class MemberController {
 		return "member/signup";
 	}
 	 
-	@RequestMapping("/mypage")
-	public String mypage() {
-		return "member/mypage"; 
-	}
+//	@RequestMapping("/mypage")
+//	public String mypage() {
+//		return "member/mypage"; 
+//	}
 	
 	@RequestMapping("/mypage_authentication")
 	public String mypageAuthentication() {
