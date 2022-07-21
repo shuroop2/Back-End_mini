@@ -38,11 +38,6 @@ button{
   border-radius: 5px;
 }
 
-.mypage_nav > div:first-child{
-	border-left: 8px solid #48A0FF;
-	background-color: #eeeeee;
-}
-
 .mypage_nav div{
   display: flex;
   align-items: center;

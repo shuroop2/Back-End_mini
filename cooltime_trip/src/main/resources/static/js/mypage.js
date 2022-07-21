@@ -51,11 +51,6 @@ function mypageNavClick(e){
       mypageNavBtn[i].classList.remove("selectBtn");
     }
     e.target.classList.add("selectBtn");
-    if(e.target.classList.add("selectBtn")){
-    	mypageNavBtn[0].style.background = '#ffffff';
-        mypageNavBtn[0].style.border = 'none';
-    }
-    	
   }
 }
 

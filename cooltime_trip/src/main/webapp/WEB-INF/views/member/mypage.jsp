@@ -20,7 +20,7 @@
     <section class="mypage_content_container">
       <div>
         <div class="mypage_nav" id="mypageNav">
-          <div class="mypage_nav_hover1 nav_hover" id="myBookedAirline"><p>예약한 항공권</p></div>
+          <div class="mypage_nav_hover1 nav_hover selectBtn" id="myBookedAirline"><p>예약한 항공권</p></div>
           <div id="myBookedHotel" class="nav_hover"><p>예약한 숙박</p></div>
           <div id="myBookedHotel" class="nav_hover"><p>예약한 렌트</p></div>
           <div id="myCheckList" class="nav_hover"><p>여행 필수 체크리스트</p></div>
