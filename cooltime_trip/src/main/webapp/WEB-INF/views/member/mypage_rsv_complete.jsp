@@ -16,8 +16,19 @@
 	<section class="section">
 	    <div class="wrap">
 	    	<div class="rsv_wrap">
-			    <div id="rsvImg"><img src="<c:url value='/images/flight.png'/>"></div>
-			    <span class="rsv_text">항공 예약이 완료 되었습니다</span>
+	    		<c:if test="${chk == '1' }">
+		    		<div id="rsvImg"><img src="<c:url value='/images/flight.png'/>"></div>
+				    <span class="rsv_text">항공 예약이 완료 되었습니다</span>
+	    		</c:if>
+	    		<c:if test="${chk == '2' }">
+		    		<div id="rsvImg"><img src="<c:url value='/images/stay.png'/>"></div>
+				    <span class="rsv_text">숙박 예약이 완료 되었습니다</span>
+	    		</c:if>
+	    		<c:if test="${chk == '3' }">
+		    		<div id="rsvImg"><img src="<c:url value='/images/rent.png'/>"></div>
+				    <span class="rsv_text">렌트카 예약이 완료 되었습니다</span>
+	    		</c:if>
+			    
 			    <button type="button" class="rsv_btn" id="rsvBtn" onclick="rsvBtnClick()">마이페이지로 이동</button>
 		    </div>
 	    </div>

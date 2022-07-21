@@ -184,46 +184,16 @@
             <img src="<c:url value='/images/mjeju.jpg'/>" alt="메종글래드 제주">
             <div class="reservation_hotel_contents">
               <div class="reservation_hotel_content1">
-                <div>메종 글래드 제주</div>
-                <div>4성급 · 제주시 연동 노연로 80</div>
-                <div><i class="fas fa-star star"></i><span class="star_grade">4.5</span><span class="customer_num">(131)</span></div>
-              </div>
-              <div class="reservation_hotel_content2">
-                <div>178,700원</div>
-                <div>
-                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="reservation_hotel_box">
-            <img src="<c:url value='/images/mjeju.jpg'/>" alt="메종글래드 제주">
-            <div class="reservation_hotel_contents">
-              <div class="reservation_hotel_content1">
-                <div>메종 글래드 제주</div>
-                <div>4성급 · 제주시 연동 노연로 80</div>
-                <div><i class="fas fa-star star"></i><span class="star_grade">4.5</span><span class="customer_num">(131)</span></div>
-              </div>
-              <div class="reservation_hotel_content2">
-                <div>178,700원</div>
-                <div>
-                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="reservation_hotel_box">
-            <img src="<c:url value='/images/mjeju.jpg'/>" alt="메종글래드 제주">
-            <div class="reservation_hotel_contents">
-              <div class="reservation_hotel_content1">
-                <div>메종 글래드 제주</div>
-                <div>4성급 · 제주시 연동 노연로 80</div>
-                <div><i class="fas fa-star star"></i><span class="star_grade">4.5</span><span class="customer_num">(131)</span></div>
-              </div>
-              <div class="reservation_hotel_content2">
-                <div>178,700원</div>
-                <div>
-                  <a href="<c:url value='#'/>"><span class="detail_info_link">상세 정보 보기</span><i class="fas fa-chevron-right right"></i></a>
+                <div class="reservation_hotel_name">메종 글래드 제주</div>
+                <div class="reservation_hotel_detail">
+                	<div>
+                		<div class="reservation_hotel_room">
+                			<div class="reservation_room_type">디럭스 트윈</div>
+                			<div class="reservation_room_view">시티뷰</div>
+                		</div>
+                		<div class="reservation_hotel_time">07월 19일 (화) ~ 07월 20일 (수), 1박</div>
+                	</div>
+                	<div class="reservation_hotel_price">178,700원</div>
                 </div>
               </div>
             </div>

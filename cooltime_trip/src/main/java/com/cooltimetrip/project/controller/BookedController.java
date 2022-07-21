@@ -55,6 +55,7 @@ public class BookedController {
 		  model.addAttribute("charge_total", map.get("charge_total").toString());
 		  model.addAttribute("dep_airline", map.get("dep_airline").toString());
 		  model.addAttribute("arr_airline", map.get("arr_airline").toString());
+		  model.addAttribute("chk", map.get("chk").toString());
     	 
 		
 		return "member/mypage_rsv_complete";

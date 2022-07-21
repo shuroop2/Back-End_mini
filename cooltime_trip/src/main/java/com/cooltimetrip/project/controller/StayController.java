@@ -80,9 +80,17 @@ public class StayController {
 		HotelVO hotel = hotelService.viewDetailRoom(hotelNo);
 		String memId = (String) session.getAttribute("sid");
 		MemberVO mem = memService.getMemberInfo(memId);
-		String memPH1 = mem.getMemPhone().substring(0, 3);
-		String memPH2 = mem.getMemPhone().substring(3, 7);
-		String memPH3 = mem.getMemPhone().substring(7, 11);
+		String memPH1="", memPH2="", memPH3="";
+		if(mem.getMemPhone().length() == 11) {
+			memPH1 = mem.getMemPhone().substring(0, 3);
+			memPH2 = mem.getMemPhone().substring(3, 7);
+			memPH3 = mem.getMemPhone().substring(7, 11);
+		} else if(mem.getMemPhone().length() == 10) {
+			memPH1 = mem.getMemPhone().substring(0, 3);
+			memPH2 = mem.getMemPhone().substring(3, 6);
+			memPH3 = mem.getMemPhone().substring(6, 10);
+		}
+		
 		String[] email = mem.getMemEmail().split("@");
 		String[] dateTime = daterange.split("-");
 		 

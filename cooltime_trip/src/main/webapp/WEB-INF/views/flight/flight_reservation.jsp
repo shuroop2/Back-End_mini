@@ -153,6 +153,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
                 <input type="hidden" name="charge_tax" value="${charge_tax }">
                 <input type="hidden" name="charge_ticket" value="${charge_ticket }">
                 <input type="hidden" name="charge_total" value="${charge_total }">
+                <input type="hidden" name="chk" value="1">
 
                 
             </form>
