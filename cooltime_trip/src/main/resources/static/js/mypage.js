@@ -3,11 +3,13 @@ function open(){
   // 마이페이지 메뉴
   let myHotel = document.getElementById("myBookedHotel");
   let myAirline = document.getElementById("myBookedAirline");
+  let myRent = document.getElementById("myBookedRent");
   let myList = document.getElementById("myCheckList");
 
   // 각 메뉴 페이지
   let bookedHotelPage = document.getElementById("booked_hotel_page");
   let bookedAirPage = document.getElementById("booked_air_page");
+  let bookedRentPage = document.getElementById("booked_rent_page");
   let checkList = document.getElementById("check_list");
   let checkLink = document.getElementById("check_link");
 
@@ -15,6 +17,7 @@ function open(){
   myHotel.addEventListener("click",()=>{
     bookedHotelPage.style.display = "block";
     bookedAirPage.style.display = "none";
+    bookedRentPage.style.display = "none";
     checkList.style.display = "none";
     checkLink.style.display = "flex";
   });
@@ -22,6 +25,16 @@ function open(){
   // 예약한 항공
   myAirline.addEventListener("click",()=>{
     bookedAirPage.style.display = "block";
+    bookedHotelPage.style.display = "none";
+    bookedRentPage.style.display = "none";
+    checkList.style.display = "none"; 
+    checkLink.style.display = "flex";
+  });
+  
+  // 예약한 항공
+  myRent.addEventListener("click",()=>{
+    bookedRentPage.style.display = "block";
+    bookedAirPage.style.display = "none";
     bookedHotelPage.style.display = "none";
     checkList.style.display = "none"; 
     checkLink.style.display = "flex";
@@ -31,6 +44,7 @@ function open(){
   myList.addEventListener("click",()=>{
     checkList.style.display = "block";
     bookedHotelPage.style.display = "none";
+    bookedRentPage.style.display = "none";
     bookedAirPage.style.display = "none"; 
     checkLink.style.display = "none";
   });

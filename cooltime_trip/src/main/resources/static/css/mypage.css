@@ -587,7 +587,9 @@ button{
 
 /* 여기부터는 예약된 숙박 메뉴 누르면 화면 바뀌는 css */
 
-section.reservation_hotel_container, section.check_list_container{
+section.reservation_hotel_container,
+section.check_list_container,
+section.reservation_rent_container{
   display: none;
 }
 
@@ -602,3 +604,86 @@ section.reservation_hotel_container, section.check_list_container{
   cursor: pointer;
 }
 
+/* 혹시 몰라 맨 끝에 렌트 css */
+
+.wrap_result_car_list{
+  display: flex;
+  width: 880px;
+  height: 224px;
+  border: #DDDDDD 1px solid;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.wrap_result_car_list .result_car_img{
+  margin: 55px 0 0 30px;
+}
+.wrap_result_car_list .result_car_img>img{
+  width: 220px;
+  height: 116px;
+}
+.wrap_result_car_list .txt_box_rent_result{
+  display: flex;
+  justify-content: space-between;
+  width: 545px;
+  margin: 34px 0 0 48px;
+}
+.wrap_whole .txt_k5{
+  color: #222222;
+  font-size: 22px;
+  font-weight: bold;
+}
+.wrap_whole .txt_free_cancel{
+  color: #222222;
+  font-size: 14px;
+  margin-top: 4px;
+  height: 16px;
+}
+.wrap_whole .txt_choose{
+  color: #666666;
+  font-size: 14px;
+  cursor: pointer;
+}
+.wrap_whole .txt_choose>i{
+  font-size: 7px;
+  color: #666666;
+  margin-left: 4px;
+  cursor: pointer;
+}
+.wrap_txt_rent_company{
+  margin: 0 0 0 30px;
+}
+.wrap_txt_rent_company .txt_rent_company{
+  font-size: 18px;
+  font-weight: bold;
+}
+.wrap_txt_rent_company .txt_rent_year{
+  font-size: 14px;
+  color: #BBBBBB;
+  margin-top: 4px;
+}
+.wrap_final_price{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 0 48px;
+  border: #BBBBBB solid 1px;
+  border-radius: 2px;
+  width: 545px;
+  height: 92px;
+  cursor: pointer;
+  align-items: center;
+}
+.wrap_txt_money .txt_ttl{
+  font-size: 18px;
+  color: #222222;
+}
+.wrap_txt_money .txt_num_won{
+  font-size: 28px;
+  color: #222222;
+  font-weight: bold;
+}
+.wrap_txt_money{
+  margin: 0 30px 0 0;
+  cursor: pointer;
+}

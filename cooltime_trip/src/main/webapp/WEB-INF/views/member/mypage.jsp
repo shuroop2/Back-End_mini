@@ -22,7 +22,7 @@
         <div class="mypage_nav" id="mypageNav">
           <div class="mypage_nav_hover1 nav_hover selectBtn" id="myBookedAirline"><p>예약한 항공권</p></div>
           <div id="myBookedHotel" class="nav_hover"><p>예약한 숙박</p></div>
-          <div id="myBookedHotel" class="nav_hover"><p>예약한 렌트</p></div>
+          <div id="myBookedRent" class="nav_hover"><p>예약한 렌트</p></div>
           <div id="myCheckList" class="nav_hover"><p>여행 필수 체크리스트</p></div>
           <div class="mypage_nav_hover2 nav_hover"><p>지난 여행기록</p></div>
         </div>
@@ -228,6 +228,35 @@
               </div>
             </div>
           </div>
+        </section>
+        
+        <!-- 마이페이지 예약한 렌트카 -->
+        <section class="reservation_rent_container" id="booked_rent_page">
+           <c:forEach var="carList" items="${rList}">
+		     <div class="wrap_result_car_list">
+		        <div class="result_car_img">
+		          <img src="<c:url value='/carImg/${carList.carImgNo}.png'/>">
+		        </div>
+		        <div class="wrap_whole">
+		          <div class="txt_box_rent_result">
+		            <div class="wrap_result_car_txt">
+		              <div class="txt_k5">${carList.carName}</div>
+		              <div id="txtDateCancel" class="txt_free_cancel">${carList.bookDateRange}</div>
+		            </div>
+		          </div>
+		          <div class="wrap_final_price">
+		            <div class="wrap_txt_rent_company">
+		              <div class="txt_rent_company">${carList.rentName}</div>
+		              <div class="txt_rent_year">${carList.carYear} · ${carList.carFuel}</div>
+		            </div>
+		            <div class="wrap_txt_money">
+	           		  <span class="txt_ttl">총</span>
+		              <span class="txt_num_won"><fmt:formatNumber value='${carList.carPrice}' pattern='#,###'/></span><span class="txt_ttl">원</span>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		   </c:forEach>
         </section>
 
         <!-- 마이페이지 체크 리스트 -->

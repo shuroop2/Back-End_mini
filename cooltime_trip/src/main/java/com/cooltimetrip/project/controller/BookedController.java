@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cooltimetrip.project.model.BookedFlightVO;
+import com.cooltimetrip.project.model.BookedRentVO;
 import com.cooltimetrip.project.service.BookedService;
+import com.cooltimetrip.project.service.RentService;
 
 @Controller
 public class BookedController {
 	
 	@Autowired
 	BookedService bService;
+	
+	@Autowired
+	RentService rentService;
 	
 	@RequestMapping("/mypage_rsv_complete")
 	public String bookedFlightView(@RequestParam HashMap<String, Object> map, Model model, HttpSession session, BookedFlightVO vo) {
@@ -60,7 +65,9 @@ public class BookedController {
 		
 		String memId = session.getAttribute("sid").toString();
 		ArrayList<BookedFlightVO> fList = bService.bookedList(memId);
+		ArrayList<BookedRentVO> rList = rentService.listBookedCar(memId);
 		model.addAttribute("fList", fList); 
+		model.addAttribute("rList", rList); 
 		
 		return "member/mypage"; 
 	}
