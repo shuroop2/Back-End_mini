@@ -258,6 +258,29 @@ if (request.getProtocol().equals("HTTP/1.1"))
 	          </div>
 	      </div>
 	    </section>
+	    <script>
+		// 예약하기 버튼 눌렀을 때 로그인 안했으면 로그인 페이지로, 로그인 상태라면 이동
+		$('#roomTbook').on('click', function(){
+	    	if(${sessionScope.sid == null }) {
+	    		alert("로그인이 필요한 페이지입니다.\n로그인을 해주세요.");
+	    		location.href="/login";
+	    	} else {
+	    		$('#roomType').val($('#roomT').text());
+				$('#roomTypePrice').val($('#roomTprice').text());
+		    	$('#roomForm').submit();
+	    	}
+	    });
+		$('#roomDbook').on('click', function(){
+	    	if(${sessionScope.sid == null }) {
+	    		alert("로그인이 필요한 페이지입니다.\n로그인을 해주세요.");
+	    		location.href="/login";
+	    	} else {
+	    		$('#roomType').val($('#roomD').text());
+				$('#roomTypePrice').val($('#roomDprice').text());
+		    	$('#roomForm').submit();
+	    	}
+	    });
+    </script>
 	  </div>
 	  <!-- BOTTOM -->
 	  <c:import url="/WEB-INF/views/layout/bottom.jsp"></c:import>

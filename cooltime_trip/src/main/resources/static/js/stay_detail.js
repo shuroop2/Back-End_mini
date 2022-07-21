@@ -161,19 +161,7 @@ $(document).ready(function () {
 			$('.btn_kakaomap').css('border', '1px solid #DDDDDD');
 	});
 	
-	// 디럭스 더블 넘기기
-	$('#roomDbook').click(function(){
-		$('#roomType').val($('#roomD').text());
-		$('#roomTypePrice').val($('#roomDprice').text());
-		$('#roomForm').submit();
-	});
 	
-	// 디럭스 트윈 넘기기
-	$('#roomTbook').click(function(){
-		$('#roomType').val($('#roomT').text());
-		$('#roomTypePrice').val($('#roomTprice').text());
-		$('#roomForm').submit();
-	});
 	
 	
 });
