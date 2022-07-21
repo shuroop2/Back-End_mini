@@ -159,16 +159,24 @@ public class MemberController {
 			memService.updateMemPhone(memId, input_phone);
 			result = "success";
 		}
-
 		return result;
 	}
-	 
 	
 	// 회원가입 요청
 	@RequestMapping("/signupMember") 
 	public String signupMember(MemberVO vo) {
 		memService.insertMember(vo); 
 		return "/member/login";
+	}
+	
+	// 회원탈퇴
+	@RequestMapping("/deleteMember")
+	public String deleteMember(HttpSession session) {
+		String memId = (String) session.getAttribute("sid");
+		memService.deleteMember(memId);
+		System.out.println(memId+"의 회원 정보 삭제 완료");
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 	// 로그아웃

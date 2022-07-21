@@ -40,7 +40,12 @@
 	
 	<!-- 멤버리스트 출력 -->
 	<select id="getMemberInfo" parameterType="String" resultType="com.cooltimetrip.project.model.MemberVO">
-		SELECT * FROM member WHERE memId = #{memId}
+		SELECT * FROM member WHERE memId=#{memId}
 	</select>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM member WHERE memID=#{memId}
+	</delete>
 	<!-- 회원 정보 관리 끝 -->
 </mapper> 

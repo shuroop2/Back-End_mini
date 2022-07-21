@@ -35,11 +35,6 @@ public class MemberService implements IMemberService {
 		return dao.mypageAuthentication(memId);
 	}
 	
-	/*
-	 * @Override public void updateMemPwd(String memId, String memPwd) {
-	 * dao.updateMemPwd(memId, memPwd); }
-	 */
-
 	@Override
 	public void updateMemName(String memId, String memName) {
 		dao.updateMemName(memId, memName);
@@ -55,23 +50,9 @@ public class MemberService implements IMemberService {
 		dao.updateMemPhone(memId, memPhone);
 	}
 
-	/*
-	 * @Override public String updateMemPwd(HashMap<String, String> map) { // TODO
-	 * Auto-generated method stub return dao.updateMemPwd(map); }
-	 */
-
-
-	/*
-	 * @Override public String updatePassword(HashMap<String, Object> map) { return
-	 * dao.updatePassword(map); }
-	 */
-
-
-	/*
-	 * @Override public boolean mypageAuthentication(String memId, String memPwd) {
-	 * return dao.mypageAuthentication(memId, memPwd); }
-	 */
-	
-	
+	@Override
+	public void deleteMember(String memId) {
+		dao.deleteMember(memId);
+	}
 }
  

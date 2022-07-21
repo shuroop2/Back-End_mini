@@ -49,7 +49,7 @@
 		        </form>
 		        
 		        <div class="div_delete_account">
-		            <a href="#">회원탈퇴</a>
+		            <a href="<c:url value='/deleteMember'/>">회원탈퇴</a>
 		        </div>
 		    </div>
 	    </section>

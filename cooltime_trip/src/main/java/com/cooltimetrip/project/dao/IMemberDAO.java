@@ -12,4 +12,5 @@ public interface IMemberDAO {
 	void updateMemName(String memId, String memName);  
 	void updateMemPwd(String memId, String memPwd);
 	void updateMemPhone(String memId, String memPhone);
+	void deleteMember(String memId);
 }

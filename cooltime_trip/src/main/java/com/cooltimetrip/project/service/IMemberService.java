@@ -12,6 +12,7 @@ public interface IMemberService {
 	void updateMemPwd(String memId, String memPwd);
 	void updateMemName(String memId, String memName);
 	void updateMemPhone(String memId, String memPhone);
+	void deleteMember(String memId);
 	//public String mypageAuthentication(HashMap<String, Object> map);
 	//public boolean mypageAuthentication(String memId, String memPwd);
 }
