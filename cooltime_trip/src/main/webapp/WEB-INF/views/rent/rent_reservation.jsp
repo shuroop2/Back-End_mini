@@ -176,9 +176,7 @@
   </section>
   <section>
     <div class="rent_reservation_btn">
-      <button type="button" onclick="checkDriverInfo1() && checkDriverInfo2(); formSubmit();" id="rentReservationBtn">
-        예약하기
-      </button>
+      <button type="button" id="rentReservationBtn">예약하기</button>
     </div>
   </section>
   </form>
