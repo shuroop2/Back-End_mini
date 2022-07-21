@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<!-- 페이지 새로고침 안해도댐! -->
+<%    
+response.setHeader("Cache-Control","no-store");    
+response.setHeader("Pragma","no-cache");    
+response.setDateHeader("Expires",0);    
+if (request.getProtocol().equals("HTTP/1.1"))  
+        response.setHeader("Cache-Control", "no-cache");  
+%>
 <!DOCTYPE html>
 <html>
 	<c:import url="/WEB-INF/views/layout/head.jsp"></c:import>
@@ -18,51 +27,66 @@
 	            <div class="hotel_detail">
 	              <div class="hotel_name_grade">
 	                <div class="name_box">
-	                  <div class="hotel_name">메종 글래드 제주</div>
+	                  <div class="hotel_name">${hotel.hotelName }</div>
 	                  <!-- 별 이모티콘 -->
-	                  <div class="hotel_grade_num">4성급</div>
+	                  <div class="hotel_grade_num">${hotel.hotelGrade }</div>
 	                  <div class="hotel_star">
-	                    <i class="fa-solid star_all fa-star"></i>
-	                    <i class="fa-solid star_all fa-star"></i>
-	                    <i class="fa-solid star_all fa-star"></i>
-	                    <i class="fa-solid star_half fa-star-half-stroke"></i>
-	                    <i class="fa-regular empty_star fa-star"></i>
 	                    <!-- 사람들 평가 -->
-	                    <span class="num_judge">3.5</span>
-	                    <span class="num_of_people">(131)</span>
+	                    <span class="num_judge">${fn:substring(hotel.hotelAssesment,0,3)}</span>
+	                    <span class="num_of_people">${fn:substring(hotel.hotelAssesment,3,9)}</span>
+	                    <script>
+	                    	var asset = '${hotel.hotelAssesment}';
+	                    	var a = parseInt(asset.substring(0,1));
+	                    	var b = parseInt(asset.substring(2,3));
+	                    	
+	                    	for(var i = 0; i<a; i++){
+	                    		if(i == 0){
+	                    			$('.hotel_star').prepend('<i class="fa-solid star_all fa-star end_star"></i>');
+	                    		}else{
+	                    			$('.hotel_star').prepend('<i class="fa-solid star_all fa-star"></i>');
+	                    		}
+	                    	}
+	                    	if(b != 0){
+	                    		$('.end_star').after('<i class="fa-solid star_half fa-star-half-stroke c_star"></i>');
+	                    	}else if(b == 0){
+	                    		$('.end_star').after('<i class="fa-regular empty_star fa-star c_star"></i>');
+	                    	}
+	                    	var c = document.getElementsByTagName('i').length;
+	                    	
+	                    	for(var i = c; i<5; i++){
+	                    		$('.c_star').after('<i class="fa-regular empty_star fa-star"></i>');
+	                    	}
+	                    </script>
 	                  </div>
 	                </div>
 	                <!-- 위치보기 버튼 -->
-	                <button class="location_see">
-	                  <i class="fa-regular location_map fa-map"></i><a href="https://map.naver.com/v5/search/%EB%A9%94%EC%A2%85%20%EA%B8%80%EB%9E%98%EB%93%9C%20%EC%A0%9C%EC%A3%BC?c=14080177.6046714,3959888.7729625,15,0,0,0,dh">위치보기</a>
-	                </button>
+	                <form id="form_to_map" method="post" action="/hotel_map">
+	        			<input type="hidden" name="address" id="address" value="'${hotel.hotelAddress}'">
+	                    <button type="button" class="btn_kakaomap location_see">
+	                        <i class="fa-regular location_map fa-map"></i>위치보기
+	                    </button>
+                    </form>
 	              </div>
 	              <!-- 호텔이름 / 체크인아웃 시간 -->
 	              <div class="name_time">
 	                <div class="hotel_maison">
 	                    <i class='fas fa-map-marker-alt'></i>
-	                    메종 글래드 제주
+	                    ${hotel.hotelAddress }
 	                </div>
 	                <div class="hotel_time">
 	                    <i class="fa-solid check_clock fa-clock"></i>
-	                    체크인 14:00 ~ 체크아웃 11:00
+	                    체크인 ${fn:substring(hotel.hotelTime,0,5) } ~ 체크아웃 ${fn:substring(hotel.hotelTime,6,11) }
 	                </div>
 	              </div>
 	              <!-- 호텔 사진들 -->
 	                <div class="hotel_main">
-	                  <a href="<c:url value='/images/main_pic.png'/>" data-lightbox="example"><img src="<c:url value='/images/main_pic.png'/>"><button class="expand_box"><i class="fa-solid expand_icon fa-expand"></i></button></a>
+	                  <a href="<c:url value='/hotelImg/${hotel.hotelNo }/h001.png'/>" data-lightbox="example"><img src="<c:url value='/hotelImg/${hotel.hotelNo }/h001.png'/>"><button class="expand_box"><i class="fa-solid expand_icon fa-expand"></i></button></a>
 	                </div>
 	                <div class="hotel_sub" id="popUp">
 	                  <div class="expand_hidden_pic">+5</div>
-	                    <a href="<c:url value='/images/bathroom.png'/>" data-lightbox="example"><img src="<c:url value='/images/bathroom.png'/>" class="img1"></a>
-	                    <a href="<c:url value='/images/restaurant.png'/>" data-lightbox="example"><img src="<c:url value='/images/restaurant.png'/>" class="img2"></a>
-	                    <a href="<c:url value='/images/room_standard2.png'/>" data-lightbox="example"><img src="<c:url value='/images/room_standard2.png'/>" class="img3"></a>
-	                    <a href="<c:url value='/images/meeting.png'/>" data-lightbox="example"><img src="<c:url value='/images/meeting.png'/>" class="img4"></a>
-	                    <a href="<c:url value='/images/swim.png'/>" data-lightbox="example"><img src="<c:url value='/images/swim.png'/>"class="img5"></a>
-	                    <a href="<c:url value='/images/loungebar.png'/>" data-lightbox="example"><img src="<c:url value='/images/loungebar.png'/>"class="img6"></a>
-	                    <a href="<c:url value='/images/wedding.png'/>" data-lightbox="example"><img src="<c:url value='/images/wedding.png'/>"class="img7"></a>
-	                    <a href="<c:url value='/images/room_standard3.png'/>" data-lightbox="example"><img src="<c:url value='/images/room_standard3.png'/>"class="img8"></a>
-	                    <a href="<c:url value='/images/room_delux.png'/>" data-lightbox="example"><img src="<c:url value='/images/room_delux.png'/>"class="img9"></a>
+	                  	<c:forEach begin="2" end="9" step="1" varStatus="loop">
+	                  		<a href="<c:url value='/hotelImg/${hotel.hotelNo }/h00${loop.index }.png'/>" data-lightbox="example"><img src="<c:url value='/hotelImg/${hotelNo }/h00${loop.index }.png'/>" class="img1"></a>
+	                  	</c:forEach>
 	                </div>
 	                <div class="img_area">
 	                  <div class="img_box">
@@ -72,8 +96,8 @@
 	              <!-- 데이트피커랑 인원수체크 들어가야함!!!!!!!! -->
 	              <div class="date_count">
 	                <div class="textbox_box">
-	                    <input type="text" id="lodDatepicker" class="day_night"  name="daterange" value="06.27(월) - 06.30(목), 3박">
-	                    <input type="text" id="lodPersonCount" class="guest_count" value="성인1, 어린이0">
+	                    <input type="text" id="lodDatepicker" class="day_night"  name="daterange" value="${daterange }">
+	                    <input type="text" id="lodPersonCount" class="guest_count" value="${personCount }">
 	                    <button class="re_search">재검색</button>
 	                    <div class="popup_person">
 	                      <h4 class="tlt_popup_person">인원 선택</h4>
@@ -105,39 +129,45 @@
 	                    </div>
 	                </div>
 	              </div>
-	              <div class="room_standard">
-	                <img src="<c:url value='/images/room_standard.png'/>"/>
-	                <div class="standard_text">
-	                    <div class="standard_city">
-	                        <div class="standard">스탠다드 더블</div>
-	                        <div class="room_view">시티 뷰</div>
-	                    </div> 
-	                    <div class="person_icon"><i class="fa-regular person_icon fa-user"></i>기준2인/최대2인</div>
-	                    <div class="bed_style"><img src="<c:url value='/images/ic_bed.png'/>">더블침대1</div>
-	                    <div class="double_price">
-	                        <span class="price_num">89,100</span>
-	                        <span class="price_won">원</span>
-	                    </div>
-	                </div>
-	                <!-- <button class="booked"><a href="../html/stay_reservation.html"></a>예약</button> -->
-	                <a class="booked" href="<c:url value='/stay_reservation'/>">예약</a>
-	              </div>
-	              <div class="room_twin">
-	                <img src="<c:url value='/images/room_standard3.png'/>"/>
-	                <div class="twin_text">
-	                    <div class="twin_city">
-	                        <span class="standard">스탠다드 트윈</span>
-	                        <span class="room_view">시티 뷰</span>
-	                    </div> 
-	                    <div class="person_icon"><i class="fa-regular person_icon fa-user"></i>기준2인/최대2인</div>
-	                    <div class="bed_style"><img src="<c:url value='/images/ic_bed.png'/>">싱글침대2</div>
-	                    <div class="double_price">
-	                        <span class="price_num">89,100</span>
-	                        <span class="price_won">원</span>
-	                    </div>
-	                </div>
-	                <a class="booked" href="<c:url value='/stay_reservation'/>">예약</a>
-	              </div>
+	              <form method="post" id="roomForm"action="<c:url value='/stay_reservation'/>">
+		              <div class="room_standard">
+		                <img src="<c:url value='/hotelImg/${hotel.hotelNo}/${hotel.hotelTImg }.png'/>"/>
+		                <div class="standard_text">
+		                    <div class="standard_city">
+		                        <div id="roomT" class="standard">${hotel.roomTType}</div>
+		                        <div class="room_view">${hotel.roomTView}</div>
+		                    </div> 
+		                    <div class="person_icon"><i class="fa-regular person_icon fa-user"></i>기준2인/최대2인</div>
+		                    <div class="bed_style"><img src="<c:url value='/images/ic_bed.png'/>">싱글침대2</div>
+		                    <div class="double_price">
+		                        <span id="roomTprice" class="price_num"><fmt:formatNumber value="${hotel.roomTPrice }"/></span>
+		                        <span class="price_won">원</span>
+		                    </div>
+		                </div>
+		                <!-- <button class="booked"><a href="../html/stay_reservation.html"></a>예약</button> -->
+		                <input type="button" id="roomTbook" class="booked" value="예약">
+		              </div>
+		              <div class="room_twin">
+		                <img src="<c:url value='/hotelImg/${hotel.hotelNo }/${hotel.hotelDImg }.png'/>"/>
+		                <div class="twin_text">
+		                    <div class="twin_city">
+		                        <span id="roomD" class="standard">${hotel.roomDType}</span>
+		                        <span class="room_view">${hotel.roomDView }</span>
+		                    </div> 
+		                    <div class="person_icon"><i class="fa-regular person_icon fa-user"></i>기준2인/최대2인</div>
+		                    <div class="bed_style"><img src="<c:url value='/images/ic_bed.png'/>">더블침대1</div>
+		                    <div class="double_price">
+		                        <span id="roomDprice" class="price_num"><fmt:formatNumber value="${hotel.roomDPrice }"/></span>
+		                        <span class="price_won">원</span>
+		                    </div>
+		                </div>
+		                <input type="button" id="roomDbook"class="booked" value="예약">
+		              </div>
+		              <input type="hidden" name="hotelNo" value="${hotel.hotelNo }">
+		              <input type="hidden" name="daterange" value="${daterange}">
+		              <input type="hidden" name="roomType" id="roomType" value="">
+		              <input type="hidden" name="roomTypePrice" id="roomTypePrice" value="">
+	              </form>
 	              <!-- 약관 -->
 	              <div class="use_info_box">
 	                <div class="use_detail_f_box">
@@ -214,14 +244,7 @@
 	          <div class="cancel_refund_box">
 	              <div class="cancel_refund">취소 및 환불 규정</div>
 	              <div class="refund_detail">
-	                  <div class="refund_rule">
-	                      - 체크인 3일전 : 무료 취소<br>
-	                      - 체크인 2일전 : 취소 수수료 50%<br>
-	                      - 체크인 1일전 ~ 당일 : 취소 환불 불가<br>
-	                      <br><br>
-	                      - 취소요청 이후에는 취소의 철회가 불가능합니다.<br>
-	                      - 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다
-	                  </div>
+	                  <pre class="refund_rule">${hotel.hotelRule } </pre>
 	              </div>
 	          </div>
 	          </div>
@@ -229,8 +252,7 @@
 	          <div class="follow_box">
 	              <div class="follow_text">
 	                  <span class="ilbak">1박</span>
-	                  <span class="follow_money">89,100</span>
-	                  <span class="follow_won">원~</span>
+	                  <span class="follow_money"><fmt:formatNumber value="${hotel.roomTPrice }"/></span><span class="follow_won">원~</span>
 	              </div>
 	              <button class="room_choice"id="pressBtn">객실 선택하기</button>
 	          </div>
