@@ -18,15 +18,20 @@
   		<result property="roomD" column="roomD"/>
   	</resultMap>
   	
+  	<!-- 호텔 전체 조회 -->
   	<select	id="listAllHotel" resultMap="hotelResult">
   		SELECT * FROM hotel H INNER JOIN room1 T ON T.roomT = H.roomT ORDER BY H.hotelNo 
   	</select>
+  	
+  	<!-- 호텔 상세화면 -->
   	<select id="viewDetailRoom" parameterType="string" resultType="com.cooltimetrip.project.model.HotelVO">
   		SELECT * FROM hotel H
 		INNER JOIN room1 T ON T.roomT = H.roomT
 	    INNER JOIN room2 D ON D.roomD = H.roomD
 	    WHERE H.hotelNo=#{hotelNo}
   	</select>
-  </mapper>
+  	</mapper>
+  
+  	
   
  

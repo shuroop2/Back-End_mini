@@ -180,24 +180,26 @@
 
         <!-- 마이페이지 예약한 숙박 -->
         <section class="reservation_hotel_container" id="booked_hotel_page">
-          <div class="reservation_hotel_box">
-            <img src="<c:url value='/images/mjeju.jpg'/>" alt="메종글래드 제주">
-            <div class="reservation_hotel_contents">
-              <div class="reservation_hotel_content1">
-                <div class="reservation_hotel_name">메종 글래드 제주</div>
-                <div class="reservation_hotel_detail">
-                	<div>
-                		<div class="reservation_hotel_room">
-                			<div class="reservation_room_type">디럭스 트윈</div>
-                			<div class="reservation_room_view">시티뷰</div>
-                		</div>
-                		<div class="reservation_hotel_time">07월 19일 (화) ~ 07월 20일 (수), 1박</div>
-                	</div>
-                	<div class="reservation_hotel_price">178,700원</div>
-                </div>
-              </div>
-            </div>
-          </div>
+	        <c:forEach var="h" items="${sList }">
+	          <div class="reservation_hotel_box">
+	            <img src="<c:url value='/hotelImg/${h.hotelNo }/h001.png'/>">
+	            <div class="reservation_hotel_contents">
+	              <div class="reservation_hotel_content1">
+	                <div class="reservation_hotel_name">${h.hotelName}</div>
+	                <div class="reservation_hotel_detail">
+	                	<div>
+	                		<div class="reservation_hotel_room">
+	                			<div class="reservation_room_type">${h.roomType}</div>
+	                			<div class="reservation_room_view">${h.roomView}</div>
+	                		</div>
+	                		<div class="reservation_hotel_time">${h.daterange2}</div>
+	                	</div>
+	                	<div class="reservation_hotel_price">${h.roomPrice}원</div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	         </c:forEach>
         </section>
         
         <!-- 마이페이지 예약한 렌트카 -->

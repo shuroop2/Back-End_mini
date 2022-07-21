@@ -1,6 +1,7 @@
 package com.cooltimetrip.project.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cooltimetrip.project.model.BookedStayVO;
 import com.cooltimetrip.project.model.HotelVO;
 import com.cooltimetrip.project.model.MemberVO;
+import com.cooltimetrip.project.service.BookedStayService;
 import com.cooltimetrip.project.service.HotelService;
 import com.cooltimetrip.project.service.MemberService;
 
@@ -25,6 +28,9 @@ public class StayController {
 	
 	@Autowired
 	MemberService memService;
+	
+	@Autowired
+	BookedStayService bsService;
 	
 	
 	@RequestMapping("/stay_main")
@@ -75,6 +81,7 @@ public class StayController {
 									  @RequestParam String roomType,
 									  @RequestParam String roomTypePrice,
 									  @RequestParam String daterange,
+									  @RequestParam String roomView,
 									  HttpSession session, Model model) {
 		
 		HotelVO hotel = hotelService.viewDetailRoom(hotelNo);
@@ -104,7 +111,30 @@ public class StayController {
 		model.addAttribute("dateTime", dateTime);
 		model.addAttribute("roomType", roomType);
 		model.addAttribute("roomTypePrice", roomTypePrice);
+		model.addAttribute("roomView", roomView);
 		 
 		return "stay/stay_reservation";
+	}
+	
+	
+	@RequestMapping("/stay_rsv_complete")
+	public String bookedStayView(@RequestParam HashMap<String, Object> map, Model model, HttpSession session, 
+								 BookedStayVO svo) {
+		
+		String memId = session.getAttribute("sid").toString();
+		String chk = map.get("chk").toString();
+		
+		// 숙박 데이터
+		svo.setMemId(memId);
+		bsService.insertBookedStayInfo(svo);
+		model.addAttribute("hotelNo", map.get("hotelNo").toString());
+		model.addAttribute("hotelName", map.get("hotelName").toString());
+		model.addAttribute("roomType", map.get("roomType").toString());
+		model.addAttribute("roomView", map.get("roomView").toString());
+		model.addAttribute("roomPrice", map.get("roomPrice").toString());
+		model.addAttribute("daterange2", map.get("daterange2").toString());
+		model.addAttribute("chk", chk);
+		
+		return "member/mypage_rsv_complete";
 	}
 }

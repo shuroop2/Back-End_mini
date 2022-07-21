@@ -136,6 +136,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 		                    <div class="standard_city">
 		                        <div id="roomT" class="standard">${hotel.roomTType}</div>
 		                        <div class="room_view">${hotel.roomTView}</div>
+		                         <input type="hidden" name="roomView" value="${hotel.roomTView}">
 		                    </div> 
 		                    <div class="person_icon"><i class="fa-regular person_icon fa-user"></i>기준2인/최대2인</div>
 		                    <div class="bed_style"><img src="<c:url value='/images/ic_bed.png'/>">싱글침대2</div>

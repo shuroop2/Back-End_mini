@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cooltimetrip.project.dao.IBookedStayDAO">
+
+	<select id="allBookedStayList" parameterType="String" resultType="com.cooltimetrip.project.model.BookedStayVO">
+		SELECT * FROM booked_stay WHERE memId= #{memId}
+	</select>
+  <!-- 마이페이지로 호텔 예약 전달 -->
+  	<insert id="insertBookedStayInfo" parameterType="com.cooltimetrip.project.model.BookedStayVO">
+  		INSERT INTO booked_stay (memId, hotelNo, hotelName, roomType, roomView, roomPrice, daterange2)
+  		VALUES(#{memId}, #{hotelNo}, #{hotelName}, #{roomType}, #{roomView}, #{roomPrice}, #{daterange2})
+  	</insert>
+  
+  </mapper>

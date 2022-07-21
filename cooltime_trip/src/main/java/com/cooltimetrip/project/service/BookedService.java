@@ -11,7 +11,6 @@ import com.cooltimetrip.project.model.BookedFlightVO;
 
 @Service
 public class BookedService implements IBookedService {
-	
 	@Autowired
 	@Qualifier("IBookedFlightDAO")
 	IBookedFlightDAO dao;
