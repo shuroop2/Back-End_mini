@@ -45,7 +45,7 @@
 				          		<button class="btn_signup_phone" type="button" style="cursor:pointer">인증하기</button>
 				        	</div>
 				        	<div class="div_check_phone">
-				        		<input class="input_check_serial" type="text" id="memPhoneSerial" name="memPhoneSerial">
+				        		<input class="input_check_serial" type="hidden" id="memPhoneSerial" name="memPhoneSerial">
 				          		<input class="input_check_phone" type="text" id="memPhoneCheck" name="memPhoneCheck" placeholder="인증번호 입력">
 				          		<button class="btn_check_phone" type="submit" style="cursor:pointer">확인</button>
 				        	</div>

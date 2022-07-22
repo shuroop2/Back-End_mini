@@ -185,13 +185,13 @@ public class MemberController {
 		 
 		String result = "fail";
 		if((input_pwd.length()<8 || input_pwd.length()>15)
-			|| (input_pwd.equals(memPwd))
+			|| (input_pwd.equals(memPwd)) 
 			|| !(input_pwd.equals(check_pwd))) {
 		}else {
 			result = "success";	
 			memService.updateMemPwd(memId, input_pwd);
 		}
-		return result;
+		return result; 
 	}
 	
 	// 전화번호 변경 페이지
