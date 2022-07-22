@@ -59,6 +59,7 @@ $(document).ready(function(){
 	}
 
 	// 주소 복사 아이콘 눌렀을 때 복사
+	const address = document.getElementById("agency_address_text");
 	$('.agency_address i').click(function() {
 		// address의 내용(textContent)을 복사
 		window.navigator.clipboard.writeText(address.textContent).then(() => {
