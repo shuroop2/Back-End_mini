@@ -141,6 +141,7 @@ section.flight_reservation{
   outline-style: none;
   font-size: 22px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .flight_date_box input::placeholder{

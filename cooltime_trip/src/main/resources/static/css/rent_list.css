@@ -28,6 +28,7 @@
   font-size: 20px;
   font-weight: bold;
   padding: 15px 50px;
+  cursor: pointer;
 }
 /* 날짜선택 박스 설정 */
 .wrap_search_input_box .search_daterange{
@@ -41,6 +42,7 @@
   font-size: 20px;
   font-weight: bold;
   text-align: center;
+  cursor: pointer;
 }
 /* 운전자 나이 설정 */
 .wrap_search_input_box .search_drive_age{
@@ -349,7 +351,6 @@
   border-radius: 2px;
   width: 630px;
   height: 111px;
-  cursor: pointer;
 }
 .wrap_txt_money .txt_ttl{
   font-size: 18px;
