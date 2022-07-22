@@ -33,7 +33,7 @@
 			            <table class="table_user_info">
 			                <tr><td class="td_text user_id">아이디</td><td colspan="2"><input class="input_update_id" type="text" value="${mem.memId }"></td></tr>
 			                <tr><td class="td_text user_password">비밀번호</td><td class="td_link update_password" colspan="2"><a href="<c:url value='/mypage_update_password' />">비밀번호 변경하기</a></td></tr>
-			                <tr><td class="td_text user_name">이름</td><td colspan="2"><input id="input_name" name="input_name" class="input_update_name" type="text" placeholder="실명 입력"></td></tr>
+			                <tr><td class="td_text user_name">이름</td><td colspan="2"><input id="input_name" name="input_name" class="input_update_name" type="text" placeholder="실명 입력" value="${mem.memName }"></td></tr>
 			                <tr><td class="td_text user_phone">휴대폰 번호</td><td class="td_data user_phone">${mem.memPhone }</td><td class="td_link update_phone"><a href="<c:url value='/mypage_update_phone' />">연락처 변경하기</a></td></tr>
 			                <tr><td class="td_text user_email">이메일</td><td class="td_data user_email" colspan="2">${mem.memEmail }</td></tr>
 			            </table>
