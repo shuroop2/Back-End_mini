@@ -95,7 +95,7 @@
             <span class="flight_location">${fList.dep_start_city }</span>
             <img src="<c:url value='/images/ic_arrow_right_short.png' />">
             <span class="flight_location">${fList.arr_start_city }</span>
-            <span id="dep_flight_time" class="flight_time">${fList.dep_during_time }</span>
+            <span id="dep_start_date" class="flight_time">${fn:substring(fList.daterange,0,10) }</span>
           </div>
           <div class="wrap_flight_time">
             <span class="flight_no">${fList.dep_flight_no }</span>
@@ -122,7 +122,7 @@
             <span class="flight_location">${fList.dep_end_city  }</span>
             <img src="<c:url value='/images/ic_arrow_right_short.png' />">
             <span class="flight_location">${fList.arr_end_city  }</span>
-            <span id="arr_flight_time" class="flight_time">${fList.arr_during_time }</span>
+            <span id="arr_start_date" class="flight_time">${fn:substring(fList.daterange,13,23) }</span>
           </div>
           <div class="wrap_flight_time">
             <span class="flight_no">${fList.arr_flight_no }</span>

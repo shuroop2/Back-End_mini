@@ -29,7 +29,7 @@
 				    <span class="rsv_text">렌트카 예약이 완료 되었습니다</span>
 	    		</c:if>
 			    
-			    <button type="button" class="rsv_btn" id="rsvBtn" onclick="rsvBtnClick()">마이페이지로 이동</button>
+			    <button type="button" class="rsv_btn" id="rsvBtn" onclick="location.href='/mypage'">마이페이지로 이동</button>
 		    </div>
 	    </div>
     </section>

@@ -146,7 +146,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
                 <input type="hidden" name="arr_start_city" value="${arrive_location }">
                 <input type="hidden" name="arr_end_city" value="${depart_location }">
                 <input type="hidden" name="arr_during_time" value="${arr_during_time }">
-                <input type="hidden" name="daterange" value="${daterange }">
+                <input type="hidden" name="daterange" value="${fn:substring(daterange,0,2) }월 ${fn:substring(daterange,3,5) }일${fn:substring(daterange,5,8) } - ${fn:substring(daterange,11,13) }월 ${fn:substring(daterange,14,16) }일${fn:substring(daterange,16,19) }">
                 <input type="hidden" name="personCount" value="${personCount }">
                 <input type="hidden" name="charge_flight" value="${charge_flight }">
                 <input type="hidden" name="charge_fuel" value="${charge_fuel }">

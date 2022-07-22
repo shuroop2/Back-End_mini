@@ -6,8 +6,8 @@
   <mapper namespace="com.cooltimetrip.project.dao.IBookedFlightDAO">
   
   	<insert id="insertFlight" parameterType="com.cooltimetrip.project.model.BookedFlightVO" >
-  		INSERT INTO booked_flight (dep_airline,dep_flight_no,dep_start_time,dep_end_time,dep_start_city,dep_end_city,dep_during_time,arr_airline,arr_flight_no,arr_start_time,arr_end_time,arr_start_city,arr_end_city,arr_during_time,dateRange,personCount,charge_flight,charge_fuel,charge_tax,charge_ticket,charge_total,memId)
-  		VALUES(#{dep_airline},#{dep_flight_no},#{dep_start_time},#{dep_end_time},#{dep_start_city},#{dep_end_city},#{dep_during_time},#{arr_airline},#{arr_flight_no},#{arr_start_time},#{arr_end_time},#{arr_start_city},#{arr_end_city},#{arr_during_time},#{dateRange},#{personCount},#{charge_flight},#{charge_fuel},#{charge_tax},#{charge_ticket},#{charge_total},#{memId})
+  		INSERT INTO booked_flight (dep_airline,dep_flight_no,dep_start_time,dep_end_time,dep_start_city,dep_end_city,dep_during_time,arr_airline,arr_flight_no,arr_start_time,arr_end_time,arr_start_city,arr_end_city,arr_during_time,daterange,personCount,charge_flight,charge_fuel,charge_tax,charge_ticket,charge_total,memId)
+  		VALUES(#{dep_airline},#{dep_flight_no},#{dep_start_time},#{dep_end_time},#{dep_start_city},#{dep_end_city},#{dep_during_time},#{arr_airline},#{arr_flight_no},#{arr_start_time},#{arr_end_time},#{arr_start_city},#{arr_end_city},#{arr_during_time},#{daterange},#{personCount},#{charge_flight},#{charge_fuel},#{charge_tax},#{charge_ticket},#{charge_total},#{memId})
   	</insert>
   
   	<select id="bookedList" parameterType="string" resultType="com.cooltimetrip.project.model.BookedFlightVO">

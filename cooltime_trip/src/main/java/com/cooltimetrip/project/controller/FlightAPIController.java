@@ -115,13 +115,11 @@ public class FlightAPIController {
 	        ArrayList<JSONObject> objArv = new ArrayList<JSONObject>();
 	        
 	        if(parse_item.size() < parse_item2.size()) {
-	        	System.out.println("짜잔");
 	        	for(int i = 0; i<parse_item.size(); i++) {
 	        		objDep.add((JSONObject) parse_item.get(i));
 	        		objArv.add((JSONObject) parse_item2.get(i));
 	        	}
 	        } else if (parse_item.size() > parse_item2.size()) {
-	        	System.out.println("뿡뿡");
 	        	for(int i = 0; i<parse_item2.size(); i++) {
 	        		objDep.add((JSONObject) parse_item.get(i));
 	        		objArv.add((JSONObject) parse_item2.get(i));

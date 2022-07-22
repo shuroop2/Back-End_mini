@@ -20,7 +20,7 @@ public class BookedFlightVO {
 	private String arr_end_city;
 	private String arr_during_time;
 
-	private String dateRange;
+	private String daterange;
 	private String personCount;
 	private String charge_flight;
 	private String charge_fuel;
@@ -76,8 +76,8 @@ public class BookedFlightVO {
 	public String getArr_during_time() {
 		return arr_during_time;
 	}
-	public String getDateRange() {
-		return dateRange;
+	public String getDaterange() {
+		return daterange;
 	}
 	public String getPersonCount() {
 		return personCount;
@@ -145,8 +145,8 @@ public class BookedFlightVO {
 	public void setArr_during_time(String arr_during_time) {
 		this.arr_during_time = arr_during_time;
 	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
+	public void setDaterange(String daterange) {
+		this.daterange = daterange;
 	}
 	public void setPersonCount(String personCount) {
 		this.personCount = personCount;
