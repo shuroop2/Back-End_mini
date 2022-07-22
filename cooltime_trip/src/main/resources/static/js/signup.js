@@ -122,7 +122,7 @@ $(document).ready(function(){
     // 인증 번호 일치 / 불일치 출력
     $('.btn_check_phone').click(function(){
         if($('.input_check_phone').val()==num){
-            alert("인증되었습니다.");
+            //alert("인증되었습니다.");
             check_phoneNum = true;// 회원가입 버튼 실행 시 확인 2
             // [인증번호 입력] 칸 / [확인] 버튼 숨기고
             // [휴대폰 번호 입력] 칸 / [인증하기] 버튼 비활성화
@@ -136,7 +136,7 @@ $(document).ready(function(){
         }
         else{
             check_phoneNum=false;
-            alert("인증번호를 다시 확인해주세요.");
+            //alert("인증번호를 다시 확인해주세요.");
             $('.input_check_phone').css('border', '1px solid #E65454');
         }
     });
@@ -173,8 +173,10 @@ $(document).ready(function(){
     $('.checkbox_agreeTos_total').click(function(){
         if($('.checkbox_agreeTos_total').is(":checked")){
             $("input[name=checkboxSub]").prop("checked", true);
+            check_Tos = true;
         } else{
             $("input[name=checkboxSub]").prop("checked", false);
+            check_Tos=false;
         } 
     });
 
@@ -185,21 +187,22 @@ $(document).ready(function(){
         &&$('.checkbox_agreeTos_sub2').is(":checked")
         &&$('.checkbox_agreeTos_sub3').is(":checked")){
             $('.checkbox_agreeTos_total').prop("checked", true);
+            check_Tos = true;
         }
         else{
             $('.checkbox_agreeTos_total').prop("checked", false);
+            check_Tos=false;
         }
     });
-
-    // 회원가입
-    // 회원가입 버튼 클릭 시
-    var check_password=false;
-    var check_name=false;
-    var check_email=false;
-    var check_signup=false;
-    $('#resultSignup').val("false");
-    $('.btn_signup').click(function(){
-        // 비밀번호
+    
+     // 회원가입 정보
+    $('#memPwdchk, #memName, #memEmail').change(function(){
+    	
+    	$('#resultName').val($('#memName').val());
+    	$('#resultEmail').val($('#memEmail').val());
+    	$('#resultPwd').val($('#memPwdchk').val());
+    	
+    	// 비밀번호
         var password1=$('.input_signup_password').val();
         var password2=$('.input_check_password').val();
         
@@ -207,14 +210,14 @@ $(document).ready(function(){
         }else{
             if(password1!=password2){
                 check_password=false;
-                $('#checkPwd').val("");
+                $('#resultPwd').val("");
             } else{
                check_password=true; // 회원가입 버튼 실행 시 확인 3
-               $('#checkPwd').val(password1);
+               //$('#resultPwd').val(password2);
             }
         }
-
-        // 이름
+    
+    	// 이름
         // 한글 이름 유효성 검사
         var name_rule=/^[가-힣]+$/;
         var name=$('.input_signup_name').val();
@@ -227,7 +230,7 @@ $(document).ready(function(){
             check_name=true;// 회원가입 버튼 실행 시 확인 4
         	$('#checkName').val(name);
         }
-
+        
         // 이메일
         // 이메일 형식 유효성 검사
         var email_rule=/^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
@@ -240,42 +243,16 @@ $(document).ready(function(){
             check_email=false;
             //alert("이메일 형식을 확인해주세요");
         }
-
-        // 이용약관 동의 여부 검사
-        if($('.checkbox_agreeTos_total').is(":checked")){
-            check_Tos=true;
-        }else{
-            check_Tos=false;
-        }
-
-        // 회원 정보 처리 검사
-        if(check_id&&check_password&&check_name&&check_phoneNum&&check_email&&check_Tos){
-           // 회원 가입 완료 - 로그인 페이지로 이동
-           //alert("회원가입이 완료되었습니다."); 
-           check_signup=true;
-           $('#resultSignup').val("true");
-        } else{
-        	$('#resultSignup').val("false");
-            if(!check_id){
-                alert("아이디 중복확인을 해주세요.");
-                $('.input_signup_id').css('border', '1px solid #E65454');
-            } else if(!check_password){
-                alert("비밀번호를 확인해주세요.");
-                $('.input_signup_password').css('border', '1px solid #E65454');
-            } else if(!check_name){
-                alert("이름을 확인해주세요.");
-                $('.input_signup_name').css('border', '1px solid #E65454');
-            } else if(!check_phoneNum){
-                alert("휴대폰 번호 인증을 해주세요.");
-                $('.input_signup_phone').css('border', '1px solid #E65454');
-            } else if(!check_email){
-                alert("이메일 형식이 유효하지 않습니다.");
-                $('.input_signup_email').css('border', '1px solid #E65454');
-            } else if(!check_Tos){
-                alert("약관에 동의해주세요.");
-            }
-        }
     });
+   
+    // 회원가입 버튼 클릭 시
+    var check_password=false;
+    var check_name=false;
+    var check_email=false;
+    //var check_signup=false;
+    //$('#resultSignup').val("false");
+   
+	
 /*
     // 탑 버튼 눌렀을 때 최상단으로
     $(".btn_top").click(function () {
@@ -288,7 +265,7 @@ $(document).ready(function(){
 	// 아이디 중복 체크
 	$('#form_check_id').on('submit', function(){
 		event.preventDefault();
-		alert("버튼 클릭"); 
+		//alert("버튼 클릭"); 
 		$.ajax({
 	    	type:"post",
 	    	url:"checkMemId",
@@ -296,7 +273,7 @@ $(document).ready(function(){
 	    	success: function(result){
 	    		if(result=="use"){// 사용하는 아이디가 없을 때
 	    			alert("사용 가능한 아이디입니다.");
-	    			$(.input_signup_id).css('border', '1px solid #DDDDDD');
+	    			$('.input_signup_id').css('border', '1px solid #DDDDDD');
 	    			check_id = true;
 	    		}
 	    		else{
@@ -317,7 +294,7 @@ $(document).ready(function(){
 	// 휴대폰 번호 인증
 	$('#form_check_phone').on('submit', function(){
 		event.preventDefault();
-		alert("버튼 클릭"); 
+		//alert("버튼 클릭"); 
 		$.ajax({
 	    	type:"post",
 	    	url:"checkMemPhone",
@@ -325,11 +302,13 @@ $(document).ready(function(){
 	    			, "memPhoneCheck":$('#memPhoneCheck').val()},
 	    	success: function(result){
 	    		if(result=="success"){// 인증번호 일치
-	    			alert("일치");
+	    			check_phoneNum = true;
+	    			alert("휴대폰 번호 인증이 완료되었습니다");
 	    			$('#resultPhone').val($('#memPhone').val());
 	    		}
 	    		else{// 인증번호 불일치
-	    			alert("불일치");
+	    			check_phoneNum = false;
+	    			alert("인증번호를 확인해주세요");
 	    		}
 	    	},
 	    	error: function(request, error){
@@ -341,5 +320,13 @@ $(document).ready(function(){
 	
 	// 회원가입
 	
+	$('#form_signup').on('submit', function(){
+		if(check_id&&check_phoneNum&&check_Tos&&check_password){
+			alert("회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.");
+			location.href = "/login";
+		} else {
+			alert("회원 정보 및 약관 동의를 다시 확인해주세요");
+		}
+	});
 	
 });

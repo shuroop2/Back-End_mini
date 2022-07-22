@@ -75,16 +75,17 @@
 			        	</div>
 			        	<br>
 			        	<br>
-			        	<form id="form_signup" method="post" action="<c:url value='/signupMember'/>"></form>
-			        	<div class="div_signup_button">
-			            	<button class="btn_signup" type="submit" style="cursor:pointer">회원가입</button>
-			            	<input id="resultId" name="resultId" type="text">
-			            	<input id="resultPwd" name="resultPwd" type="text">
-			            	<input id="resultName" name="resultName" type="text">
-			            	<input id="resultPhone" name="resultPhone" type="text">
-			            	<input id="resultEmail" name="resultEmail" type="text">
-			            	<input id="resultSignup" name="resultSignup" type="text">
-			        	</div>
+			        	<form id="form_signup" method="post" action="<c:url value='/signupMember'/>">
+				        	<div class="div_signup_button">
+				            	<button class="btn_signup" type="submit" style="cursor:pointer">회원가입</button>
+				            	<input id="resultId" name="resultId" type="hidden">
+				            	<input id="resultPwd" name="resultPwd" type="hidden">
+				            	<input id="resultName" name="resultName" type="hidden">
+				            	<input id="resultPhone" name="resultPhone" type="hidden">
+				            	<input id="resultEmail" name="resultEmail" type="hidden">
+				            	<input id="resultSignup" name="resultSignup" type="hidden">
+				        	</div>
+			        	</form>
 					</div>
 				<!-- </form> -->           
 			</div> 	

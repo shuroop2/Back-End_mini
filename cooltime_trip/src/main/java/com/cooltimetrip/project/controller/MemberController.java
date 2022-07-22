@@ -30,8 +30,6 @@ public class MemberController {
 		return "member/signup";
 	}
 	
-	
-	
 	// 회원가입 - 아이디 중복 체크
 	@ResponseBody
 	@RequestMapping("/checkMemId")
@@ -70,11 +68,22 @@ public class MemberController {
 	
 	// 회원가입 요청
 	@RequestMapping("/signupMember") 
-	public String signupMember(MemberVO vo) {
+	public String signupMember(MemberVO vo
+	
+	  ,@RequestParam("resultId") String resultId 
+	  ,@RequestParam("resultPwd") String resultPwd 
+	  ,@RequestParam("resultName") String resultName
+	  ,@RequestParam("resultPhone") String resultPhone
+	  ,@RequestParam("resultEmail") String resultEmail
+	 ) {
+		vo.setMemId(resultId);
+		vo.setMemPwd(resultPwd);
+		vo.setMemName(resultName);
+		vo.setMemPhone(resultPhone);
+		vo.setMemEmail(resultEmail);
 		memService.insertMember(vo); 
 		return "/member/login";
 	}
-	
 	
 	// 로그인 처리     
 	@ResponseBody
