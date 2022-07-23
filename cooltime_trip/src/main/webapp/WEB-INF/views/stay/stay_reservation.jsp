@@ -80,8 +80,6 @@ if (request.getProtocol().equals("HTTP/1.1"))
 			        </div>
 			        <div class="stay_p_info">
 			          <div class="p_info_detail">투숙객 정보</div>
-			          <!-- <input type="checkbox" class="check_box_sizing" id="cusInfo">
-			          <div class="same_name">예약자와 동일해요</div> -->
 			          <span class="same_name"><i class="fa-solid fa-check"></i>예약자와 동일해요</span>
 			        </div>
 			        <div class="booked_customer_info">
@@ -120,8 +118,6 @@ if (request.getProtocol().equals("HTTP/1.1"))
 			          <div class="agreement_c">(필수) 개인정보 수집 및 이용 동의 ></div>
 			        </div>
 			        <div class="agreement_check_final">
-			          <!-- <input type="checkbox" class="check_box_final" id="check_final">
-			          <div class="agree_text_final">위 약관을 확인 하였으며, 약관에 동의합니다</div> -->
 			          <span class="agree_text_final"><i class="fa-solid fa-check"></i>위 약관을 확인 하였으며, 약관에 동의합니다</span>
 			        </div>
 			        <div class="booked_button_final">
