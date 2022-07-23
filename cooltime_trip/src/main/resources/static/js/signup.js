@@ -267,7 +267,7 @@ $(document).ready(function(){
 	$('#form_check_id').on('submit', function(){
 		event.preventDefault();
 		//alert("버튼 클릭"); 
-		$.ajax({
+		$.ajax({ 
 	    	type:"post",
 	    	url:"checkMemId",
 	    	data:{"memId":$('#memId').val()},
@@ -324,7 +324,7 @@ $(document).ready(function(){
 	$('.btn_signup').click(function(){
 		if(check_id&&check_phoneNum&&check_Tos&&check_password){
 			alert("회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.");
-			//location.href = "/login";
+			location.href = "/";
 		} else {
 			alert("회원 정보 및 약관 동의를 다시 확인해주세요");
 		}
