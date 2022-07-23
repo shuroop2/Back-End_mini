@@ -80,8 +80,6 @@ if (request.getProtocol().equals("HTTP/1.1"))
 			        </div>
 			        <div class="stay_p_info">
 			          <div class="p_info_detail">투숙객 정보</div>
-			          <!-- <input type="checkbox" class="check_box_sizing" id="cusInfo">
-			          <div class="same_name">예약자와 동일해요</div> -->
 			          <span class="same_name"><i class="fa-solid fa-check"></i>예약자와 동일해요</span>
 			        </div>
 			        <div class="booked_customer_info">
