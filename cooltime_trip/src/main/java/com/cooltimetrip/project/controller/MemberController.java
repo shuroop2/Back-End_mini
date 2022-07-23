@@ -100,18 +100,18 @@ public class MemberController {
 	}
 	 
 	// 로그인 처리 (비밀번호 암호화)   
-//		@ResponseBody
-//		@RequestMapping("/loginCheck")
-//		public String loginCheck(@RequestParam HashMap<String, Object> param, HttpSession session) {
-//			String result = memService.loginCheck(param);
-//			
-//			// 아이디/비밀번호 일치하면
-//			if(result.equals("success")) {
-//				// 로그인 성공 시 세션 변수 지정
-//				session.setAttribute("sid", param.get("id"));
-//			}
-//			return result;  
-//		}  
+		@ResponseBody
+		@RequestMapping("/loginCheck")
+		public String loginChecka(@RequestParam HashMap<String, Object> param, HttpSession session) {
+			String result = memService.loginCheck(param);
+			
+			// 아이디/비밀번호 일치하면
+			if(result.equals("success")) {
+				// 로그인 성공 시 세션 변수 지정
+				session.setAttribute("sid", param.get("id"));
+			}
+			return result;  
+		}  
 	
 	// 내 정보 비밀번호 인증 페이지
 	@RequestMapping("/mypage_authentication")
