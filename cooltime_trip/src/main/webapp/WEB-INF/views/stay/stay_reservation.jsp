@@ -120,8 +120,6 @@ if (request.getProtocol().equals("HTTP/1.1"))
 			          <div class="agreement_c">(필수) 개인정보 수집 및 이용 동의 ></div>
 			        </div>
 			        <div class="agreement_check_final">
-			          <!-- <input type="checkbox" class="check_box_final" id="check_final">
-			          <div class="agree_text_final">위 약관을 확인 하였으며, 약관에 동의합니다</div> -->
 			          <span class="agree_text_final"><i class="fa-solid fa-check"></i>위 약관을 확인 하였으며, 약관에 동의합니다</span>
 			        </div>
 			        <div class="booked_button_final">
