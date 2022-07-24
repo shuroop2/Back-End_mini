@@ -28,7 +28,7 @@
         </div>
         <div class="myinfo_box">
         	<span class="myinfo_title">내 정보</span>
-        	<a href="<c:url value='/logout' />"><span class="logout" >로그아웃</span></a>
+        	<a href="<c:url value='/logout'/>"><span class="logout">로그아웃</span></a>
         </div>
         <div class="myinfo_nav">
           <a href="<c:url value='/mypage_authentication'/>"><div class="myinfo_nav_hover1 nav_hover" id="myinfoNav"><p>내 정보 수정하기</p></div></a>

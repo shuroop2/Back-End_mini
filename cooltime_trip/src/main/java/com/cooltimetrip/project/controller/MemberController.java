@@ -1,7 +1,10 @@
 package com.cooltimetrip.project.controller; 
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +35,6 @@ public class MemberController {
 	@RequestMapping("/checkMemId")
 	public String checkMemId(@RequestParam("memId") String memId) {
 		String memId_result = memService.checkMemId(memId);
-		
 		String result = "use";
 		if(memId_result != null)
 			result = "no_use";
@@ -66,13 +68,12 @@ public class MemberController {
 	// 회원가입 요청
 	@RequestMapping("/signupMember") 
 	public String signupMember(MemberVO vo
-	
-	  ,@RequestParam("resultId") String resultId 
-	  ,@RequestParam("resultPwd") String resultPwd 
-	  ,@RequestParam("resultName") String resultName
-	  ,@RequestParam("resultPhone") String resultPhone
-	  ,@RequestParam("resultEmail") String resultEmail
-	 ) {
+							  ,@RequestParam("resultId") String resultId 
+							  ,@RequestParam("resultPwd") String resultPwd 
+							  ,@RequestParam("resultName") String resultName
+							  ,@RequestParam("resultPhone") String resultPhone
+							  ,@RequestParam("resultEmail") String resultEmail
+							 ) {
 		vo.setMemId(resultId);
 		vo.setMemPwd(resultPwd);
 		vo.setMemName(resultName);
@@ -104,7 +105,8 @@ public class MemberController {
 		}
   		return result; 
 	}
-	 
+	
+	/*	수정 예정
 	// 로그인 처리 (비밀번호 암호화)   
 	@ResponseBody
 	@RequestMapping("/loginCheck")
@@ -118,6 +120,7 @@ public class MemberController {
 		}
 		return result;  
 	}  
+	*/
 	
 	//=====마이페이지=====//
 	
@@ -225,16 +228,17 @@ public class MemberController {
 	}
 	
 	// 회원탈퇴
+	@ResponseBody
 	@RequestMapping("/deleteMember")
-	public String deleteMember(HttpSession session) {
+	public String deleteMember(HttpSession session
+								,HttpServletResponse response
+								,HttpServletRequest request) {
 		String memId = (String) session.getAttribute("sid");
 		memService.deleteMember(memId);
 		session.invalidate();
 		return "redirect:/";
 	}
-	
-	//=====로그아웃=====//
-	
+
 	// 로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {

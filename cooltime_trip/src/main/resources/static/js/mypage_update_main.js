@@ -24,7 +24,7 @@ $(document).ready(function(){
         location.href='/';
     });
 
-	/*
+	
 	$('#form_mypage_update').on('submit', function(){	
 		event.preventDefault();	
     	$.ajax({
@@ -46,7 +46,7 @@ $(document).ready(function(){
     		}		  
     	});//ajax
     });//submit
-    /*
+    
 	$('#form_mypage_update').on('submit', function(){
         if(('.input_update_name').val() != null){
     		alert("회원정보가 저장되었습니다.");
@@ -66,5 +66,5 @@ $(document).ready(function(){
     		alert("이름을 확인해주세요.");
     	}
     });
-    */
+    
 });

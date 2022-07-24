@@ -32,7 +32,8 @@ $(document).ready(function(){
     	$.ajax({
     		type: "post",
     		url: "updatePassword",
-    		data:{"input_pwd":$('#input_pwd').val(),"check_pwd":$('#check_pwd').val()},
+    		data:{"input_pwd":$('#input_pwd').val()
+    				,"check_pwd":$('#check_pwd').val()},
     		dataType: "text",
     		success: function(result){// 성공 시 수행
 				if(result=="success"){
@@ -43,8 +44,7 @@ $(document).ready(function(){
 	                user_pw = $('.input_update_password').val();// 기존 비밀번호를 새 비밀번호로 대체
 	                alert("비밀번호가 변경되었습니다.");
 	               	location.href = '/mypage';
-				} 
-				else{
+				} else {
 					$('.error_update_password1').hide();// 기존 비밀번호와 동일합니다 - 숨김
 			        $('.error_check_password').hide();// 비밀번호가 일치하지 않습니다 - 숨김
 			        $('.input_update_password').css('border', '1px solid #E65454');
