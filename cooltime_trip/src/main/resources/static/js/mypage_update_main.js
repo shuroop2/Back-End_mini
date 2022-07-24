@@ -41,8 +41,8 @@ $(document).ready(function(){
     				location.href="/mypage";
     			}
     		},
-    		error: function(){
-    			alert("DB_Connection : error");
+    		error: function(request, error){
+    			console.log("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
     		}		  
     	});//ajax
     });//submit

@@ -19,11 +19,9 @@ public class MemberController {
 	@Autowired
 	MemberService memService;
 	
-	@RequestMapping("/login") 
-	public String login() {
-		return "member/login";
-	}
+	//=====회원가입=====//
 	
+	// 회원가입 페이지 호출
 	@RequestMapping("/signup")
 	public String signup() {
 		return "member/signup";
@@ -84,6 +82,14 @@ public class MemberController {
 		return "/member/login";
 	}
 	
+	//=====로그인=====//
+	
+	// 로그인 페이지 호출
+	@RequestMapping("/login") 
+	public String login() {
+		return "member/login";
+	}
+	
 	// 로그인 처리     
 	@ResponseBody
 	@RequestMapping("/loginCheck") 
@@ -100,18 +106,20 @@ public class MemberController {
 	}
 	 
 	// 로그인 처리 (비밀번호 암호화)   
-		@ResponseBody
-		@RequestMapping("/loginCheck")
-		public String loginChecka(@RequestParam HashMap<String, Object> param, HttpSession session) {
-			String result = memService.loginCheck(param);
-			
-			// 아이디/비밀번호 일치하면
-			if(result.equals("success")) {
-				// 로그인 성공 시 세션 변수 지정
-				session.setAttribute("sid", param.get("id"));
-			}
-			return result;  
-		}  
+	@ResponseBody
+	@RequestMapping("/loginCheck")
+	public String loginChecka(@RequestParam HashMap<String, Object> param, HttpSession session) {
+		String result = memService.loginCheck(param);
+		
+		// 아이디/비밀번호 일치하면
+		if(result.equals("success")) {
+			// 로그인 성공 시 세션 변수 지정
+			session.setAttribute("sid", param.get("id"));
+		}
+		return result;  
+	}  
+	
+	//=====마이페이지=====//
 	
 	// 내 정보 비밀번호 인증 페이지
 	@RequestMapping("/mypage_authentication")
@@ -158,7 +166,6 @@ public class MemberController {
 		String result = "fail";
 		
 		if(input_name.length()!=0) {
-			//System.out.println("value:"+input_name+"length:"+input_name.length());
 			memService.updateMemName(memId, input_name);
 			result = "success";  
 		}
@@ -226,13 +233,17 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	//=====로그아웃=====//
+	
 	// 로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
 	} 
-
+	
+	//==========//
+	
 	// 예약 완료 요청
 	@RequestMapping("/rsv_complete") 
 	public String rsvComplete() {

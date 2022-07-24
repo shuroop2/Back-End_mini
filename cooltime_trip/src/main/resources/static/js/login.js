@@ -92,9 +92,8 @@ $(document).ready(function(){
             		$('.error_login_id').show();
     			}
     		},
-    		error: function(){
-    			alert("DB_Connection : error");
-    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
+    		error: function(request, error){
+    			console.log("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
     		}		  
     	});//ajax
     });//submit

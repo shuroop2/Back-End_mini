@@ -53,8 +53,7 @@ $(document).ready(function(){
     });
 
     $('#form_update_phone').on('submit', function(){
-    	event.preventDefault();	
-    	
+    	event.preventDefault();
     	$.ajax({
     		type: "post",
     		url: "updatePhone",
@@ -73,8 +72,7 @@ $(document).ready(function(){
 				}	
     		},
     		error: function(request, error){
-    			alert("error");
-    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
+    			console.log("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
     		}		
     	});
     });

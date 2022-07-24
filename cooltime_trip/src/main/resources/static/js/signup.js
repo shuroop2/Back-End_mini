@@ -67,29 +67,7 @@ $(document).ready(function(){
             $(this).css('border', '1px solid #DDDDDD');
         });
     }  
-
-    // 아이디 중복 확인 버튼 클릭 시
-    // 아이디 중복 체크
-    // DB 사용 부분
-    
-    var check_id=false;
-/*
-    $('.btn_check_id').click(function(){
-        var userId=$('.input_signup_id').val();
-        if(userId==""){
-            alert("아이디를 입력하세요");
-            $('.input_signup_id').css('border', '1px solid #E65454');
-            check_id=false;
-        }else if(userId=="admin"){
-            alert("중복된 아이디입니다.");
-            $('.input_signup_id').css('border', '1px solid #E65454');
-            check_id=false;
-        }else{
-            alert("사용 가능한 아이디입니다.");
-            check_id=true;// 회원가입 버튼 실행 시 확인 1
-        }
-    });
-*/
+ 
     // 인증 번호 입력란 숨기기(초기설정)
     $('.input_check_phone').hide();
     $('.btn_check_phone').hide();
@@ -214,7 +192,6 @@ $(document).ready(function(){
                 $('#resultPwd').val("");
             } else{
                check_password=true; // 회원가입 버튼 실행 시 확인 3
-               //$('#resultPwd').val(password2);
             }
         }
     
@@ -242,28 +219,13 @@ $(document).ready(function(){
             $('#checkEmail').val(email_val);
         } else{
             check_email=false;
-            //alert("이메일 형식을 확인해주세요");
         }
     });
-   
-    // 회원가입 버튼 클릭 시
-    var check_password=false;
-    var check_name=false;
-    var check_email=false;
-    //var check_signup=false;
-    //$('#resultSignup').val("false");
-   
-	
-/*
-    // 탑 버튼 눌렀을 때 최상단으로
-    $(".btn_top").click(function () {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 400);
-        return false; 
-    });
-*/
-	// 아이디 중복 체크
+
+	// 아이디 중복 확인 버튼 클릭 시
+    // 아이디 중복 체크
+    // DB 사용 부분
+    var check_id=false;
 	$('#form_check_id').on('submit', function(){
 		event.preventDefault();
 		//alert("버튼 클릭"); 
@@ -286,8 +248,7 @@ $(document).ready(function(){
 	    		$('#resultId').val($('#memId').val());
 	    	},
 	    	error: function(request, error){
-    			alert("error");
-    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
+    			console.log("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
     		}
 	    });
 	});
@@ -313,14 +274,16 @@ $(document).ready(function(){
 	    		}
 	    	},
 	    	error: function(request, error){
-    			alert("error");
-    			alert("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
+    			console.log("code:"+request.status+"\nmessage:"+request.responseText+"\nerror:"+error);
     		}
 	    });
 	});
 	
 	// 회원가입
-	
+	// 회원가입 버튼 클릭 시
+    var check_password=false;
+    var check_name=false;
+    var check_email=false;
 	$('.btn_signup').click(function(){
 		if(check_id&&check_phoneNum&&check_Tos&&check_password){
 			alert("회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.");

@@ -1,4 +1,4 @@
-
+	
 function open(){
   // 마이페이지 메뉴
   let myHotel = document.getElementById("myBookedHotel");
