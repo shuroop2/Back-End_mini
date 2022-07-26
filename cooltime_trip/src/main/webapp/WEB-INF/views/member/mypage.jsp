@@ -26,9 +26,12 @@
           <div id="myCheckList" class="nav_hover"><p>여행 필수 체크리스트</p></div>
           <div class="mypage_nav_hover2 nav_hover"><p>지난 여행기록</p></div>
         </div>
+        
         <div class="myinfo_box">
         	<span class="myinfo_title">내 정보</span>
-        	<a href="<c:url value='/logout'/>"><span class="logout">로그아웃</span></a>
+        	<form id="form_myinfo_logout" method="post" action="<c:url value='/mypage_logout'/>">
+        		<input id="btn_logout" name="btn_logout" class="btn_logout" type="submit" value="로그아웃">
+        	</form>
         </div>
         <div class="myinfo_nav">
           <a href="<c:url value='/mypage_authentication'/>"><div class="myinfo_nav_hover1 nav_hover" id="myinfoNav"><p>내 정보 수정하기</p></div></a>
@@ -243,9 +246,12 @@
                 <input type="text" id="list_input" onkeyup="enter()" placeholder="나만의 체크리스트를 완성해보세요" autocomplete="off">
                 <button id="add_btn"><i class='fas fa-plus new_list'></i></button>
               </div>
+              
+              <!-- js에서 innerHTML로 사용하는 부분 - 지우면 안 됨 -->
               <div id="check_list_board">
 
               </div>
+              <!--  -->
             </div>
           </div>
         </section>

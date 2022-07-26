@@ -18,7 +18,7 @@
 		        <!-- <div class="div_update_title title_main">
 		            내 정보 수정하기
 		        </div> -->
-		        <form id="form_mypage_update" method="post" action="<c:url value='/mypageUpdateMemName'/>">
+		        <form id="form_mypage_update" method="post" action="<c:url value='/mypageUpdateMemInfo'/>">
 		        	<div class="div_update_panel">
 			            <div class="div_update_profile">
 			                <!-- 사진 -->
@@ -47,10 +47,12 @@
 			            </div>
 			        </div>
 		        </form>
-		        
-		        <div class="div_delete_account">
-		            <a href="<c:url value='/deleteMember'/>">회원탈퇴</a>
-		        </div>
+		        <form id="form_delete_member" method="post" action="<c:url value='/deleteMember'/>">
+		        	<div class="div_delete_member">
+		            	<%-- <a href="<c:url value='/deleteMember'/>">회원탈퇴</a> --%>
+		            	<input id="input_delete_member" class="input_delete_member" name="input_delete_member" type="submit" value="회원탈퇴">
+		        	</div>
+		        </form>
 		    </div>
 	    </section>
 	    <!-- 탑 버튼 -->

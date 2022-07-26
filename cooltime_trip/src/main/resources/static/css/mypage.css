@@ -93,10 +93,12 @@ button{
 }
 
 /* 내 정보 logout */
-.logout{
+.btn_logout{
   font-size: 18px;
   font-weight: bold;
   line-height: 31px;
+  background-color: #ffffff;
+  border: 0px;
   color: #999999;
   cursor: pointer;
 }

@@ -1,8 +1,10 @@
 package com.cooltimetrip.project.controller; 
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -163,8 +165,8 @@ public class MemberController {
 	
 	// 내 정보 수정 - memName
 	@ResponseBody 
-	@RequestMapping("/mypageUpdateMemName")  
-	public String mypageUpdateMemName(String input_name, HttpSession session) {
+	@RequestMapping("/mypageUpdateMemInfo")  
+	public String mypageUpdateMemInfo(String input_name, HttpSession session) {
 		String memId = (String) session.getAttribute("sid");
 		String result = "fail";
 		
@@ -228,21 +230,34 @@ public class MemberController {
 	}
 	
 	// 회원탈퇴
-	@ResponseBody
 	@RequestMapping("/deleteMember")
-	public String deleteMember(HttpSession session
-								,HttpServletResponse response
-								,HttpServletRequest request) {
+	public String deleteMember(HttpSession session) {
 		String memId = (String) session.getAttribute("sid");
 		memService.deleteMember(memId);
 		session.invalidate();
 		return "redirect:/";
 	}
-
+  
 	// 로그아웃
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
+	@RequestMapping("/mypage_logout")  
+	public String logout(HttpSession session
+						, HttpServletRequest request
+						, HttpServletResponse response
+						) throws ServletException, IOException {
+//		response.setContentType("text/html");
+//		PrintWriter out = response.getWriter();
+		
+//		out.println("<!DOCTYPE html><html>"
+//					+ "<body>"
+//						+ "<script>"
+//							+ "alert('로그아웃되어 메인페이지로 이동합니다.')"
+//						+ "</script>"
+//					+ "</body>"
+//				+ "</html>");
+		
+		//ScriptUtils.alert(response, "로그아웃되어 메인페이지로 이동합니다.");
 		session.invalidate();
+		//System.out.println("로그아웃");
 		return "redirect:/";
 	} 
 	
