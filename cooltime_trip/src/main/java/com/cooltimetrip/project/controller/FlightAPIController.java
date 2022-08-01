@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cooltimetrip.project.model.HistoryVO;
 import com.cooltimetrip.project.model.KeyValue;
 import com.cooltimetrip.project.service.HistoryService;
-
+/*
 @RestController
 public class FlightAPIController {
 	@Autowired
@@ -139,7 +139,6 @@ public class FlightAPIController {
 	            	hService.updateHistory(vo);
 	            }
 	        }
-	        
 	        mv.addObject("objDep", objDep);
 	        mv.addObject("objArv", objArv);
 			
@@ -148,9 +147,6 @@ public class FlightAPIController {
 			e.printStackTrace();
 		}
 		
-		
-        
-        
         mv.addObject("depart_location", depart_location); // 출발지
         mv.addObject("arrive_location", arrive_location); // 도착지
 		mv.addObject("shuttle", shuttle); // 왕복 편도 다구간
@@ -162,6 +158,6 @@ public class FlightAPIController {
 		
 		return mv;
 	}
-	
 }
+*/
 

@@ -26,14 +26,12 @@ if (request.getProtocol().equals("HTTP/1.1"))
 	        <button type="button" id="oneWay" class="flight_shuttle_select">편도</button>
 	        <button type="button" id="multi" class="flight_shuttle_select">다구간</button>
 	        <input type="hidden" id="shuttle" name="shuttle" value="왕복">
-	        <input type="hidden" id="shuttle" name="historyShuttle" value="왕복">
 	      </div>
 	      <div class="departure_arrival_container">
 	        <div class="location_box">
 	          <div class="depart_location">
 	            <span class="flight_reservation_subtitle">출발</span>
 	            <input type="text" class="departure_location" id="depart_loacation" name="depart_location" placeholder="출발지를 선택하세요" autocomplete="off">
-	            <input type="hidden" class="departure_location" name="historyDep">
 	          </div>
 	          <div class="depart_popup" id="depart_pop">
 	            <div class="popup_wrap">
@@ -143,7 +141,6 @@ if (request.getProtocol().equals("HTTP/1.1"))
 	          <div class="arrive_location">
 	            <span class="flight_reservation_subtitle">도착</span>
 	            <input type="text" class="arrival_location" id="arriveLocation" name="arrive_location" placeholder="도착지를 선택하세요" autocomplete="off">
-	            <input type="hidden" class="arrival_location" name="historyArr">
 	          </div>
 	          <div class="arrive_popup" id="arrive_pop">
 	            <div class="popup_wrap">
@@ -254,17 +251,13 @@ if (request.getProtocol().equals("HTTP/1.1"))
 	        <div class="flight_date_box">
 	          <div class="flight_reservation_subtitle">출발일 - 도착일</div>
 	          <input type="text" class="flight_date" id="rangepicker" name="daterange" placeholder="여행 날짜 선택" autocomplete="off">
-	          <input type="hidden" class="flight_date" name="historyDateRange">
 	        </div>
 	        <div class="sit_class_box">
 	          <span class="flight_reservation_subtitle">인원, 좌석등급</span>
 	          <div class="sit_class_area" id="person_sit">
 	            <input type="text" class="sit_class1" id="personCount" name="personCount" value="1명" readonly></input><span>,</span>
 	            <input type="text" class="sit_class2" id="classType" name="classType" value="일반석" readonly></input>
-	            <input type="hidden" class="sit_class1" id="historyCount" name="historyCount" value="1명">
-	            <input type="hidden" class="sit_class2" name="historyType" value="일반석">
 	          </div>
-	          
 	        </div>
 	        <div class="customer_flightclass_popup" id="custom_flight_pop">
 	          <div class="customer_flightclass_wrap">

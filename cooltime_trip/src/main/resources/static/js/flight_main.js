@@ -196,7 +196,6 @@ $("#popupLodSearch2").on("keyup",function(key){
 // 인원 좌석 선택 버튼 클릭
 let adultBtnMinus = document.getElementById('adultBtnMinus');
 let personCount = document.getElementById('personCount');
-let historyCount = document.getElementById('historyCount');
 let classType = document.getElementById('classType');
 let maxNumber = 1;
 
@@ -257,8 +256,7 @@ function plusMinusBtn(pm){
   cdCount.innerHTML = cdNumber;
   bbCount.innerHTML = bbNumber;
  
-  historyCount.value = maxNumber + "명";
-  personCount.value = historyCount.value;
+  personCount.value = maxNumber + "명";
   
   // 버튼 비활성화
   if(adCount.innerHTML > 1){
@@ -386,10 +384,7 @@ function rctPrevButton(){
 		   		rctPrev.style.visibility = "hidden";
 		   		rctNext.style.visibility = "visible";
 		   }
-		   
 	  }
-	 
-
 }
 
 // 최근 검색한 항공권 초기 설정 및 클릭 이벤트
@@ -420,7 +415,16 @@ $('.recently_colse_btn').click(function(){
     rctPrev.style.visibility = "hidden";
  	rctNext.style.visibility = "hidden";
   }
-  
+});
+
+// 최근 검색한 항공권 눌렀을 때, 해당 내용으로 채우기
+$('.recently_item').click(function(){
+	// $('.departure_location').val($(this).find('.recently_shuttle_way').text());
+	$('#depart_loacation').attr('value', $(this).find('.recently_destination span:first-child').text());
+	$('#arriveLocation').attr('value', $(this).find('.recently_destination span:last-child').text());
+	$('#rangepicker').attr('value', $(this).find('.recently_desc span:first-child').text().substring(0, 19));
+	$('#personCount').attr('value', $(this).find('.recently_desc span:nth-child(2)').text().substring(2, 4));
+	$('#classType').attr('value', $(this).find('.recently_desc span:last-child').text());
 });
 
 // 탑 버튼 눌렀을 때 최상단으로

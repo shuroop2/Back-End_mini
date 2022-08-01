@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cooltimetrip.project.model.FlightVO;
 import com.cooltimetrip.project.model.HistoryVO;
+import com.cooltimetrip.project.model.KeyValue;
 import com.cooltimetrip.project.model.MemberVO;
+import com.cooltimetrip.project.service.FlightService;
 import com.cooltimetrip.project.service.HistoryService;
 import com.cooltimetrip.project.service.MemberService;
 
@@ -24,6 +27,8 @@ public class FlightController {
 	MemberService memService;
 	@Autowired
 	HistoryService hService;
+	@Autowired
+	FlightService fService;
 	
 	@RequestMapping("/")
 	public String flightMain(HttpSession session, Model model) {
@@ -50,7 +55,55 @@ public class FlightController {
 	}
 	
 	@RequestMapping("/flight_list")
-	public String flightList() {
+	public String flightList(@RequestParam HashMap<String, Object> map, Model model, HttpSession session, HistoryVO vo, KeyValue key) throws Exception {
+		String depart_location = (String) map.get("depart_location");
+		String arrive_location = (String) map.get("arrive_location");
+		String daterange = (String) map.get("daterange");
+		
+		String airportDep = "NAARKPC";
+		String airportArv = "NAARKSS";
+		if(depart_location.equals("김포") && arrive_location.equals("제주")) {
+			airportDep = "NAARKSS";
+			airportArv = "NAARKPC";
+		}
+		
+		// 출발 날짜
+		String depDate = "2022" + daterange.substring(0, 2) + daterange.subSequence(3, 5);
+		
+		// 도착 날짜
+		String arrDate = "2022" + daterange.substring(11, 13) + daterange.subSequence(14, 16);
+		ArrayList<FlightVO> objDep = fService.flight(key.getKey(), airportDep, airportArv, depDate);
+		ArrayList<FlightVO> objArv = fService.flight(key.getKey(), airportArv, airportDep, arrDate);
+		
+		String memId = (String) session.getAttribute("sid");
+        if(memId != null) {
+        	
+        	vo.setMemId(memId);
+        	vo.setHistoryDep(depart_location);
+        	vo.setHistoryArr(arrive_location);
+        	vo.setHistoryDateRange(daterange);
+        	vo.setHistoryShuttle((String) map.get("shuttle"));
+        	vo.setHistoryType((String) map.get("classType"));
+        	vo.setHistoryCount((String) map.get("personCount"));
+        	
+            int count = hService.checkInHistory(vo.getHistoryDep(), vo.getHistoryArr(), memId);
+
+            if(count == 0) {
+            	hService.insertHistory(vo);
+            } else {
+            	hService.updateHistory(vo);
+            }
+        }
+        
+        model.addAttribute("objDep", objDep);
+        model.addAttribute("objArv", objArv);
+        model.addAttribute("depart_location", depart_location);
+        model.addAttribute("arrive_location", arrive_location);
+        model.addAttribute("shuttle", (String) map.get("shuttle")); // 왕복 편도 다구간
+        model.addAttribute("daterange", daterange); // 기간
+        model.addAttribute("personCount", (String) map.get("personCount")); // 인원수
+        model.addAttribute("classType",(String) map.get("classType")); // 좌석 타입
+        
 		return "flight/flight_list";
 	}
 	
@@ -131,5 +184,4 @@ public class FlightController {
 		
 		return "flight/flight_reservation";
 	}
-	
 }
