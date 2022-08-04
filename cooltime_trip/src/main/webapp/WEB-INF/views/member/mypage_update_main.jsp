@@ -18,18 +18,21 @@
 		        <!-- <div class="div_update_title title_main">
 		            내 정보 수정하기
 		        </div> -->
-		        <form id="form_mypage_update" method="post" action="<c:url value='/mypageUpdateMemInfo'/>">
 		        	<div class="div_update_panel">
+		        	<form id="form_update_image" method="post" enctype="multipart/form-data">
 			            <div class="div_update_profile">
 			                <!-- 사진 -->
-			                <div class="div_img_profile">
-			                    <img class="img_profile_image" src="<c:url value='/images/ic_profile.png' />">
+			                <div class="div_img_profile" style="width: 180px; height: 180px; overflow: hidden">
+			                    <img class="img_profile_image" id="img_profile_image" src="<c:url value='/upload/${mem.memImage }' />">
 			                    <div class="div_update_image">
 			                        <img class="img_camera_background" src="<c:url value='/images/ic_camera_background.png' />">
 			                        <img class="img_camera_image" src="<c:url value='/images/ic_camera.png' />">
 			                    </div>
 			                </div>
 			            </div>
+			            <input type="file" id="uploadFile" name="uploadFile" style="display:none;">
+		            </form>
+		            <form id="form_mypage_update" method="post" action="<c:url value='/mypageUpdateMemInfo'/>">
 			            <table class="table_user_info">
 			                <tr><td class="td_text user_id">아이디</td><td colspan="2"><input class="input_update_id" type="text" value="${mem.memId }"></td></tr>
 			                <tr><td class="td_text user_password">비밀번호</td><td class="td_link update_password" colspan="2"><a href="<c:url value='/mypage_update_password' />">비밀번호 변경하기</a></td></tr>
@@ -45,8 +48,8 @@
 			                <button class="btn_update_cancel" type="button">취소하기</button>
 			                <button class="btn_update_confirm" type="submit">저장하기</button>
 			            </div>
-			        </div>
-		        </form>
+		            </form>
+		        </div>
 		        <form id="form_delete_member" method="post" action="<c:url value='/deleteMember'/>">
 		        	<div class="div_delete_member">
 		            	<%-- <a href="<c:url value='/deleteMember'/>">회원탈퇴</a> --%>

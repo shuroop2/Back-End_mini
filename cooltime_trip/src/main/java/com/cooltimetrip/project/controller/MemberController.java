@@ -1,5 +1,6 @@
 package com.cooltimetrip.project.controller; 
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cooltimetrip.project.model.MemberVO;
 import com.cooltimetrip.project.service.MemberService;
@@ -158,9 +160,32 @@ public class MemberController {
 	public String mypageUpdateMain(@RequestParam HashMap<String, Object> param, Model model, HttpSession session) {
 		String memId = (String) session.getAttribute("sid");
 		MemberVO mem = memService.getMemberInfo(memId);
-		
+		if(mem.getMemImage() == null) {
+			mem.setMemImage("/images/ic_profile.png");
+		}
 		model.addAttribute("mem", mem); 
 		return "member/mypage_update_main";
+	}
+	
+	// 프로필 사진 변경 처리
+	@ResponseBody
+	@RequestMapping("/updateImage")
+	public String updateImage(HttpSession session, @RequestParam("uploadFile") MultipartFile file) throws IOException {
+		String memId = (String) session.getAttribute("sid");
+		
+		String uploadPath = "C:/springWorkspace/upload/";
+		
+		String originalFileName = file.getOriginalFilename();
+		String filePathName = uploadPath + originalFileName;
+		
+		File newFile = new File(filePathName);
+		
+		file.transferTo(newFile);
+		
+		if(originalFileName != null)
+			memService.updateMemImage(memId, originalFileName);
+		
+		return filePathName;
 	}
 	
 	// 내 정보 수정 - memName

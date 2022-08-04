@@ -60,6 +60,11 @@ public class MemberService implements IMemberService {
 		return dao.checkMemId(memId);
 	}
 
+	@Override
+	public void updateMemImage(String memId, String memImage) {
+		dao.updateMemImage(memId, memImage);
+	}
+
 //	@Override
 //	public int checkMemId(MemberVO vo) {
 //		int result = dao.checkMemId(vo);

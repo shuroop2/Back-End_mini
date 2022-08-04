@@ -6,7 +6,7 @@ public class MemberVO {
 	private String memName;
 	private String memPhone;
 	private String memEmail;
-	
+	private String memImage;
 	
 	public String getMemId() {
 		return memId;
@@ -37,5 +37,11 @@ public class MemberVO {
 	}
 	public void setMemPhone(String memPhone) {
 		this.memPhone = memPhone;
+	}
+	public String getMemImage() {
+		return memImage;
+	}
+	public void setMemImage(String memImage) {
+		this.memImage = memImage;
 	}
 }
